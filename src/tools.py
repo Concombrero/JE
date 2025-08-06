@@ -2,7 +2,6 @@
 
 from typing import TypedDict
 
-BAN_API_URL = "https://api-adresse.data.gouv.fr/"
 
 class Address(TypedDict):
     """Type Adresse"""
