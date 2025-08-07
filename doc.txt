@@ -1,9 +1,0 @@
-https://koumoul.com/cadastre/ 
-Parcelle avec surface battis
-
-https://www.archiliste.fr/permis-de-construire
-Permis de construire (pas d'API onstruire base de donnée)
-
-
-Sitadel
-https://geoservices.sogefi-sig.com/documentation.php?doc=api_audrso_v2#/open%2Fparcelles
