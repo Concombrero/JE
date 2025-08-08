@@ -1,10 +1,14 @@
 
 import os
 import sys
+import json
+import csv
+from interface import Logger
 from adr import AddressProcessor
+from scrapper import ScrapperPageJaune
 
-
-AddressProcessor = AddressProcessor()
+address_processor = AddressProcessor()
+scraper_pj = ScrapperPageJaune()
 
 def clear_terminal():
     """Clear the terminal screen."""
@@ -15,7 +19,7 @@ def print_header():
     print("Logiciel")
     print("="*60)
     
-def get_user_address():
+def get_user_address(logger: Logger):
     """Prompt the user for an address."""
     numero = input("Entrez le numéro de la maison: ").strip()
     voie = input("Entrez le nom de la voie: ").strip()
@@ -27,13 +31,13 @@ def get_user_address():
         "code_postal": code_postal,
         "ville": ville
     }
-    if AddressProcessor.address_to_coordinates(adress):
+    if address_processor.is_valid_adress(adress, logger):
         return adress
     else:
-        print("Adresse invalide, veuillez réessayer.")
-        return get_user_address()
-    
-def get_user_radius():
+        logger.console("Adresse invalide, veuillez réessayer.")
+        return get_user_address(logger)
+
+def get_user_radius(logger: Logger):
     """Prompt the user for a radius in kilometers."""
     while True:
         try:
@@ -41,116 +45,118 @@ def get_user_radius():
             if radius > 0:
                 return radius
             else:
-                print("Le rayon doit être supérieur à 0.")
+                logger.console("Le rayon doit être supérieur à 0.")
         except ValueError:
-            print("Veuillez entrer un nombre valide.")
-    
-def get_output_filename():
+            logger.console("Veuillez entrer un nombre valide.")
+
+def get_output_dirname():
     """
-    Demande le nom du fichier de sortie
-    
+    Demande le nom du dossier de sortie
+
     Returns:
         str: Chemin du fichier de sortie
     """
     while True:
-        filename = input("Nom du fichier de sortie (sans extension, défaut: 'streets'): ").strip()
-        
-        if not filename:
-            filename = "streets"
-        
-        # Ajouter l'extension .json si nécessaire
-        if not filename.endswith('.json'):
-            filename += '.json'
-        
-        # Ajouter le chemin vers le dossier output
-        output_path = os.path.join('output', filename)
-        
-        # Vérifier si le fichier existe déjà
-        if os.path.exists(output_path):
-            overwrite = input(f"Le fichier '{output_path}' existe déjà. L'écraser? (o/N): ")
-            if overwrite.lower() not in ['o', 'oui', 'y', 'yes']:
-                continue
-        
-        return output_path
-    
-def display_progress(message: str):
-    """Affiche un message de progression"""
-    print(f"\n ⏳ {message}...")
-    
-def display_success(message):
-    """Affiche un message de succès"""
-    print(f"✅ {message}")
+        dirname = input("Quel est le nom de la recherche ? ").strip()
 
-def display_error(message):
-    """Affiche un message d'erreur"""
-    print(f"❌ Erreur: {message}")
+        if not dirname:
+            print("Le nom du dossier ne peut pas être vide.")
+
+        
+        dirname = os.path.join('output', dirname)
+        # Vérifier si le dossier existe déjà
+        if os.path.exists(dirname):
+            print(f"Le dossier '{dirname}' existe déjà. Veuillez choisir un autre nom.")
+        
+        else:
+            os.makedirs(dirname, exist_ok=True)
+            return dirname
+
+
+def start_logiciel():
+    """
+    MISE EN PLACE
+    """
+    clear_terminal()
+    print_header()
+
+    output_dirpath = get_output_dirname()
+
+    logger = Logger(os.path.join(output_dirpath, 'log.txt'))
+    logger.both("Démarrage du programme", "INFO")
+    
+    
+    address = get_user_address(logger)
+    logger.log(f"Adresse saisie: {address}", "DEBUG")
+
+    radius = get_user_radius(logger)
+    logger.log(f"Rayon saisi: {radius} km", "DEBUG")
+    
+    return address, radius, output_dirpath, logger
+
+
+def get_streets(address, radius, output_dirpath, logger):
+    """
+    RÉCUPÉRATION DES RUES
+    """
+    logger.console(f"Passage à la récupération des coordonnées de l'adresse.", "PROGRESS")
+    coords = address_processor.address_to_coordinates(address, logger)
+    
+    logger.log(f"Coordonnées récupérées: {coords}", "DEBUG")
+    
+    logger.console(f"Coordonnées récupérées: {coords}", "SUCCESS")
+    
+    logger.console(f"Passage à la récupération des rues dans un rayon de {radius} km autour des coordonnées.", "PROGRESS")
+
+    
+    dir_street = os.path.join(output_dirpath, 'streets')
+    os.makedirs(dir_street, exist_ok=True)
+    address_processor.get_streets_in_area(
+        center_lat=coords['latitude'],
+        center_lon=coords['longitude'],
+        radius_km=radius,
+        logger=logger,
+        dir_street=dir_street
+    )
+
+    return dir_street
+
+
+def process_street_pj(dir_street, output_dirpath, logger):
+    """
+    Traitement des rues
+    """
+    for file in os.listdir(dir_street):
+        if file.endswith('.json'):
+            file_path = os.path.join(dir_street, file)
+            with open(file_path, 'r', encoding='utf-8') as f:
+                street = json.load(f)
+                logger.log(f"Traitement de la rue: {street}", "DEBUG")
+                
+                # Traitement de la rue
+                scraper_pj.process_street(
+                    street=street,
+                    logger=logger,
+                    output_dir=output_dirpath
+                )
 
 def main():
+    
     try:
-        clear_terminal()
-        print_header()
-        
-        address = get_user_address()
-        radius = get_user_radius()
-        
-        display_progress("Récupération des coordonnées de l'adresse")
-        coords = AddressProcessor.address_to_coordinates(address)
-        
-        if not coords:
-            display_error("Impossible de récupérer les coordonnées de l'adresse.")
-            sys.exit(1)
-        
-        display_success(f"Coordonnées récupérées avec succès. Latitude: {coords['latitude']}, Longitude: {coords['longitude']}")
+        """
+        address, radius, output_dirpath, logger = start_logiciel()
 
-        center_lat, center_lon = coords["latitude"], coords["longitude"]
-        display_progress("Récupération des rues dans le rayon spécifié")
+        dir_street = get_streets(address, radius, output_dirpath, logger)
+        """
         
-        streets = AddressProcessor.get_streets_in_area(center_lat, center_lon, radius)
+        dir_street = os.path.join('output', 'Alger', 'streets')
+        output_dirpath = os.path.join('output', 'Alger')
+        logger = Logger(os.path.join(output_dirpath, 'log.txt'))
+        process_street_pj(dir_street, output_dirpath, logger)
 
-        if not streets:
-            display_error("Aucune rue trouvée dans le rayon spécifié.")
-            sys.exit(1)
-        
-        display_success(f"{len(streets)} rues trouvées.")
-        street_numbers = AddressProcessor.get_streets_number(streets)
-        
-        output_filename = get_output_filename()
-        AddressProcessor.save_streets_to_json(street_numbers, output_filename)
-        
-        display_success(f"Les rues ont été enregistrées dans '{output_filename}'")
-        print("Fin du programme.")
-        
     except Exception as e:
-        display_error(f"Une erreur s'est produite: {e}")
+        logger.both(f"Une erreur s'est produite: {e}", "ERROR")
         sys.exit(1)
-        
-
-def test():
-    """
-    Fonction principale du programme.
-    """
-    
-    ### Récupération du point d'origine
-    coord =AddressProcessor.address_to_coordinates({
-        "numero": 103,
-        "voie": "Rue D'Alger",
-        "code_postal": 81600,
-        "ville": "Gaillac"
-    })
-
-    print(coord)
-
-    adress = AddressProcessor.coordinates_to_address(coord)
-    print(adress)
-    
-    """
-    ### Récupération rayon de recherche
-    n_km = 0.1
-    
-    streets = AddressProcessor.get_streets_in_area(org['latitude'], org['longitude'], n_km)
-    print(f"Rues trouvées dans un rayon de {n_km} km autour de l'origine:")
-    for street in streets:
-        print(f" - {street}")"""
 
 if __name__ == "__main__":
     main()
