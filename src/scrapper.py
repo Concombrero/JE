@@ -6,9 +6,12 @@ import os
 from tools import Address, Coords, Contact, Street, Data
 from interface import Logger
 from adr import AddressProcessor
+from address_comparator import AddressComparator
+from bdnb import BDNB
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+
 
 address_processor = AddressProcessor()
 
@@ -22,6 +25,7 @@ class ScrapperPageJaune:
             self.driver = webdriver.Chrome(options=self.option) # A voir ce qu'on prend comme driver
             
             self.page_jaune_url = "https://www.pagesjaunes.fr"
+            self.address_comparator = AddressComparator()
 
 
     def get_search_url(self, address: Address, logger: Logger) -> str:
@@ -34,7 +38,6 @@ class ScrapperPageJaune:
         logger.log(f"URL de recherche construite: {url}", "DEBUG")
         return url
 
-
     def get_first_result_link(self, address: Address, logger: Logger) -> str:
         """
         Récupère le premier lien de résultat pour une adresse donnée.
@@ -46,20 +49,22 @@ class ScrapperPageJaune:
             
             self.driver.get(url)
             time.sleep(random.uniform(2, 3))
-            
+
             html = self.driver.page_source
-                
             soup = BeautifulSoup(html, 'html.parser')
             
-            first_result = soup.find('a', class_='bi-denomination pj-link')
+            first_result = soup.find('div', class_='bi-content')
             if first_result:
-                logger.log(f"Premier résultat trouvé: {first_result.get('href')}", "DEBUG")
-                return first_result.get('href')
-
+                link =first_result.find('a', class_="bi-denomination")
+                if link and link.get('href'):
+                    href = link.get('href')
+                    logger.log(f"Premier résultat trouvé: {href}", "DEBUG")
+                    return href
             logger.log("Aucun résultat trouvé", "DEBUG")
             return None
         
         except Exception as e:
+            logger.log(f"Erreur lors de la récupération du premier lien: {e}", "ERROR")
             return None
 
 
@@ -150,13 +155,22 @@ class ScrapperPageJaune:
 
     def is_str_address(self, string: str, address: Address, logger: Logger) -> bool:
         """
-        Vérifie si la chaine de caractères correspond à l'adresse.
+        Vérifie si la chaine de caractères correspond à l'adresse en tenant compte des fautes de frappe.
         """
-        logger.log(f"Comparaison de l'adresse: {address} et {string}", "DEBUG")
-        formatted_address = f"{address['numero']} {address['voie']}, {address['code_postal']} {address['ville']}"
-        result = string.strip().lower() == formatted_address.strip().lower()
-        logger.log(f"Résultat de la comparaison: {result}", "DEBUG")
-        return result
+        logger.log(f"Comparaison avancée de l'adresse: {address} et '{string}'", "DEBUG")
+        
+        # Utiliser le comparateur d'adresses pour une comparaison robuste
+        comparison_result = self.address_comparator.compare_addresses(address, string, logger)
+        
+        logger.log(f"Similarité globale: {comparison_result['overall_similarity']:.3f}", "DEBUG")
+        logger.log(f"Détails de similarité: {comparison_result['details']}", "DEBUG")
+        
+        # Considérer comme un match si la similarité globale est > 0.8 OU si les seuils individuels sont respectés
+        is_match = self.address_comparator.is_address_match(address, string, logger, threshold=0.8)
+        
+        logger.log(f"Résultat de la comparaison: {'MATCH' if is_match else 'NO MATCH'}", "DEBUG")
+        
+        return is_match
 
 
     def process_address(self, address: Address, logger: Logger) -> Contact:
@@ -167,8 +181,10 @@ class ScrapperPageJaune:
         first_link = self.get_first_result_link(address, logger)
         first_link = self.page_jaune_url + first_link if first_link else None
         if first_link:
+            time.sleep(random.uniform(2, 4))
             contact = self.get_contact_from_url(first_link, logger)
             address_str = contact.get('address', '')
+            time.sleep(random.uniform(2, 4))
             if self.is_str_address(address_str, address, logger):
                 return contact
             else:
@@ -183,30 +199,49 @@ class ScrapperPageJaune:
         if not output_file_name.endswith('.csv'):
             output_file_name += '.csv'
         
+        
+        
         with open(output_file_name, 'a', encoding='utf-8') as f:
             writer = csv.writer(f)
-            if not os.path.exists(output_file_name):
-                logger.log("Création du fichier CSV et écriture de l'en-tête", "DEBUG")
-                writer.writerow(['numero', 'voie', 'code_postal', 'ville', 'latitude', 'longitude', 'title', 'téléphone'])
-            
-            
-            writer.writerow([
-                data['address']['numero'],
-                data['address']['voie'],
-                data['address']['code_postal'],
-                data['address']['ville'],
-                data['coords']['latitude'],
-                data['coords']['longitude'],
-                data['contact']['title'],
-                data['contact']['phone']
-            ])
+            #si le fichier est vide, écrire l'en-tête
+            if f.tell() == 0:
+                writer.writerow([
+                    'Numero',
+                    'Voie',
+                    'Code Postal',
+                    'Ville',
+                    'Latitude',
+                    'Longitude',
+                    'Titre',
+                    'Téléphone',
+                    'Année Construction',
+                    'Classe Bilan DPE',
+                    'Consommation Énergie'
+                ])
+
+            if data['contact']:
+                writer.writerow([
+                    data['address']['numero'],
+                    data['address']['voie'],
+                    data['address']['code_postal'],
+                    data['address']['ville'],
+                    data['coords'].get('latitude', ''),
+                    data['coords'].get('longitude', ''),
+                    data['contact'].get('title', ''),
+                    data['contact'].get('phone', ''),
+                    data['bdnb'].get('annee_construction', ''),
+                    data['bdnb'].get('classe_bilan_dpe', ''),
+                    data['bdnb'].get('consomation_energie', '')
+                ])
     
     def process_street(self, street: Street, logger: Logger, output_dir: os.path):
         """
         Traite une rue pour récupérer les informations de contact de chaque adresse.
         """
+        bdnb = BDNB()
+        
         logger.both(f"Traitement de la rue: {street['name']}")
-        output_file_name = os.path.join(output_dir, "result.csv")
+        output_file_name = os.path.join(output_dir, "results.csv")
 
         for number in street['numbers']:
             logger.log(f"Traitement du numéro: {number}", "DEBUG")
@@ -217,13 +252,21 @@ class ScrapperPageJaune:
                 'ville': street['city']
             }
             contact = self.process_address(address, logger)
-            if contact:
-                coords = address_processor.address_to_coordinates(address, logger)
-
-                data = {
-                    'address': address,
-                    'coords': coords,
-                    'contact': contact
-                }
-
-                self.save_data(data, output_file_name, logger)
+            coords = address_processor.address_to_coordinates(address, logger)
+            
+            data = {
+                'address': address,
+                'coords': coords,
+                'contact': contact,
+                'bdnb': {}
+            }
+            if data['contact']:
+                logger.log(f"Recupération BDNB pour l'adresse: {address}", "DEBUG")
+                id_bdnb = bdnb.get_id(f"{address['numero']} {address['voie']} {address['code_postal']} {address['ville']}", logger)
+                if id_bdnb:
+                    bdnb_data = bdnb.get_data(id_bdnb, logger)
+                    logger.log(f"Données BDNB récupérées: {bdnb_data}", "DEBUG")
+                    if bdnb_data:
+                        data['bdnb'] = bdnb_data
+                
+            self.save_data(data, output_file_name, logger)

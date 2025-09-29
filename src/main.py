@@ -1,4 +1,3 @@
-
 import os
 import sys
 import json
@@ -141,19 +140,16 @@ def process_street_pj(dir_street, output_dirpath, logger):
                 )
 
 def main():
-    
     try:
-        """
+        
         address, radius, output_dirpath, logger = start_logiciel()
 
         dir_street = get_streets(address, radius, output_dirpath, logger)
-        """
         
-        dir_street = os.path.join('output', 'Alger', 'streets')
-        output_dirpath = os.path.join('output', 'Alger')
-        logger = Logger(os.path.join(output_dirpath, 'log.txt'))
         process_street_pj(dir_street, output_dirpath, logger)
-
+        
+        
+    
     except Exception as e:
         logger.both(f"Une erreur s'est produite: {e}", "ERROR")
         sys.exit(1)

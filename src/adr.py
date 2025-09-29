@@ -147,9 +147,9 @@ class AddressProcessor:
         centaine = 0
         number_finded = True
         while number_finded:
-            logger.log(f'Verification des nombres de {centaine*100 + 1} à {(centaine + 1) * 100}')
+            logger.log(f'Verification des nombres de {centaine*50 + 1} à {(centaine + 1) * 50}')
             number_finded = False
-            for i in range(centaine * 100 + 1, (centaine + 1) * 100 + 1):
+            for i in range(centaine * 50 + 1, (centaine + 1) * 50 + 1):
                 address = {
                     "numero": i,
                     "voie": street["name"],
@@ -173,67 +173,51 @@ class AddressProcessor:
         """
         with open(output_file, 'a', encoding='utf-8') as f:
             json.dump(street, f, ensure_ascii=False, indent=4)
-        
+    
+    def get_city_and_postal_code_from_coords(self, coords: Coords, logger: Logger):
+        """
+        Récupère la ville et le code postal à partir des coordonnées
+        """
+        address = self.coordinates_to_address(coords, logger)
+        if address:
+            return address['ville'], str(address['code_postal'])
+        return "", ""
+
+
     def get_streets_in_area(self, center_lat: float, center_lon: float, radius_km: float, logger: Logger, dir_street: os.path):
+        street_names = self.get_street_names(center_lat, center_lon, radius_km)
+        logger.both(f"{len(street_names)} rues trouvées", "SUCCESS")
+        city, postal_code = self.get_city_and_postal_code_from_coords({"latitude": center_lat, "longitude": center_lon}, logger)
+        compteur = 0
+        for name in street_names:
+            logger.both(f"Traitement de la rue {compteur+1}/{len(street_names)}: {name}", "PROGRESS")
+            compteur += 1
+            street: Street = {
+                "name": name,
+                "city": city,
+                "postal_code": postal_code,
+                "numbers": []
+            }
+            self.get_street_number(street, logger)
+            save = os.path.join(dir_street, f"{street['name'].replace('/', '_').replace(' ', '_')}.json")
+            self.save_street_to_json(street, save)
+
+    def get_street_names(self, lat, lon, distance_km):
+        distance_m = int(distance_km * 1000)
+        query = f"""
+        [out:json];
+        way(around:{distance_m},{lat},{lon})["highway"]["name"];
+        out tags;
         """
-        Récupère les rues dans un rayon spécifié autour d'un point central
-        Sauvegarde chaque rue au format JSON dans le répertoire spécifié
-        """
-        
-        logger.log(f'Récupération des rues dans un rayon de {radius_km} km autour du point ({center_lat}, {center_lon})')
-        bounding_box = self.calculate_bounding_box({'latitude': center_lat, 'longitude': center_lon}, radius_km, logger)
-        
-        if not bounding_box:
-            logger.log(f'Erreur lors du calcul de la boîte englobante', level="ERROR")
-            return []
-        
-        streets_name = set()  # Utilise un set pour éviter les doublons
-        step = 0.0001
-        
-        logger.log(f'Calcul du nombre total d\'itérations pour le pourcentage')
-        # Calcul du nombre total d'itérations pour le pourcentage
-        lat_steps = int((bounding_box['north'] - bounding_box['south']) / step) + 1
-        lon_steps = int((bounding_box['east'] - bounding_box['west']) / step) + 1
-        total_iterations = lat_steps * lon_steps
-        
-        logger.log(f"Total d'itérations: {total_iterations}")
-        
-        
-        current_iteration = 0
-        last_percentage = -1
-        
-        logger.log(f'Début de la récupération des rues')
-        lat = bounding_box['south']
-        while lat <= bounding_box['north']:
-            lon = bounding_box['west']
-            while lon <= bounding_box['east']:
-                # Affichage du pourcentage tous les 10%
-                percentage = int((current_iteration / total_iterations) * 100)
-                if percentage >= last_percentage + 10:
-                    logger.console(f"Progression: {percentage}%")
-                    last_percentage = percentage
-                
-                # Récupération de l'adresse pour ces coordonnées
-                coords = {'latitude': lat, 'longitude': lon}
-                logger.log(f'Récupération de l\'adresse pour les coordonnées {coords}')
-                address = self.coordinates_to_address(coords, logger)
-                
-                
-                if address and address.get('voie'):
-                    if address['voie'] not in streets_name:
-                        logger.log(f"Rue trouvée: {address['voie']}")
-                        streets_name.add(address['voie'])
-                        street= {
-                            "name": address['voie'],
-                            "city": address['ville'],
-                            "postal_code": address['code_postal'],
-                            "numbers": []
-                        }
-                        self.get_street_number(street, logger)
-                        output_file = os.path.join(dir_street, f"{street['name']}.json")
-                        self.save_street_to_json(street, output_file)
-                        logger.both(f"Rue enregistrée dans {output_file}", "SUCCESS")                 
-                current_iteration += 1
-                lon += step
-            lat += step
-        print("Progression: 100%")
+        url = "https://overpass-api.de/api/interpreter"
+        response = requests.get(url, params={"data": query})
+        response.raise_for_status()
+        data = response.json()
+
+        # Extraire les noms uniques
+        streets = {el["tags"]["name"] for el in data.get("elements", []) if "tags" in el and "name" in el["tags"]}
+        return streets
+
+
+    
+    
