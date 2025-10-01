@@ -219,20 +219,26 @@ class ScrapperPageJaune:
                     'Consommation Énergie'
                 ])
 
-            if data['contact']:
-                writer.writerow([
-                    data['address']['numero'],
-                    data['address']['voie'],
-                    data['address']['code_postal'],
-                    data['address']['ville'],
-                    data['coords'].get('latitude', ''),
-                    data['coords'].get('longitude', ''),
-                    data['contact'].get('title', ''),
-                    data['contact'].get('phone', ''),
-                    data['bdnb'].get('annee_construction', ''),
-                    data['bdnb'].get('classe_bilan_dpe', ''),
-                    data['bdnb'].get('consomation_energie', '')
-                ])
+            
+            
+            try:
+                if data['contact']:
+                    writer.writerow([
+                        data['address']['numero'],
+                        data['address']['voie'],
+                        data['address']['code_postal'],
+                        data['address']['ville'],
+                        data['coords'].get('latitude', ''),
+                        data['coords'].get('longitude', ''),
+                        data['contact'].get('title', ''),
+                        data['contact'].get('phone', ''),
+                        data['bdnb'].get('annee_construction', ''),
+                        data['bdnb'].get('classe_bilan_dpe', ''),
+                        data['bdnb'].get('consomation_energie', '')
+                    ])
+            except Exception as e:
+                logger.log(f"Erreur lors de l'écriture des données: {e}", "ERROR")
+                logger.log(f"Données: {data}", "DEBUG")
     
     def process_street(self, street: Street, logger: Logger, output_dir: os.path):
         """
@@ -258,7 +264,7 @@ class ScrapperPageJaune:
                 'address': address,
                 'coords': coords,
                 'contact': contact,
-                'bdnb': {}
+                'bdnb': dict()
             }
             if data['contact']:
                 logger.log(f"Recupération BDNB pour l'adresse: {address}", "DEBUG")
