@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import csv
+import time
 from interface import Logger
 from adr import AddressProcessor
 from scrapper import ScrapperPageJaune
@@ -143,10 +144,21 @@ def main():
     try:
         
         address, radius, output_dirpath, logger = start_logiciel()
+        
+        # Démarer un timer
+        start_time = time.time()
 
         dir_street = get_streets(address, radius, output_dirpath, logger)
         
+        address_time = time.time()
+        
         process_street_pj(dir_street, output_dirpath, logger)
+        
+        end_time = time.time()
+        
+        logger.both(f"Temps pour récupérer les rues: {address_time - start_time:.2f} secondes", "INFO")
+        logger.both(f"Temps total d'exécution: {end_time - start_time:.2f} secondes", "INFO")
+        logger.both("Programme terminé avec succès.", "SUCCESS")
         
         
     
