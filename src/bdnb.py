@@ -1,3 +1,5 @@
+"""Module BDNB - Copié depuis src_1"""
+
 import requests
 import time
 import random
@@ -68,38 +70,10 @@ class BDNB:
             data = response.json()
 
             if data:
-                return self.extract_data(data[0], bdnb_id,logger)
+                return self.extract_data(data[0], bdnb_id, logger)
 
         except Exception as e:
             logger.log(f"Erreur lors de la récupération des données pour l'ID {bdnb_id}: {e}")
-            return None
-        
-    def conso_elec(self, bdnb_id, logger: Logger):
-        """
-        Récupère la consommation électrique pour un ID BDNB donné.
-        """
-        
-        params = {
-            'cle_interop_adr': f"eq.{bdnb_id}",
-            'limit': '1'
-        }
-        
-        # Rate limiting
-        elapsed = time.time() - self.last_request_time
-        wait_time = self.minute_per_requests - elapsed
-        if wait_time > 0:
-            time.sleep(wait_time)
-
-        try:
-            response = requests.get(f"{self.base_url}/donnees/batiment_groupe_dle_elec_multimillesime/adresse", params=params)
-            response.raise_for_status()
-            data = response.json()
-
-            if data:
-                return data[0].get("consomation_energie", None)
-
-        except Exception as e:
-            logger.log(f"Erreur lors de la récupération des données (consommation électrique) pour l'ID {bdnb_id}: {e}")
             return None
 
 
@@ -109,8 +83,7 @@ class BDNB:
         """
         data = {
             "annee_construction": data_json.get("annee_construction", None),
-            "classe_bilan_dpe": data_json.get("classe_bilan_dpe", None),
-            "consomation_energie": self.conso_elec(bdnb_id, logger)
-            }
+            "classe_bilan_dpe": data_json.get("classe_bilan_dpe", None)
+        }
 
         return data

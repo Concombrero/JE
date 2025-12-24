@@ -1,4 +1,4 @@
-"""Module de traitement des adresses"""
+"""Module de traitement des adresses - Copié depuis src_1"""
 
 import math
 import time
@@ -217,7 +217,3 @@ class AddressProcessor:
         # Extraire les noms uniques
         streets = {el["tags"]["name"] for el in data.get("elements", []) if "tags" in el and "name" in el["tags"]}
         return streets
-
-
-    
-    
