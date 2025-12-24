@@ -1,3 +1,5 @@
+"""Module de comparaison d'adresses - Copié depuis src_1"""
+
 import re
 import os
 from difflib import SequenceMatcher
