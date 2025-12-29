@@ -1,5 +1,3 @@
-"""Module BDNB - Copié depuis src_1"""
-
 import requests
 import time
 import random
@@ -70,7 +68,7 @@ class BDNB:
             data = response.json()
 
             if data:
-                return self.extract_data(data[0], bdnb_id, logger)
+                return self.extract_data(data[0], bdnb_id,logger)
 
         except Exception as e:
             logger.log(f"Erreur lors de la récupération des données pour l'ID {bdnb_id}: {e}")
@@ -84,6 +82,6 @@ class BDNB:
         data = {
             "annee_construction": data_json.get("annee_construction", None),
             "classe_bilan_dpe": data_json.get("classe_bilan_dpe", None)
-        }
+            }
 
         return data

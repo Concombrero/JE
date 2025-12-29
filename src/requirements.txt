@@ -1,19 +1,4 @@
-# Dépendances pour l'application de prospection fusionnée
-
-# Web scraping et requêtes HTTP
+PySide6>=6.6.0
 requests>=2.31.0
 beautifulsoup4>=4.12.0
 selenium>=4.15.0
-
-# Interface graphique Qt
-PySide6>=6.6.0
-PySide6-WebEngine>=6.6.0
-
-# Géocodage et données géographiques
-overpy>=0.7
-geopy>=2.4.0
-pyproj>=3.6.0
-
-# Optionnel (pour calculs géométriques avancés)
-# shapely>=2.0.0
-# unidecode>=1.3.0  # pour normalisation de noms
