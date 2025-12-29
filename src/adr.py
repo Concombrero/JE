@@ -1,4 +1,4 @@
-"""Module de traitement des adresses - Copié depuis src_1"""
+"""Module de traitement des adresses"""
 
 import math
 import time
