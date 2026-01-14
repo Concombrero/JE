@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prospection - Meylan</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+
+<style>
+  html, body, #map { height: 100%; margin: 0; padding: 0; }
+  .popup-title { font-weight: 700; font-size: 14px; margin-bottom: 4px; color: #1d4ed8; }
+  .popup-section-title { font-weight: 600; margin-top: 8px; color: #374151; border-bottom: 1px solid #e5e7eb; padding-bottom: 2px; }
+  .kv { margin: 2px 0; font-size: 13px; }
+  .kv span.k { color: #666; }
+  .chips span { display:inline-block; background:#eef; border-radius:10px; padding:2px 6px; margin:2px; font-size:12px; }
+  .contact-link { color: #2563eb; text-decoration: none; }
+  .contact-link:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+
+<script>
+  const CENTER = [45.2093160, 5.7834290];
+  const RADIUS_M = 100;
+  const GEOJSON = {"type": "FeatureCollection", "features": [{"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.782477, 45.214912]}, "properties": {"numero": "1", "voie": "Avenue du Taillefer", "code_postal": "38240", "ville": "Meylan", "pj_title": "Lycée polyvalent du Grésivaudan Meylan (adresse, horaires)", "pj_phone": "04 76 90 30 53", "annee_construction": "2000", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.780316, 45.21372]}, "properties": {"numero": "7", "voie": "Avenue du Taillefer", "code_postal": "38240", "ville": "Meylan", "pj_title": "", "pj_phone": "", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.780226, 45.209451]}, "properties": {"numero": "1", "voie": "Avenue du Granier", "code_postal": "38240", "ville": "Meylan", "pj_title": "Gendarmerie Nationale Meylan (adresse, horaires)", "pj_phone": "04 38 37 47 70", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.780267, 45.210065]}, "properties": {"numero": "2", "voie": "Avenue du Granier", "code_postal": "38240", "ville": "Meylan", "pj_title": "", "pj_phone": "", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.780333, 45.209858]}, "properties": {"numero": "4", "voie": "Avenue du Granier", "code_postal": "38240", "ville": "Meylan", "pj_title": "Espace Musical G Baudry Meylan - Cours de musique, cours de chant (adresse, horaires)", "pj_phone": "04 76 90 62 02", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.782327, 45.209988]}, "properties": {"numero": "6", "voie": "Avenue du Granier", "code_postal": "38240", "ville": "Meylan", "pj_title": "Team Overfly By Drone Meylan - Photographes industriels (adresse, horaires)", "pj_phone": "06 73 51 04 81", "annee_construction": "2009", "classe_bilan_dpe": "E", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.780646, 45.209528]}, "properties": {"numero": "7", "voie": "Avenue du Granier", "code_postal": "38240", "ville": "Meylan", "pj_title": "Bellet & Behr SAS Meylan - Huissiers de justice (adresse, horaires)", "pj_phone": "04 58 00 12 02", "annee_construction": "1985", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.78378, 45.21041]}, "properties": {"numero": "8", "voie": "Avenue du Granier", "code_postal": "38240", "ville": "Meylan", "pj_title": "Catherine Girard Meylan - Psychologue (adresse, horaires)", "pj_phone": "06 16 87 29 05", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.788926, 45.211695]}, "properties": {"numero": "12", "voie": "Avenue du Granier", "code_postal": "38240", "ville": "Meylan", "pj_title": "Archives Municipales Meylan (adresse, horaires)", "pj_phone": "04 76 41 16 25", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.783088, 45.209654]}, "properties": {"numero": "15", "voie": "Avenue du Granier", "code_postal": "38240", "ville": "Meylan", "pj_title": "VERISURE Meylan - Systèmes d'alarme (adresse, horaires, avis)", "pj_phone": "", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.783114, 45.209428]}, "properties": {"numero": "17", "voie": "Avenue du Granier", "code_postal": "38240", "ville": "Meylan", "pj_title": "Cotranet Meylan - Maintenance et services informatique (adresse, horaires)", "pj_phone": "04 76 04 00 90", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.783429, 45.209316]}, "properties": {"numero": "19", "voie": "Avenue du Granier", "code_postal": "38240", "ville": "Meylan", "pj_title": "3A Audit & Finances - Expert comptable à Meylan 38240 (adresse, horaires)", "pj_phone": "04 76 00 75 75", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.783637, 45.209398]}, "properties": {"numero": "21", "voie": "Avenue du Granier", "code_postal": "38240", "ville": "Meylan", "pj_title": "", "pj_phone": "", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.784234, 45.210007]}, "properties": {"numero": "25", "voie": "Avenue du Granier", "code_postal": "38240", "ville": "Meylan", "pj_title": "ETC Group Meylan - Formation professionnelle (adresse, horaires)", "pj_phone": "04 76 59 19 80", "annee_construction": "2008", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.784555, 45.209457]}, "properties": {"numero": "27", "voie": "Avenue du Granier", "code_postal": "38240", "ville": "Meylan", "pj_title": "JKD Peinture Meylan - Entreprise de peinture (adresse, horaires)", "pj_phone": "07 82 98 89 27", "annee_construction": "2018", "classe_bilan_dpe": "C", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.785215, 45.210275]}, "properties": {"numero": "31", "voie": "Avenue du Granier", "code_postal": "38240", "ville": "Meylan", "pj_title": "Marion maquillage permanent Meylan - Institut de beauté (adresse, horaires)", "pj_phone": "06 86 21 13 99", "annee_construction": "2021", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.785615, 45.210104]}, "properties": {"numero": "33", "voie": "Avenue du Granier", "code_postal": "38240", "ville": "Meylan", "pj_title": "", "pj_phone": "", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.785148, 45.210076]}, "properties": {"numero": "35", "voie": "Avenue du Granier", "code_postal": "38240", "ville": "Meylan", "pj_title": "Le Square Meylan - Restaurant (adresse, horaires, avis)", "pj_phone": "04 76 90 43 61", "annee_construction": "1990", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.786068, 45.210423]}, "properties": {"numero": "37", "voie": "Avenue du Granier", "code_postal": "38240", "ville": "Meylan", "pj_title": "Jean Breuneval Meylan - Chirurgien-dentiste, orthodontiste (adresse, horaires)", "pj_phone": "04 76 18 56 11", "annee_construction": "1991", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.79032, 45.21143]}, "properties": {"numero": "51", "voie": "Avenue du Granier", "code_postal": "38240", "ville": "Meylan", "pj_title": "", "pj_phone": "", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.790438, 45.211411]}, "properties": {"numero": "53", "voie": "Avenue du Granier", "code_postal": "38240", "ville": "Meylan", "pj_title": "", "pj_phone": "", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.780985, 45.207885]}, "properties": {"numero": "1", "voie": "Chemin des Sétérées du Dessous", "code_postal": "38240", "ville": "Meylan", "pj_title": "", "pj_phone": "", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.783294, 45.208995]}, "properties": {"numero": "5", "voie": "Chemin des Sétérées du Dessous", "code_postal": "38240", "ville": "Meylan", "pj_title": "", "pj_phone": "", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.783601, 45.209022]}, "properties": {"numero": "7", "voie": "Chemin des Sétérées du Dessous", "code_postal": "38240", "ville": "Meylan", "pj_title": "", "pj_phone": "", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.784045, 45.209008]}, "properties": {"numero": "11", "voie": "Chemin des Sétérées du Dessous", "code_postal": "38240", "ville": "Meylan", "pj_title": "", "pj_phone": "", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.784574, 45.208486]}, "properties": {"numero": "15", "voie": "Chemin des Sétérées du Dessous", "code_postal": "38240", "ville": "Meylan", "pj_title": "", "pj_phone": "", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.785331, 45.207847]}, "properties": {"numero": "2", "voie": "Chemin des Prêles", "code_postal": "38240", "ville": "Meylan", "pj_title": "Tempologis Meylan - Résidence de tourisme (adresse, horaires)", "pj_phone": "", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.785184, 45.208129]}, "properties": {"numero": "4", "voie": "Chemin des Prêles", "code_postal": "38240", "ville": "Meylan", "pj_title": "R.T.P. Peinture Meylan - Entreprise de peinture (adresse, horaires, avis)", "pj_phone": "07 63 36 06 20", "annee_construction": "2003", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.784922, 45.208758]}, "properties": {"numero": "6", "voie": "Chemin des Prêles", "code_postal": "38240", "ville": "Meylan", "pj_title": "", "pj_phone": "", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.785255, 45.208869]}, "properties": {"numero": "8", "voie": "Chemin des Prêles", "code_postal": "38240", "ville": "Meylan", "pj_title": "", "pj_phone": "", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.784726, 45.208899]}, "properties": {"numero": "10", "voie": "Chemin des Prêles", "code_postal": "38240", "ville": "Meylan", "pj_title": "Crèche Meylan - people & baby Kid's Coocoon et Kid's Heaven - Crèche (adresse, horaires)", "pj_phone": "04 82 79 06 12", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.782921, 45.210916]}, "properties": {"numero": "1", "voie": "Impasse des Verdiers", "code_postal": "38240", "ville": "Meylan", "pj_title": "", "pj_phone": "", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.782436, 45.210933]}, "properties": {"numero": "3", "voie": "Impasse des Verdiers", "code_postal": "38240", "ville": "Meylan", "pj_title": "", "pj_phone": "", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.782733, 45.211115]}, "properties": {"numero": "4", "voie": "Impasse des Verdiers", "code_postal": "38240", "ville": "Meylan", "pj_title": "", "pj_phone": "", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.782488, 45.210598]}, "properties": {"numero": "5", "voie": "Impasse des Verdiers", "code_postal": "38240", "ville": "Meylan", "pj_title": "", "pj_phone": "", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.782274, 45.210978]}, "properties": {"numero": "6", "voie": "Impasse des Verdiers", "code_postal": "38240", "ville": "Meylan", "pj_title": "", "pj_phone": "", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.782457, 45.210514]}, "properties": {"numero": "7", "voie": "Impasse des Verdiers", "code_postal": "38240", "ville": "Meylan", "pj_title": "", "pj_phone": "", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.782035, 45.210952]}, "properties": {"numero": "8", "voie": "Impasse des Verdiers", "code_postal": "38240", "ville": "Meylan", "pj_title": "", "pj_phone": "", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.782345, 45.210682]}, "properties": {"numero": "9", "voie": "Impasse des Verdiers", "code_postal": "38240", "ville": "Meylan", "pj_title": "ASSO COMMUNE CHASSE AGREEE ENTRAIGUES Meylan - Clubs, territoire de chasse (adresse, horaires)", "pj_phone": "", "annee_construction": "1989", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.782025, 45.210888]}, "properties": {"numero": "10", "voie": "Impasse des Verdiers", "code_postal": "38240", "ville": "Meylan", "pj_title": "", "pj_phone": "", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.782317, 45.210739]}, "properties": {"numero": "11", "voie": "Impasse des Verdiers", "code_postal": "38240", "ville": "Meylan", "pj_title": "", "pj_phone": "", "annee_construction": "", "classe_bilan_dpe": "", "entreprise_nom": "", "entreprise_category": "", "entreprise_phones": "", "entreprise_emails": "", "entreprise_websites": "", "entreprise_siren": "", "entreprise_siret": "", "entreprise_naf": "", "owner_name": "", "owner_role": "", "roof_area_m2": "", "parking_area_m2": "", "building_year": ""}}]};
+
+  // Fonds de carte
+  const esriSat = L.tileLayer(
+    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    { attribution: 'Esri & contributors', maxZoom: 20 }
+  );
+  const osmPlan = L.tileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    { attribution: '&copy; OpenStreetMap', maxZoom: 20 }
+  );
+
+  const map = L.map('map', {
+    center: CENTER,
+    zoom: 13,
+    layers: [esriSat]
+  });
+
+  const baseLayers = {
+    "Satellite (Esri)": esriSat,
+    "Plan (OSM)": osmPlan
+  };
+  L.control.layers(baseLayers, null, { position: 'topleft' }).addTo(map);
+  L.control.scale().addTo(map);
+
+  // Cercle de recherche
+  const circle = L.circle(CENTER, {
+    radius: RADIUS_M,
+    color: '#3b82f6',
+    fillColor: '#3b82f6',
+    fillOpacity: 0.08,
+    weight: 2
+  }).addTo(map);
+  map.fitBounds(circle.getBounds(), { padding: [20, 20] });
+
+  // Centre (marqueur)
+  L.circleMarker(CENTER, {
+    radius: 6, color: '#dc2626', fillColor: '#dc2626', fillOpacity: 0.9
+  }).bindTooltip('Centre de recherche').addTo(map);
+
+  // Cluster
+  const markers = L.markerClusterGroup();
+
+  function esc(x) {
+    if (x === null || x === undefined) return '';
+    return String(x).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+  }
+
+  function joinChips(arr) {
+    if (!arr || !arr.length) return '';
+    return '<div class="chips">' + arr.map(x => '<span>' + esc(x) + '</span>').join('') + '</div>';
+  }
+
+  function buildPopup(props) {
+    // Identité
+    const name = esc(props.name || props.pj_title || props.entreprise_nom || 'Inconnu');
+    const category = esc(props.category || props.entreprise_category || 'n/a');
+    
+    // Adresse
+    let addr = esc(props.address || '');
+    if (!addr && props.numero) {
+      addr = esc((props.numero || '') + ' ' + (props.voie || '') + ', ' + (props.code_postal || '') + ' ' + (props.ville || ''));
+    }
+    
+    // Contacts
+    const phones = props.phones || props.entreprise_phones || [];
+    const pjPhone = props.pj_phone || props.pj_telephone;
+    const emails = props.emails || props.entreprise_emails || [];
+    const websites = props.websites || props.entreprise_websites || [];
+    
+    // Entreprise
+    const siren = props.entreprise_siren || (props.company_info ? props.company_info.siren : '') || '';
+    const siret = props.entreprise_siret || (props.company_info ? props.company_info.siret : '') || '';
+    const naf = props.entreprise_naf || (props.company_info ? props.company_info.naf_libelle : '') || '';
+    
+    // Propriétaire
+    const ownerParts = [];
+    if (props.owner_first_name) ownerParts.push(esc(props.owner_first_name));
+    if (props.owner_last_name) ownerParts.push(esc(props.owner_last_name));
+    const owner = ownerParts.join(' ') || esc(props.owner_name || '');
+    const ownerRole = esc(props.owner_role || '');
+    
+    // Bâtiment
+    const by = props.building_year || props.annee_construction || '';
+    const dpe = props.classe_bilan_dpe || '';
+    const roof = props.roof_area_m2 || '';
+    const park = props.parking_area_m2 || '';
+
+    let html = '';
+    html += '<div class="popup-title">' + name + '</div>';
+    html += '<p class="kv"><span class="k">Catégorie:</span> ' + category + '</p>';
+    html += '<p class="kv"><span class="k">Adresse:</span> ' + addr + '</p>';
+
+    // Contacts
+    const hasContacts = (phones.length > 0) || pjPhone || (emails.length > 0) || (websites.length > 0);
+    if (hasContacts) {
+      html += '<div class="popup-section-title">📞 Contacts</div>';
+      
+      if (pjPhone) {
+        html += '<p class="kv"><span class="k">Tel (PJ):</span> <a class="contact-link" href="tel:' + esc(pjPhone) + '">' + esc(pjPhone) + '</a></p>';
+      }
+      if (phones.length) {
+        html += '<p class="kv"><span class="k">Tel:</span> ' + phones.map(p => '<a class="contact-link" href="tel:' + esc(p) + '">' + esc(p) + '</a>').join(', ') + '</p>';
+      }
+      if (emails.length) {
+        html += '<p class="kv"><span class="k">Email:</span> ' + emails.map(e => '<a class="contact-link" href="mailto:' + esc(e) + '">' + esc(e) + '</a>').join(', ') + '</p>';
+      }
+      if (websites.length) {
+        html += '<p class="kv"><span class="k">Site:</span> ' + websites.map(w => '<a class="contact-link" href="' + esc(w) + '" target="_blank">' + esc(w) + '</a>').join(' ') + '</p>';
+      }
+    }
+
+    // Dirigeant
+    if (owner) {
+      html += '<div class="popup-section-title">👤 Dirigeant</div>';
+      html += '<p class="kv">' + owner + (ownerRole ? ' — ' + ownerRole : '') + '</p>';
+    }
+
+    // Entreprise
+    if (siren || siret || naf) {
+      html += '<div class="popup-section-title">🏢 Entreprise</div>';
+      if (siren) html += '<p class="kv"><span class="k">SIREN:</span> ' + esc(siren) + '</p>';
+      if (siret) html += '<p class="kv"><span class="k">SIRET:</span> ' + esc(siret) + '</p>';
+      if (naf) html += '<p class="kv"><span class="k">NAF:</span> ' + esc(naf) + '</p>';
+    }
+
+    // Bâtiment
+    if (by || dpe || roof || park) {
+      html += '<div class="popup-section-title">🏠 Bâtiment</div>';
+      if (by) html += '<p class="kv"><span class="k">Année:</span> ' + esc(by) + '</p>';
+      if (dpe) html += '<p class="kv"><span class="k">DPE:</span> ' + esc(dpe) + '</p>';
+      if (roof) html += '<p class="kv"><span class="k">Toiture:</span> ' + esc(roof) + ' m²</p>';
+      if (park) html += '<p class="kv"><span class="k">Parking:</span> ' + esc(park) + ' m²</p>';
+    }
+
+    return html;
+  }
+
+  const gj = L.geoJSON(GEOJSON, {
+    onEachFeature: function (feature, layer) {
+      const p = feature.properties || {};
+      layer.bindPopup(buildPopup(p), { maxWidth: 450 });
+    }
+  });
+
+  markers.addLayer(gj);
+  map.addLayer(markers);
+
+  // Ajuster le zoom
+  try {
+    const group = new L.featureGroup([circle, gj]);
+    map.fitBounds(group.getBounds(), { padding: [20,20] });
+  } catch(e) {
+    map.fitBounds(circle.getBounds(), { padding: [20,20] });
+  }
+</script>
+</body>
+</html>

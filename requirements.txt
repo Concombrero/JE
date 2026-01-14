@@ -1,0 +1,19 @@
+# Requirements pour le projet de prospection immobilière
+
+# Interface graphique Qt (WebEngine inclus)
+PySide6>=6.5.0
+
+# Web scraping
+selenium>=4.15.0
+beautifulsoup4>=4.12.0
+
+# HTTP requests
+requests>=2.31.0
+
+# Geocoding et géographie
+geopy>=2.4.0
+pyproj>=3.6.0
+overpy>=0.6
+
+# Optionnel pour calculs de surface
+# shapely>=2.0.0
