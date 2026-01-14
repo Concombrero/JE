@@ -1,0 +1,500 @@
+[2026-01-14 16:44:36] [INFO] Vérification de l'adresse {'numero': '76', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:36] [INFO] Vérification de l'adresse {'numero': '77', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:36] [INFO] Vérification de l'adresse {'numero': '78', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:37] [INFO] Vérification de l'adresse {'numero': '79', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:37] [INFO] Vérification de l'adresse {'numero': '80', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:39] [ERROR] Erreur lors de la vérification de l'adresse: 504 Server Error: Gateway Timeout for url: https://data.geopf.fr/geocodage/search/?q=80+Avenue+du+Granier%2C+38240+Meylan
+[2026-01-14 16:44:39] [INFO] Vérification de l'adresse {'numero': '81', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:39] [INFO] Vérification de l'adresse {'numero': '82', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:39] [INFO] Vérification de l'adresse {'numero': '83', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:40] [INFO] Vérification de l'adresse {'numero': '84', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:40] [INFO] Vérification de l'adresse {'numero': '85', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:41] [INFO] Vérification de l'adresse {'numero': '86', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:41] [INFO] Vérification de l'adresse {'numero': '87', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:43] [INFO] Vérification de l'adresse {'numero': '88', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:43] [INFO] Vérification de l'adresse {'numero': '89', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:43] [INFO] Vérification de l'adresse {'numero': '90', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:44] [INFO] Vérification de l'adresse {'numero': '91', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:44] [INFO] Vérification de l'adresse {'numero': '92', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:44] [INFO] Vérification de l'adresse {'numero': '93', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:44] [INFO] Vérification de l'adresse {'numero': '94', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:44] [INFO] Vérification de l'adresse {'numero': '95', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:45] [INFO] Vérification de l'adresse {'numero': '96', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:45] [INFO] Vérification de l'adresse {'numero': '97', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:46] [INFO] Vérification de l'adresse {'numero': '98', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:46] [INFO] Vérification de l'adresse {'numero': '99', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:46] [INFO] Vérification de l'adresse {'numero': '100', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:46] [INFO] Vérification des nombres de 101 à 150
+[2026-01-14 16:44:46] [INFO] Vérification de l'adresse {'numero': '101', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:46] [INFO] Vérification de l'adresse {'numero': '102', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:47] [INFO] Vérification de l'adresse {'numero': '103', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:49] [INFO] Vérification de l'adresse {'numero': '104', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:49] [INFO] Vérification de l'adresse {'numero': '105', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:50] [INFO] Vérification de l'adresse {'numero': '106', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:50] [INFO] Vérification de l'adresse {'numero': '107', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:50] [INFO] Vérification de l'adresse {'numero': '108', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:50] [INFO] Vérification de l'adresse {'numero': '109', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:50] [INFO] Vérification de l'adresse {'numero': '110', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:51] [INFO] Vérification de l'adresse {'numero': '111', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:51] [INFO] Vérification de l'adresse {'numero': '112', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:51] [INFO] Vérification de l'adresse {'numero': '113', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:52] [INFO] Vérification de l'adresse {'numero': '114', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:52] [INFO] Vérification de l'adresse {'numero': '115', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:52] [INFO] Vérification de l'adresse {'numero': '116', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:52] [INFO] Vérification de l'adresse {'numero': '117', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:53] [INFO] Vérification de l'adresse {'numero': '118', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:53] [INFO] Vérification de l'adresse {'numero': '119', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:53] [INFO] Vérification de l'adresse {'numero': '120', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:53] [INFO] Vérification de l'adresse {'numero': '121', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:56] [INFO] Vérification de l'adresse {'numero': '122', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:56] [INFO] Vérification de l'adresse {'numero': '123', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:57] [INFO] Vérification de l'adresse {'numero': '124', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:57] [INFO] Vérification de l'adresse {'numero': '125', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:44:57] [INFO] Vérification de l'adresse {'numero': '126', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:00] [ERROR] Erreur lors de la vérification de l'adresse: 504 Server Error: Gateway Timeout for url: https://data.geopf.fr/geocodage/search/?q=126+Avenue+du+Granier%2C+38240+Meylan
+[2026-01-14 16:45:00] [INFO] Vérification de l'adresse {'numero': '127', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:00] [INFO] Vérification de l'adresse {'numero': '128', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:00] [INFO] Vérification de l'adresse {'numero': '129', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:00] [INFO] Vérification de l'adresse {'numero': '130', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:00] [INFO] Vérification de l'adresse {'numero': '131', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:01] [INFO] Vérification de l'adresse {'numero': '132', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:01] [INFO] Vérification de l'adresse {'numero': '133', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:01] [INFO] Vérification de l'adresse {'numero': '134', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:01] [INFO] Vérification de l'adresse {'numero': '135', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:02] [INFO] Vérification de l'adresse {'numero': '136', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:02] [INFO] Vérification de l'adresse {'numero': '137', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:06] [ERROR] Erreur lors de la vérification de l'adresse: 504 Server Error: Gateway Timeout for url: https://data.geopf.fr/geocodage/search/?q=137+Avenue+du+Granier%2C+38240+Meylan
+[2026-01-14 16:45:06] [INFO] Vérification de l'adresse {'numero': '138', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:06] [INFO] Vérification de l'adresse {'numero': '139', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:06] [INFO] Vérification de l'adresse {'numero': '140', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:06] [INFO] Vérification de l'adresse {'numero': '141', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:07] [INFO] Vérification de l'adresse {'numero': '142', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:07] [INFO] Vérification de l'adresse {'numero': '143', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:07] [INFO] Vérification de l'adresse {'numero': '144', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:07] [INFO] Vérification de l'adresse {'numero': '145', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:08] [INFO] Vérification de l'adresse {'numero': '146', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:08] [INFO] Vérification de l'adresse {'numero': '147', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:08] [INFO] Vérification de l'adresse {'numero': '148', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:08] [INFO] Vérification de l'adresse {'numero': '149', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:08] [INFO] Vérification de l'adresse {'numero': '150', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:11] [INFO] 6 rues chargées depuis output/Test/streets
+[2026-01-14 16:45:11] [INFO] Traitement PJ de la rue: Avenue du Taillefer
+[2026-01-14 16:45:11] [DEBUG] Traitement du numéro: 1
+[2026-01-14 16:45:11] [DEBUG] Traitement PJ de l'adresse: {'numero': '1', 'voie': 'Avenue du Taillefer', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:24] [DEBUG] Construction URL pour: {'numero': '1', 'voie': 'Avenue du Taillefer', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:24] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=1+Avenue+du+Taillefer%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:45:29] [DEBUG] Premier résultat trouvé: /pros/08360954
+[2026-01-14 16:45:35] [DEBUG] Téléphone trouvé: 04 76 90 30 53
+[2026-01-14 16:45:35] [DEBUG] Adresse trouvée: 1 avenue Taillefer 38240 Meylan
+[2026-01-14 16:45:35] [DEBUG] Titre trouvé: Lycée polyvalent du Grésivaudan Meylan (adresse, horaires)
+[2026-01-14 16:45:37] [DEBUG] 1 Avenue du Taillefer, 38240 Meylan VS 1 avenue Taillefer 38240 Meylan
+[2026-01-14 16:45:37] [INFO] Récupération des coordonnées de l'adresse {'numero': '1', 'voie': 'Avenue du Taillefer', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:37] [DEBUG] Récupération BDNB pour: {'numero': '1', 'voie': 'Avenue du Taillefer', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:38] [DEBUG] Traitement du numéro: 7
+[2026-01-14 16:45:38] [DEBUG] Traitement PJ de l'adresse: {'numero': '7', 'voie': 'Avenue du Taillefer', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:38] [DEBUG] Construction URL pour: {'numero': '7', 'voie': 'Avenue du Taillefer', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:38] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=7+Avenue+du+Taillefer%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:45:42] [DEBUG] Premier résultat trouvé: /pros/08360954
+[2026-01-14 16:45:49] [DEBUG] Téléphone trouvé: 04 76 90 30 53
+[2026-01-14 16:45:49] [DEBUG] Adresse trouvée: 1 avenue Taillefer 38240 Meylan
+[2026-01-14 16:45:49] [DEBUG] Titre trouvé: Lycée polyvalent du Grésivaudan Meylan (adresse, horaires)
+[2026-01-14 16:45:50] [DEBUG] 7 Avenue du Taillefer, 38240 Meylan VS 1 avenue Taillefer 38240 Meylan
+[2026-01-14 16:45:50] [INFO] Récupération des coordonnées de l'adresse {'numero': '7', 'voie': 'Avenue du Taillefer', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:50] [INFO] Traitement PJ de la rue: Maison de la Musique
+[2026-01-14 16:45:50] [INFO] Traitement PJ de la rue: Avenue du Granier
+[2026-01-14 16:45:50] [DEBUG] Traitement du numéro: 1
+[2026-01-14 16:45:50] [DEBUG] Traitement PJ de l'adresse: {'numero': '1', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:50] [DEBUG] Construction URL pour: {'numero': '1', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:45:50] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=1+Avenue+du+Granier%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:45:54] [DEBUG] Premier résultat trouvé: /pros/12086999
+[2026-01-14 16:46:01] [DEBUG] Téléphone trouvé: 04 38 37 47 70
+[2026-01-14 16:46:02] [DEBUG] Adresse trouvée: 1 avenue Granier 38240 Meylan
+[2026-01-14 16:46:02] [DEBUG] Titre trouvé: Gendarmerie Nationale Meylan (adresse, horaires)
+[2026-01-14 16:46:03] [DEBUG] 1 Avenue du Granier, 38240 Meylan VS 1 avenue Granier 38240 Meylan
+[2026-01-14 16:46:03] [INFO] Récupération des coordonnées de l'adresse {'numero': '1', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:46:03] [DEBUG] Récupération BDNB pour: {'numero': '1', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:46:04] [DEBUG] Traitement du numéro: 2
+[2026-01-14 16:46:04] [DEBUG] Traitement PJ de l'adresse: {'numero': '2', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:46:04] [DEBUG] Construction URL pour: {'numero': '2', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:46:04] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=2+Avenue+du+Granier%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:46:09] [DEBUG] Premier résultat trouvé: /pros/58745105
+[2026-01-14 16:46:15] [DEBUG] Téléphone trouvé: 04 56 45 69 51
+[2026-01-14 16:46:16] [DEBUG] Adresse trouvée: 1er étage 10 avenue Granier 38240 Meylan
+[2026-01-14 16:46:16] [DEBUG] Titre trouvé: William Terreaux Meylan - Rhumatologue (prendre rendez-vous, adresse, horaires, avis)
+[2026-01-14 16:46:17] [DEBUG] 2 Avenue du Granier, 38240 Meylan VS 1er étage 10 avenue Granier 38240 Meylan
+[2026-01-14 16:46:17] [INFO] Récupération des coordonnées de l'adresse {'numero': '2', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:46:17] [DEBUG] Traitement du numéro: 4
+[2026-01-14 16:46:17] [DEBUG] Traitement PJ de l'adresse: {'numero': '4', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:46:17] [DEBUG] Construction URL pour: {'numero': '4', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:46:17] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=4+Avenue+du+Granier%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:46:21] [DEBUG] Premier résultat trouvé: /pros/05978255
+[2026-01-14 16:46:28] [DEBUG] Téléphone trouvé: 04 76 90 62 02
+[2026-01-14 16:46:28] [DEBUG] Adresse trouvée: 4 avenue Granier 38240 Meylan
+[2026-01-14 16:46:28] [DEBUG] Titre trouvé: Espace Musical G Baudry Meylan - Cours de musique, cours de chant (adresse, horaires)
+[2026-01-14 16:46:29] [DEBUG] 4 Avenue du Granier, 38240 Meylan VS 4 avenue Granier 38240 Meylan
+[2026-01-14 16:46:29] [INFO] Récupération des coordonnées de l'adresse {'numero': '4', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:46:30] [DEBUG] Récupération BDNB pour: {'numero': '4', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:46:30] [DEBUG] Traitement du numéro: 6
+[2026-01-14 16:46:30] [DEBUG] Traitement PJ de l'adresse: {'numero': '6', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:46:30] [DEBUG] Construction URL pour: {'numero': '6', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:46:30] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=6+Avenue+du+Granier%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:46:35] [DEBUG] Premier résultat trouvé: /pros/60850004
+[2026-01-14 16:46:41] [DEBUG] Téléphone trouvé: 06 73 51 04 81
+[2026-01-14 16:46:41] [DEBUG] Adresse trouvée: 6 avenue Granier 38240 Meylan
+[2026-01-14 16:46:41] [DEBUG] Titre trouvé: Team Overfly By Drone Meylan - Photographes industriels (adresse, horaires)
+[2026-01-14 16:46:43] [DEBUG] 6 Avenue du Granier, 38240 Meylan VS 6 avenue Granier 38240 Meylan
+[2026-01-14 16:46:43] [INFO] Récupération des coordonnées de l'adresse {'numero': '6', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:46:43] [DEBUG] Récupération BDNB pour: {'numero': '6', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:46:44] [DEBUG] Traitement du numéro: 7
+[2026-01-14 16:46:44] [DEBUG] Traitement PJ de l'adresse: {'numero': '7', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:46:44] [DEBUG] Construction URL pour: {'numero': '7', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:46:44] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=7+Avenue+du+Granier%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:46:48] [DEBUG] Premier résultat trouvé: /pros/61780861
+[2026-01-14 16:46:53] [DEBUG] Téléphone trouvé: 04 58 00 12 02
+[2026-01-14 16:46:53] [DEBUG] Adresse trouvée: 7 avenue Granier 38240 Meylan
+[2026-01-14 16:46:53] [DEBUG] Titre trouvé: Bellet & Behr SAS Meylan - Huissiers de justice (adresse, horaires)
+[2026-01-14 16:46:55] [DEBUG] 7 Avenue du Granier, 38240 Meylan VS 7 avenue Granier 38240 Meylan
+[2026-01-14 16:46:55] [INFO] Récupération des coordonnées de l'adresse {'numero': '7', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:46:55] [DEBUG] Récupération BDNB pour: {'numero': '7', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:46:56] [DEBUG] Traitement du numéro: 8
+[2026-01-14 16:46:56] [DEBUG] Traitement PJ de l'adresse: {'numero': '8', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:46:56] [DEBUG] Construction URL pour: {'numero': '8', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:46:56] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=8+Avenue+du+Granier%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:47:00] [DEBUG] Premier résultat trouvé: /pros/09667203
+[2026-01-14 16:47:05] [DEBUG] Téléphone trouvé: 06 16 87 29 05
+[2026-01-14 16:47:05] [DEBUG] Adresse trouvée: 8 avenue Granier 38240 Meylan
+[2026-01-14 16:47:05] [DEBUG] Titre trouvé: Catherine Girard Meylan - Psychologue (adresse, horaires)
+[2026-01-14 16:47:07] [DEBUG] 8 Avenue du Granier, 38240 Meylan VS 8 avenue Granier 38240 Meylan
+[2026-01-14 16:47:07] [INFO] Récupération des coordonnées de l'adresse {'numero': '8', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:47:07] [DEBUG] Récupération BDNB pour: {'numero': '8', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:47:08] [DEBUG] Traitement du numéro: 12
+[2026-01-14 16:47:08] [DEBUG] Traitement PJ de l'adresse: {'numero': '12', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:47:08] [DEBUG] Construction URL pour: {'numero': '12', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:47:08] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=12+Avenue+du+Granier%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:47:11] [DEBUG] Premier résultat trouvé: /pros/07957299
+[2026-01-14 16:47:18] [DEBUG] Téléphone trouvé: 04 76 41 16 25
+[2026-01-14 16:47:18] [DEBUG] Adresse trouvée: 12 avenue Granier 38240 Meylan
+[2026-01-14 16:47:18] [DEBUG] Titre trouvé: Archives Municipales Meylan (adresse, horaires)
+[2026-01-14 16:47:19] [DEBUG] 12 Avenue du Granier, 38240 Meylan VS 12 avenue Granier 38240 Meylan
+[2026-01-14 16:47:19] [INFO] Récupération des coordonnées de l'adresse {'numero': '12', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:47:19] [DEBUG] Récupération BDNB pour: {'numero': '12', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:47:20] [DEBUG] Traitement du numéro: 15
+[2026-01-14 16:47:20] [DEBUG] Traitement PJ de l'adresse: {'numero': '15', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:47:20] [DEBUG] Construction URL pour: {'numero': '15', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:47:20] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=15+Avenue+du+Granier%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:47:23] [DEBUG] Premier résultat trouvé: /pros/55683832
+[2026-01-14 16:47:30] [DEBUG] Adresse trouvée: 15 avenue Granier 38240 Meylan
+[2026-01-14 16:47:31] [DEBUG] Titre trouvé: VERISURE Meylan - Systèmes d'alarme (adresse, horaires, avis)
+[2026-01-14 16:47:32] [DEBUG] 15 Avenue du Granier, 38240 Meylan VS 15 avenue Granier 38240 Meylan
+[2026-01-14 16:47:32] [INFO] Récupération des coordonnées de l'adresse {'numero': '15', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:47:32] [DEBUG] Récupération BDNB pour: {'numero': '15', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:47:33] [DEBUG] Traitement du numéro: 17
+[2026-01-14 16:47:33] [DEBUG] Traitement PJ de l'adresse: {'numero': '17', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:47:33] [DEBUG] Construction URL pour: {'numero': '17', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:47:33] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=17+Avenue+du+Granier%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:47:37] [DEBUG] Premier résultat trouvé: /pros/08335073
+[2026-01-14 16:47:43] [DEBUG] Téléphone trouvé: 04 76 04 00 90
+[2026-01-14 16:47:43] [DEBUG] Adresse trouvée: 17 avenue Granier 38240 Meylan
+[2026-01-14 16:47:43] [DEBUG] Titre trouvé: Cotranet Meylan - Maintenance et services informatique (adresse, horaires)
+[2026-01-14 16:47:45] [DEBUG] 17 Avenue du Granier, 38240 Meylan VS 17 avenue Granier 38240 Meylan
+[2026-01-14 16:47:45] [INFO] Récupération des coordonnées de l'adresse {'numero': '17', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:47:46] [DEBUG] Récupération BDNB pour: {'numero': '17', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:47:46] [DEBUG] Traitement du numéro: 19
+[2026-01-14 16:47:46] [DEBUG] Traitement PJ de l'adresse: {'numero': '19', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:47:46] [DEBUG] Construction URL pour: {'numero': '19', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:47:46] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=19+Avenue+du+Granier%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:47:50] [DEBUG] Premier résultat trouvé: /pros/09642546
+[2026-01-14 16:47:57] [DEBUG] Téléphone trouvé: 04 76 00 75 75
+[2026-01-14 16:47:57] [DEBUG] Adresse trouvée: 19 avenue Granier 38240 Meylan
+[2026-01-14 16:47:57] [DEBUG] Titre trouvé: 3A Audit & Finances - Expert comptable à Meylan 38240 (adresse, horaires)
+[2026-01-14 16:47:58] [DEBUG] 19 Avenue du Granier, 38240 Meylan VS 19 avenue Granier 38240 Meylan
+[2026-01-14 16:47:58] [INFO] Récupération des coordonnées de l'adresse {'numero': '19', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:47:59] [DEBUG] Récupération BDNB pour: {'numero': '19', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:48:00] [DEBUG] Traitement du numéro: 21
+[2026-01-14 16:48:00] [DEBUG] Traitement PJ de l'adresse: {'numero': '21', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:48:00] [DEBUG] Construction URL pour: {'numero': '21', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:48:00] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=21+Avenue+du+Granier%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:48:05] [DEBUG] Premier résultat trouvé: /pros/58745105
+[2026-01-14 16:48:11] [DEBUG] Téléphone trouvé: 04 56 45 69 51
+[2026-01-14 16:48:11] [DEBUG] Adresse trouvée: 1er étage 10 avenue Granier 38240 Meylan
+[2026-01-14 16:48:11] [DEBUG] Titre trouvé: William Terreaux Meylan - Rhumatologue (prendre rendez-vous, adresse, horaires, avis)
+[2026-01-14 16:48:13] [DEBUG] 21 Avenue du Granier, 38240 Meylan VS 1er étage 10 avenue Granier 38240 Meylan
+[2026-01-14 16:48:13] [INFO] Récupération des coordonnées de l'adresse {'numero': '21', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:48:13] [DEBUG] Traitement du numéro: 25
+[2026-01-14 16:48:13] [DEBUG] Traitement PJ de l'adresse: {'numero': '25', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:48:13] [DEBUG] Construction URL pour: {'numero': '25', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:48:13] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=25+Avenue+du+Granier%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:48:18] [DEBUG] Premier résultat trouvé: /pros/02935765
+[2026-01-14 16:48:24] [DEBUG] Téléphone trouvé: 04 76 59 19 80
+[2026-01-14 16:48:24] [DEBUG] Adresse trouvée: 25 avenue Granier 38240 Meylan
+[2026-01-14 16:48:24] [DEBUG] Titre trouvé: ETC Group Meylan - Formation professionnelle (adresse, horaires)
+[2026-01-14 16:48:25] [DEBUG] 25 Avenue du Granier, 38240 Meylan VS 25 avenue Granier 38240 Meylan
+[2026-01-14 16:48:25] [INFO] Récupération des coordonnées de l'adresse {'numero': '25', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:48:25] [DEBUG] Récupération BDNB pour: {'numero': '25', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:48:26] [DEBUG] Traitement du numéro: 27
+[2026-01-14 16:48:26] [DEBUG] Traitement PJ de l'adresse: {'numero': '27', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:48:26] [DEBUG] Construction URL pour: {'numero': '27', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:48:26] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=27+Avenue+du+Granier%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:48:31] [DEBUG] Premier résultat trouvé: /pros/60761778
+[2026-01-14 16:48:37] [DEBUG] Téléphone trouvé: 07 82 98 89 27
+[2026-01-14 16:48:37] [DEBUG] Adresse trouvée: 27 avenue Granier 38240 Meylan
+[2026-01-14 16:48:37] [DEBUG] Titre trouvé: JKD Peinture Meylan - Entreprise de peinture (adresse, horaires)
+[2026-01-14 16:48:38] [DEBUG] 27 Avenue du Granier, 38240 Meylan VS 27 avenue Granier 38240 Meylan
+[2026-01-14 16:48:38] [INFO] Récupération des coordonnées de l'adresse {'numero': '27', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:48:39] [DEBUG] Récupération BDNB pour: {'numero': '27', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:48:39] [DEBUG] Traitement du numéro: 31
+[2026-01-14 16:48:39] [DEBUG] Traitement PJ de l'adresse: {'numero': '31', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:48:39] [DEBUG] Construction URL pour: {'numero': '31', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:48:39] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=31+Avenue+du+Granier%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:48:43] [DEBUG] Premier résultat trouvé: /pros/58894397
+[2026-01-14 16:48:49] [DEBUG] Téléphone trouvé: 06 86 21 13 99
+[2026-01-14 16:48:49] [DEBUG] Adresse trouvée: 31 avenue Granier 38240 Meylan
+[2026-01-14 16:48:49] [DEBUG] Titre trouvé: Marion maquillage permanent Meylan - Institut de beauté (adresse, horaires)
+[2026-01-14 16:48:51] [DEBUG] 31 Avenue du Granier, 38240 Meylan VS 31 avenue Granier 38240 Meylan
+[2026-01-14 16:48:51] [INFO] Récupération des coordonnées de l'adresse {'numero': '31', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:48:51] [DEBUG] Récupération BDNB pour: {'numero': '31', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:48:52] [DEBUG] Traitement du numéro: 33
+[2026-01-14 16:48:52] [DEBUG] Traitement PJ de l'adresse: {'numero': '33', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:48:52] [DEBUG] Construction URL pour: {'numero': '33', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:48:52] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=33+Avenue+du+Granier%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:48:56] [DEBUG] Premier résultat trouvé: /pros/54140847
+[2026-01-14 16:49:02] [DEBUG] Adresse trouvée: bât B Zirst 33 avenue Granier 38240 Meylan
+[2026-01-14 16:49:02] [DEBUG] Titre trouvé: Securitas Protection SAS Meylan - Surveillance, gardiennage (adresse, horaires)
+[2026-01-14 16:49:03] [DEBUG] 33 Avenue du Granier, 38240 Meylan VS bât B Zirst 33 avenue Granier 38240 Meylan
+[2026-01-14 16:49:03] [INFO] Récupération des coordonnées de l'adresse {'numero': '33', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:49:04] [DEBUG] Traitement du numéro: 35
+[2026-01-14 16:49:04] [DEBUG] Traitement PJ de l'adresse: {'numero': '35', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:49:04] [DEBUG] Construction URL pour: {'numero': '35', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:49:04] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=35+Avenue+du+Granier%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:49:08] [DEBUG] Premier résultat trouvé: /pros/59549221
+[2026-01-14 16:49:14] [DEBUG] Téléphone trouvé: 04 76 90 43 61
+[2026-01-14 16:49:14] [DEBUG] Adresse trouvée: 35 avenue Granier 38240 Meylan
+[2026-01-14 16:49:14] [DEBUG] Titre trouvé: Le Square Meylan - Restaurant (adresse, horaires, avis)
+[2026-01-14 16:49:15] [DEBUG] 35 Avenue du Granier, 38240 Meylan VS 35 avenue Granier 38240 Meylan
+[2026-01-14 16:49:15] [INFO] Récupération des coordonnées de l'adresse {'numero': '35', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:49:15] [DEBUG] Récupération BDNB pour: {'numero': '35', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:49:16] [DEBUG] Traitement du numéro: 37
+[2026-01-14 16:49:16] [DEBUG] Traitement PJ de l'adresse: {'numero': '37', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:49:16] [DEBUG] Construction URL pour: {'numero': '37', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:49:16] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=37+Avenue+du+Granier%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:49:20] [DEBUG] Premier résultat trouvé: /pros/08544467
+[2026-01-14 16:49:26] [DEBUG] Téléphone trouvé: 04 76 18 56 11
+[2026-01-14 16:49:26] [DEBUG] Adresse trouvée: 37 avenue Granier 38240 Meylan
+[2026-01-14 16:49:26] [DEBUG] Titre trouvé: Jean Breuneval Meylan - Chirurgien-dentiste, orthodontiste (adresse, horaires)
+[2026-01-14 16:49:28] [DEBUG] 37 Avenue du Granier, 38240 Meylan VS 37 avenue Granier 38240 Meylan
+[2026-01-14 16:49:28] [INFO] Récupération des coordonnées de l'adresse {'numero': '37', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:49:28] [DEBUG] Récupération BDNB pour: {'numero': '37', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:49:29] [DEBUG] Traitement du numéro: 51
+[2026-01-14 16:49:29] [DEBUG] Traitement PJ de l'adresse: {'numero': '51', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:49:29] [DEBUG] Construction URL pour: {'numero': '51', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:49:29] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=51+Avenue+du+Granier%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:49:33] [DEBUG] Premier résultat trouvé: /pros/58745105
+[2026-01-14 16:49:38] [DEBUG] Téléphone trouvé: 04 56 45 69 51
+[2026-01-14 16:49:38] [DEBUG] Adresse trouvée: 1er étage 10 avenue Granier 38240 Meylan
+[2026-01-14 16:49:38] [DEBUG] Titre trouvé: William Terreaux Meylan - Rhumatologue (prendre rendez-vous, adresse, horaires, avis)
+[2026-01-14 16:49:40] [DEBUG] 51 Avenue du Granier, 38240 Meylan VS 1er étage 10 avenue Granier 38240 Meylan
+[2026-01-14 16:49:40] [INFO] Récupération des coordonnées de l'adresse {'numero': '51', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:49:41] [DEBUG] Traitement du numéro: 53
+[2026-01-14 16:49:41] [DEBUG] Traitement PJ de l'adresse: {'numero': '53', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:49:41] [DEBUG] Construction URL pour: {'numero': '53', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:49:41] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=53+Avenue+du+Granier%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:49:45] [DEBUG] Premier résultat trouvé: /pros/58745105
+[2026-01-14 16:49:51] [DEBUG] Téléphone trouvé: 04 56 45 69 51
+[2026-01-14 16:49:51] [DEBUG] Adresse trouvée: 1er étage 10 avenue Granier 38240 Meylan
+[2026-01-14 16:49:52] [DEBUG] Titre trouvé: William Terreaux Meylan - Rhumatologue (prendre rendez-vous, adresse, horaires, avis)
+[2026-01-14 16:49:53] [DEBUG] 53 Avenue du Granier, 38240 Meylan VS 1er étage 10 avenue Granier 38240 Meylan
+[2026-01-14 16:49:53] [INFO] Récupération des coordonnées de l'adresse {'numero': '53', 'voie': 'Avenue du Granier', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:49:53] [INFO] Traitement PJ de la rue: Chemin des Sétérées du Dessous
+[2026-01-14 16:49:53] [DEBUG] Traitement du numéro: 1
+[2026-01-14 16:49:53] [DEBUG] Traitement PJ de l'adresse: {'numero': '1', 'voie': 'Chemin des Sétérées du Dessous', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:49:53] [DEBUG] Construction URL pour: {'numero': '1', 'voie': 'Chemin des Sétérées du Dessous', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:49:53] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=1+Chemin+des+Sétérées+du+Dessous%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:49:56] [DEBUG] Premier résultat trouvé: /pros/58382881
+[2026-01-14 16:50:03] [DEBUG] Adresse trouvée: 9 chemin Sétérées du Dessous 38240 Meylan
+[2026-01-14 16:50:03] [DEBUG] Titre trouvé: Comite De Jumelage Meylan - Association culturelle (adresse)
+[2026-01-14 16:50:04] [DEBUG] 1 Chemin des Sétérées du Dessous, 38240 Meylan VS 9 chemin Sétérées du Dessous 38240 Meylan
+[2026-01-14 16:50:04] [INFO] Récupération des coordonnées de l'adresse {'numero': '1', 'voie': 'Chemin des Sétérées du Dessous', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:50:04] [DEBUG] Traitement du numéro: 5
+[2026-01-14 16:50:04] [DEBUG] Traitement PJ de l'adresse: {'numero': '5', 'voie': 'Chemin des Sétérées du Dessous', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:50:04] [DEBUG] Construction URL pour: {'numero': '5', 'voie': 'Chemin des Sétérées du Dessous', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:50:04] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=5+Chemin+des+Sétérées+du+Dessous%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:50:08] [DEBUG] Premier résultat trouvé: /pros/58382881
+[2026-01-14 16:50:14] [DEBUG] Adresse trouvée: 9 chemin Sétérées du Dessous 38240 Meylan
+[2026-01-14 16:50:14] [DEBUG] Titre trouvé: Comite De Jumelage Meylan - Association culturelle (adresse)
+[2026-01-14 16:50:16] [DEBUG] 5 Chemin des Sétérées du Dessous, 38240 Meylan VS 9 chemin Sétérées du Dessous 38240 Meylan
+[2026-01-14 16:50:16] [INFO] Récupération des coordonnées de l'adresse {'numero': '5', 'voie': 'Chemin des Sétérées du Dessous', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:50:16] [DEBUG] Traitement du numéro: 7
+[2026-01-14 16:50:16] [DEBUG] Traitement PJ de l'adresse: {'numero': '7', 'voie': 'Chemin des Sétérées du Dessous', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:50:16] [DEBUG] Construction URL pour: {'numero': '7', 'voie': 'Chemin des Sétérées du Dessous', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:50:16] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=7+Chemin+des+Sétérées+du+Dessous%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:50:19] [DEBUG] Premier résultat trouvé: /pros/58382881
+[2026-01-14 16:50:26] [DEBUG] Adresse trouvée: 9 chemin Sétérées du Dessous 38240 Meylan
+[2026-01-14 16:50:26] [DEBUG] Titre trouvé: Comite De Jumelage Meylan - Association culturelle (adresse)
+[2026-01-14 16:50:28] [DEBUG] 7 Chemin des Sétérées du Dessous, 38240 Meylan VS 9 chemin Sétérées du Dessous 38240 Meylan
+[2026-01-14 16:50:28] [INFO] Récupération des coordonnées de l'adresse {'numero': '7', 'voie': 'Chemin des Sétérées du Dessous', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:50:28] [DEBUG] Traitement du numéro: 11
+[2026-01-14 16:50:28] [DEBUG] Traitement PJ de l'adresse: {'numero': '11', 'voie': 'Chemin des Sétérées du Dessous', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:50:28] [DEBUG] Construction URL pour: {'numero': '11', 'voie': 'Chemin des Sétérées du Dessous', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:50:28] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=11+Chemin+des+Sétérées+du+Dessous%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:50:32] [DEBUG] Premier résultat trouvé: /pros/58382881
+[2026-01-14 16:50:38] [DEBUG] Adresse trouvée: 9 chemin Sétérées du Dessous 38240 Meylan
+[2026-01-14 16:50:38] [DEBUG] Titre trouvé: Comite De Jumelage Meylan - Association culturelle (adresse)
+[2026-01-14 16:50:40] [DEBUG] 11 Chemin des Sétérées du Dessous, 38240 Meylan VS 9 chemin Sétérées du Dessous 38240 Meylan
+[2026-01-14 16:50:40] [INFO] Récupération des coordonnées de l'adresse {'numero': '11', 'voie': 'Chemin des Sétérées du Dessous', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:50:40] [DEBUG] Traitement du numéro: 15
+[2026-01-14 16:50:40] [DEBUG] Traitement PJ de l'adresse: {'numero': '15', 'voie': 'Chemin des Sétérées du Dessous', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:50:40] [DEBUG] Construction URL pour: {'numero': '15', 'voie': 'Chemin des Sétérées du Dessous', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:50:40] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=15+Chemin+des+Sétérées+du+Dessous%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:50:44] [DEBUG] Premier résultat trouvé: /pros/58382881
+[2026-01-14 16:50:50] [DEBUG] Adresse trouvée: 9 chemin Sétérées du Dessous 38240 Meylan
+[2026-01-14 16:50:50] [DEBUG] Titre trouvé: Comite De Jumelage Meylan - Association culturelle (adresse)
+[2026-01-14 16:50:51] [DEBUG] 15 Chemin des Sétérées du Dessous, 38240 Meylan VS 9 chemin Sétérées du Dessous 38240 Meylan
+[2026-01-14 16:50:51] [INFO] Récupération des coordonnées de l'adresse {'numero': '15', 'voie': 'Chemin des Sétérées du Dessous', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:50:52] [INFO] Traitement PJ de la rue: Chemin des Prêles
+[2026-01-14 16:50:52] [DEBUG] Traitement du numéro: 2
+[2026-01-14 16:50:52] [DEBUG] Traitement PJ de l'adresse: {'numero': '2', 'voie': 'Chemin des Prêles', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:50:52] [DEBUG] Construction URL pour: {'numero': '2', 'voie': 'Chemin des Prêles', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:50:52] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=2+Chemin+des+Prêles%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:50:56] [DEBUG] Premier résultat trouvé: /pros/59949892
+[2026-01-14 16:51:03] [DEBUG] Adresse trouvée: 2 Bis chemin Prêles 38240 Meylan
+[2026-01-14 16:51:03] [DEBUG] Titre trouvé: Tempologis Meylan - Résidence de tourisme (adresse, horaires)
+[2026-01-14 16:51:04] [DEBUG] 2 Chemin des Prêles, 38240 Meylan VS 2 Bis chemin Prêles 38240 Meylan
+[2026-01-14 16:51:04] [INFO] Récupération des coordonnées de l'adresse {'numero': '2', 'voie': 'Chemin des Prêles', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:51:04] [DEBUG] Récupération BDNB pour: {'numero': '2', 'voie': 'Chemin des Prêles', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:51:05] [DEBUG] Traitement du numéro: 4
+[2026-01-14 16:51:05] [DEBUG] Traitement PJ de l'adresse: {'numero': '4', 'voie': 'Chemin des Prêles', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:51:05] [DEBUG] Construction URL pour: {'numero': '4', 'voie': 'Chemin des Prêles', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:51:05] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=4+Chemin+des+Prêles%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:51:08] [DEBUG] Premier résultat trouvé: /pros/54290992
+[2026-01-14 16:51:15] [DEBUG] Téléphone trouvé: 07 63 36 06 20
+[2026-01-14 16:51:15] [DEBUG] Adresse trouvée: 4 chemin Prêles 38240 Meylan
+[2026-01-14 16:51:15] [DEBUG] Titre trouvé: R.T.P. Peinture Meylan - Entreprise de peinture (adresse, horaires, avis)
+[2026-01-14 16:51:17] [DEBUG] 4 Chemin des Prêles, 38240 Meylan VS 4 chemin Prêles 38240 Meylan
+[2026-01-14 16:51:17] [INFO] Récupération des coordonnées de l'adresse {'numero': '4', 'voie': 'Chemin des Prêles', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:51:17] [DEBUG] Récupération BDNB pour: {'numero': '4', 'voie': 'Chemin des Prêles', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:51:18] [DEBUG] Traitement du numéro: 6
+[2026-01-14 16:51:18] [DEBUG] Traitement PJ de l'adresse: {'numero': '6', 'voie': 'Chemin des Prêles', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:51:18] [DEBUG] Construction URL pour: {'numero': '6', 'voie': 'Chemin des Prêles', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:51:18] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=6+Chemin+des+Prêles%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:51:22] [DEBUG] Premier résultat trouvé: /pros/59949892
+[2026-01-14 16:51:28] [DEBUG] Adresse trouvée: 2 Bis chemin Prêles 38240 Meylan
+[2026-01-14 16:51:28] [DEBUG] Titre trouvé: Tempologis Meylan - Résidence de tourisme (adresse, horaires)
+[2026-01-14 16:51:30] [DEBUG] 6 Chemin des Prêles, 38240 Meylan VS 2 Bis chemin Prêles 38240 Meylan
+[2026-01-14 16:51:30] [INFO] Récupération des coordonnées de l'adresse {'numero': '6', 'voie': 'Chemin des Prêles', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:51:30] [DEBUG] Traitement du numéro: 8
+[2026-01-14 16:51:30] [DEBUG] Traitement PJ de l'adresse: {'numero': '8', 'voie': 'Chemin des Prêles', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:51:30] [DEBUG] Construction URL pour: {'numero': '8', 'voie': 'Chemin des Prêles', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:51:30] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=8+Chemin+des+Prêles%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:51:34] [DEBUG] Premier résultat trouvé: /pros/59949892
+[2026-01-14 16:51:40] [DEBUG] Adresse trouvée: 2 Bis chemin Prêles 38240 Meylan
+[2026-01-14 16:51:40] [DEBUG] Titre trouvé: Tempologis Meylan - Résidence de tourisme (adresse, horaires)
+[2026-01-14 16:51:42] [DEBUG] 8 Chemin des Prêles, 38240 Meylan VS 2 Bis chemin Prêles 38240 Meylan
+[2026-01-14 16:51:42] [INFO] Récupération des coordonnées de l'adresse {'numero': '8', 'voie': 'Chemin des Prêles', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:51:42] [DEBUG] Traitement du numéro: 10
+[2026-01-14 16:51:42] [DEBUG] Traitement PJ de l'adresse: {'numero': '10', 'voie': 'Chemin des Prêles', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:51:42] [DEBUG] Construction URL pour: {'numero': '10', 'voie': 'Chemin des Prêles', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:51:42] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=10+Chemin+des+Prêles%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:51:45] [DEBUG] Premier résultat trouvé: /pros/63355123
+[2026-01-14 16:51:50] [DEBUG] Téléphone trouvé: 04 82 79 06 12
+[2026-01-14 16:51:50] [DEBUG] Adresse trouvée: 10 chemin Prêles 38240 Meylan
+[2026-01-14 16:51:50] [DEBUG] Titre trouvé: Crèche Meylan - people & baby Kid's Coocoon et Kid's Heaven - Crèche (adresse, horaires)
+[2026-01-14 16:51:52] [DEBUG] 10 Chemin des Prêles, 38240 Meylan VS 10 chemin Prêles 38240 Meylan
+[2026-01-14 16:51:52] [INFO] Récupération des coordonnées de l'adresse {'numero': '10', 'voie': 'Chemin des Prêles', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:51:53] [DEBUG] Récupération BDNB pour: {'numero': '10', 'voie': 'Chemin des Prêles', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:51:53] [INFO] Traitement PJ de la rue: Impasse des Verdiers
+[2026-01-14 16:51:53] [DEBUG] Traitement du numéro: 1
+[2026-01-14 16:51:53] [DEBUG] Traitement PJ de l'adresse: {'numero': '1', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:51:53] [DEBUG] Construction URL pour: {'numero': '1', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:51:53] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=1+Impasse+des+Verdiers%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:51:57] [DEBUG] Premier résultat trouvé: /pros/59299319
+[2026-01-14 16:52:03] [DEBUG] Adresse trouvée: 9 impasse Verdiers 38240 Meylan
+[2026-01-14 16:52:03] [DEBUG] Titre trouvé: ASSO COMMUNE CHASSE AGREEE ENTRAIGUES Meylan - Clubs, territoire de chasse (adresse, horaires)
+[2026-01-14 16:52:04] [DEBUG] 1 Impasse des Verdiers, 38240 Meylan VS 9 impasse Verdiers 38240 Meylan
+[2026-01-14 16:52:04] [INFO] Récupération des coordonnées de l'adresse {'numero': '1', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:52:05] [DEBUG] Traitement du numéro: 3
+[2026-01-14 16:52:05] [DEBUG] Traitement PJ de l'adresse: {'numero': '3', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:52:05] [DEBUG] Construction URL pour: {'numero': '3', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:52:05] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=3+Impasse+des+Verdiers%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:52:09] [DEBUG] Premier résultat trouvé: /pros/59299319
+[2026-01-14 16:52:15] [DEBUG] Adresse trouvée: 9 impasse Verdiers 38240 Meylan
+[2026-01-14 16:52:15] [DEBUG] Titre trouvé: ASSO COMMUNE CHASSE AGREEE ENTRAIGUES Meylan - Clubs, territoire de chasse (adresse, horaires)
+[2026-01-14 16:52:16] [DEBUG] 3 Impasse des Verdiers, 38240 Meylan VS 9 impasse Verdiers 38240 Meylan
+[2026-01-14 16:52:16] [INFO] Récupération des coordonnées de l'adresse {'numero': '3', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:52:16] [DEBUG] Traitement du numéro: 4
+[2026-01-14 16:52:16] [DEBUG] Traitement PJ de l'adresse: {'numero': '4', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:52:16] [DEBUG] Construction URL pour: {'numero': '4', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:52:16] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=4+Impasse+des+Verdiers%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:52:20] [DEBUG] Premier résultat trouvé: /pros/59299319
+[2026-01-14 16:52:26] [DEBUG] Adresse trouvée: 9 impasse Verdiers 38240 Meylan
+[2026-01-14 16:52:26] [DEBUG] Titre trouvé: ASSO COMMUNE CHASSE AGREEE ENTRAIGUES Meylan - Clubs, territoire de chasse (adresse, horaires)
+[2026-01-14 16:52:27] [DEBUG] 4 Impasse des Verdiers, 38240 Meylan VS 9 impasse Verdiers 38240 Meylan
+[2026-01-14 16:52:27] [INFO] Récupération des coordonnées de l'adresse {'numero': '4', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:52:28] [DEBUG] Traitement du numéro: 5
+[2026-01-14 16:52:28] [DEBUG] Traitement PJ de l'adresse: {'numero': '5', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:52:28] [DEBUG] Construction URL pour: {'numero': '5', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:52:28] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=5+Impasse+des+Verdiers%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:52:31] [DEBUG] Premier résultat trouvé: /pros/59299319
+[2026-01-14 16:52:37] [DEBUG] Adresse trouvée: 9 impasse Verdiers 38240 Meylan
+[2026-01-14 16:52:37] [DEBUG] Titre trouvé: ASSO COMMUNE CHASSE AGREEE ENTRAIGUES Meylan - Clubs, territoire de chasse (adresse, horaires)
+[2026-01-14 16:52:39] [DEBUG] 5 Impasse des Verdiers, 38240 Meylan VS 9 impasse Verdiers 38240 Meylan
+[2026-01-14 16:52:39] [INFO] Récupération des coordonnées de l'adresse {'numero': '5', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:52:39] [DEBUG] Traitement du numéro: 6
+[2026-01-14 16:52:39] [DEBUG] Traitement PJ de l'adresse: {'numero': '6', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:52:39] [DEBUG] Construction URL pour: {'numero': '6', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:52:39] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=6+Impasse+des+Verdiers%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:52:43] [DEBUG] Premier résultat trouvé: /pros/59299319
+[2026-01-14 16:52:50] [DEBUG] Adresse trouvée: 9 impasse Verdiers 38240 Meylan
+[2026-01-14 16:52:50] [DEBUG] Titre trouvé: ASSO COMMUNE CHASSE AGREEE ENTRAIGUES Meylan - Clubs, territoire de chasse (adresse, horaires)
+[2026-01-14 16:52:52] [DEBUG] 6 Impasse des Verdiers, 38240 Meylan VS 9 impasse Verdiers 38240 Meylan
+[2026-01-14 16:52:52] [INFO] Récupération des coordonnées de l'adresse {'numero': '6', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:52:52] [DEBUG] Traitement du numéro: 7
+[2026-01-14 16:52:52] [DEBUG] Traitement PJ de l'adresse: {'numero': '7', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:52:52] [DEBUG] Construction URL pour: {'numero': '7', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:52:52] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=7+Impasse+des+Verdiers%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:52:55] [DEBUG] Premier résultat trouvé: /pros/59299319
+[2026-01-14 16:53:02] [DEBUG] Adresse trouvée: 9 impasse Verdiers 38240 Meylan
+[2026-01-14 16:53:02] [DEBUG] Titre trouvé: ASSO COMMUNE CHASSE AGREEE ENTRAIGUES Meylan - Clubs, territoire de chasse (adresse, horaires)
+[2026-01-14 16:53:04] [DEBUG] 7 Impasse des Verdiers, 38240 Meylan VS 9 impasse Verdiers 38240 Meylan
+[2026-01-14 16:53:04] [INFO] Récupération des coordonnées de l'adresse {'numero': '7', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:53:04] [DEBUG] Traitement du numéro: 8
+[2026-01-14 16:53:04] [DEBUG] Traitement PJ de l'adresse: {'numero': '8', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:53:04] [DEBUG] Construction URL pour: {'numero': '8', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:53:04] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=8+Impasse+des+Verdiers%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:53:08] [DEBUG] Premier résultat trouvé: /pros/59299319
+[2026-01-14 16:53:14] [DEBUG] Adresse trouvée: 9 impasse Verdiers 38240 Meylan
+[2026-01-14 16:53:14] [DEBUG] Titre trouvé: ASSO COMMUNE CHASSE AGREEE ENTRAIGUES Meylan - Clubs, territoire de chasse (adresse, horaires)
+[2026-01-14 16:53:15] [DEBUG] 8 Impasse des Verdiers, 38240 Meylan VS 9 impasse Verdiers 38240 Meylan
+[2026-01-14 16:53:15] [INFO] Récupération des coordonnées de l'adresse {'numero': '8', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:53:15] [DEBUG] Traitement du numéro: 9
+[2026-01-14 16:53:15] [DEBUG] Traitement PJ de l'adresse: {'numero': '9', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:53:15] [DEBUG] Construction URL pour: {'numero': '9', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:53:15] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=9+Impasse+des+Verdiers%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:53:19] [DEBUG] Premier résultat trouvé: /pros/59299319
+[2026-01-14 16:53:24] [DEBUG] Adresse trouvée: 9 impasse Verdiers 38240 Meylan
+[2026-01-14 16:53:24] [DEBUG] Titre trouvé: ASSO COMMUNE CHASSE AGREEE ENTRAIGUES Meylan - Clubs, territoire de chasse (adresse, horaires)
+[2026-01-14 16:53:26] [DEBUG] 9 Impasse des Verdiers, 38240 Meylan VS 9 impasse Verdiers 38240 Meylan
+[2026-01-14 16:53:26] [INFO] Récupération des coordonnées de l'adresse {'numero': '9', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:53:26] [DEBUG] Récupération BDNB pour: {'numero': '9', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:53:27] [DEBUG] Traitement du numéro: 10
+[2026-01-14 16:53:27] [DEBUG] Traitement PJ de l'adresse: {'numero': '10', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:53:27] [DEBUG] Construction URL pour: {'numero': '10', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:53:27] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=10+Impasse+des+Verdiers%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:53:31] [DEBUG] Premier résultat trouvé: /pros/59299319
+[2026-01-14 16:53:37] [DEBUG] Adresse trouvée: 9 impasse Verdiers 38240 Meylan
+[2026-01-14 16:53:37] [DEBUG] Titre trouvé: ASSO COMMUNE CHASSE AGREEE ENTRAIGUES Meylan - Clubs, territoire de chasse (adresse, horaires)
+[2026-01-14 16:53:39] [DEBUG] 10 Impasse des Verdiers, 38240 Meylan VS 9 impasse Verdiers 38240 Meylan
+[2026-01-14 16:53:39] [INFO] Récupération des coordonnées de l'adresse {'numero': '10', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:53:39] [DEBUG] Traitement du numéro: 11
+[2026-01-14 16:53:39] [DEBUG] Traitement PJ de l'adresse: {'numero': '11', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:53:39] [DEBUG] Construction URL pour: {'numero': '11', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:53:39] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=11+Impasse+des+Verdiers%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-14 16:53:43] [DEBUG] Premier résultat trouvé: /pros/59299319
+[2026-01-14 16:53:49] [DEBUG] Adresse trouvée: 9 impasse Verdiers 38240 Meylan
+[2026-01-14 16:53:49] [DEBUG] Titre trouvé: ASSO COMMUNE CHASSE AGREEE ENTRAIGUES Meylan - Clubs, territoire de chasse (adresse, horaires)
+[2026-01-14 16:53:51] [DEBUG] 11 Impasse des Verdiers, 38240 Meylan VS 9 impasse Verdiers 38240 Meylan
+[2026-01-14 16:53:51] [INFO] Récupération des coordonnées de l'adresse {'numero': '11', 'voie': 'Impasse des Verdiers', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-14 16:53:51] [INFO] Sauvegarde des résultats PJ dans: output/Test/resultats_pj.csv
+[2026-01-14 16:53:51] [SUCCESS] Résultats PJ sauvegardés: output/Test/resultats_pj.csv
+[2026-01-14 16:56:36] [INFO] Fusion terminée: 41 entrées
+[2026-01-14 16:56:36] [INFO] Sauvegarde CSV fusionné: output/Test/resultats_fusionnes.csv
+[2026-01-14 16:56:36] [SUCCESS] CSV fusionné sauvegardé: output/Test/resultats_fusionnes.csv
