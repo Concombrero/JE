@@ -16,7 +16,11 @@ from logger import Logger
 UA = {"User-Agent": "prospection-open-data/1.2"}
 BAN_URL = "https://api-adresse.data.gouv.fr/search/"
 RE_URL = "https://recherche-entreprises.api.gouv.fr/search"
-OVERPASS_URL = "https://overpass.kumi.systems/api/interpreter"
+OVERPASS_URLS = [
+    "https://overpass-api.de/api/interpreter",
+    "https://overpass.kumi.systems/api/interpreter",
+    "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
+]
 GEOD = Geod(ellps="WGS84")
 
 
@@ -182,11 +186,38 @@ class EntrepriseSearcher:
     
     # ==================== Overpass / OSM ====================
     
-    def _overpass(self, query: str) -> Dict:
-        """Exécute une requête Overpass"""
-        r = _retry_post(OVERPASS_URL, data={"data": query}, headers=UA, timeout=60)
-        r.raise_for_status()
-        return r.json()
+    def _overpass(self, query: str, max_retries: int = 3) -> Dict:
+        """Exécute une requête Overpass avec retry et fallback sur plusieurs serveurs"""
+        last_error = None
+        
+        for url in OVERPASS_URLS:
+            for attempt in range(max_retries):
+                try:
+                    r = requests.post(url, data={"data": query}, headers=UA, timeout=60)
+                    r.raise_for_status()
+                    data = r.json()
+                    
+                    # Vérifier que la réponse est valide
+                    if "elements" in data:
+                        return data
+                    
+                    # Réponse invalide, essayer le serveur suivant
+                    break
+                    
+                except requests.exceptions.Timeout:
+                    last_error = f"Timeout sur {url.split('/')[2]}"
+                    time.sleep(2 * (attempt + 1))
+                    
+                except requests.exceptions.RequestException as e:
+                    last_error = f"Erreur sur {url.split('/')[2]}: {e}"
+                    time.sleep(2 * (attempt + 1))
+                    
+                except Exception as e:
+                    last_error = f"Erreur inattendue: {e}"
+                    time.sleep(1)
+        
+        # Retourner un dict vide avec elements si tous les serveurs échouent
+        return {"elements": []}
     
     def _polygon_area_m2(self, coords: List[Tuple[float, float]]) -> float:
         """Calcule l'aire d'un polygone en m²"""

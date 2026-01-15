@@ -29,7 +29,10 @@ from tools import Address, Street
 from address_processor import AddressProcessor
 from scrapper_pj import ScrapperPagesJaunes
 from entreprises import EntrepriseSearcher
-from fusion import fuse_results, save_fused_csv, load_fused_csv, fused_to_map_features
+from fusion import (
+    fuse_results, save_fused_csv, load_fused_csv, fused_to_map_features,
+    filter_results_by_zone_and_interest, save_filtered_results
+)
 from map_generator import build_map_html, save_map_html
 
 
@@ -48,23 +51,54 @@ class CompleteWorkflowWorker(QThread):
     finished_success = Signal(str)     # output_dir
     error = Signal(str, str)           # title, details
     
+    # Poids des étapes pour la progression (total = 100%)
+    # Étape 1: Géocodage (2%)
+    # Étape 2: Recherche rues (3%)
+    # Étape 3: Scrapping PJ (50%)
+    # Étape 4: Recherche entreprises (35%)
+    # Étape 5: Fusion (3%)
+    # Étape 6: Filtrage (2%)
+    # Étape 7: Carte (5%)
+    STEP_WEIGHTS = {
+        'geocoding': 2,
+        'streets': 3,
+        'pj_scrapping': 50,
+        'entreprises': 35,
+        'fusion': 3,
+        'filtering': 2,
+        'map': 5
+    }
+    
     def __init__(self, address: Address, radius_km: float, output_dir: str, parent=None):
         super().__init__(parent)
         self.address = address
         self.radius_km = radius_km
         self.output_dir = output_dir
         self._cancelled = False
+        self._current_progress = 0
     
     def cancel(self):
         self._cancelled = True
+    
+    def _emit_progress(self, step: str, sub_progress: float, message: str):
+        """Émet la progression globale basée sur l'étape et la sous-progression"""
+        # Calculer le début de cette étape
+        step_order = ['geocoding', 'streets', 'pj_scrapping', 'entreprises', 'fusion', 'filtering', 'map']
+        step_start = sum(self.STEP_WEIGHTS[s] for s in step_order[:step_order.index(step)])
+        step_weight = self.STEP_WEIGHTS[step]
+        
+        # Progression globale = début de l'étape + (sous-progression * poids de l'étape)
+        global_progress = step_start + (sub_progress * step_weight)
+        self._current_progress = int(global_progress)
+        self.progress.emit(self._current_progress, 100, message)
     
     def run(self):
         try:
             # Logger personnalisé qui émet des signaux
             logger = SignalLogger(self.output_dir, self.log_message)
             
-            # Étape 1: Récupération des adresses
-            self.progress.emit(0, 0, "📍 Récupération des coordonnées...")
+            # Étape 1: Récupération des coordonnées (2%)
+            self._emit_progress('geocoding', 0, "Etape 1/7 : Recuperation des coordonnees...")
             
             address_processor = AddressProcessor()
             coords = address_processor.address_to_coordinates(self.address, logger)
@@ -73,10 +107,13 @@ class CompleteWorkflowWorker(QThread):
                 self.error.emit("Erreur de géocodage", "Impossible de géocoder l'adresse.")
                 return
             
+            self._emit_progress('geocoding', 1.0, "Coordonnees recuperees")
+            
             if self._cancelled:
                 return
             
-            self.progress.emit(0, 0, "🗺️ Recherche des rues dans la zone...")
+            # Étape 2: Recherche des rues (3%)
+            self._emit_progress('streets', 0, "Etape 2/7 : Recherche des rues dans la zone...")
             
             dir_street = os.path.join(self.output_dir, 'streets')
             os.makedirs(dir_street, exist_ok=True)
@@ -100,9 +137,10 @@ class CompleteWorkflowWorker(QThread):
                 return
             
             total_streets = len(streets)
+            self._emit_progress('streets', 1.0, f"{total_streets} rues trouvees")
             
-            # Étape 2: Scrapping Pages Jaunes
-            self.progress.emit(0, total_streets, "🔍 Scrapping Pages Jaunes...")
+            # Étape 3: Scrapping Pages Jaunes (50%)
+            self._emit_progress('pj_scrapping', 0, f"Etape 3/7 : Scrapping Pages Jaunes (0/{total_streets})...")
             
             scrapper = ScrapperPagesJaunes()
             pj_results = []
@@ -111,7 +149,8 @@ class CompleteWorkflowWorker(QThread):
                 for i, street in enumerate(streets):
                     if self._cancelled:
                         break
-                    self.progress.emit(i + 1, total_streets, f"PJ: {street['name']}")
+                    sub_progress = (i + 1) / total_streets
+                    self._emit_progress('pj_scrapping', sub_progress, f"Etape 3/7 : PJ ({i + 1}/{total_streets}) - {street['name']}")
                     results = scrapper.process_street(street, logger, self.output_dir)
                     pj_results.extend(results)
             finally:
@@ -124,8 +163,8 @@ class CompleteWorkflowWorker(QThread):
             pj_csv = os.path.join(self.output_dir, 'resultats_pj.csv')
             scrapper.save_results_csv(pj_results, pj_csv, logger)
             
-            # Étape 3: Recherche entreprises
-            self.progress.emit(0, total_streets, "🏢 Recherche entreprises...")
+            # Étape 4: Recherche entreprises (35%)
+            self._emit_progress('entreprises', 0, f"Etape 4/7 : Recherche entreprises (0/{total_streets})...")
             
             entreprise_searcher = EntrepriseSearcher()
             entreprise_results = []
@@ -133,25 +172,44 @@ class CompleteWorkflowWorker(QThread):
             for i, street in enumerate(streets):
                 if self._cancelled:
                     break
-                self.progress.emit(i + 1, total_streets, f"Entreprises: {street['name']}")
+                sub_progress = (i + 1) / total_streets
+                self._emit_progress('entreprises', sub_progress, f"Etape 4/7 : Entreprises ({i + 1}/{total_streets}) - {street['name']}")
                 results = entreprise_searcher.process_street(street, logger)
                 entreprise_results.extend(results)
             
             if self._cancelled:
                 return
             
-            # Étape 4: Fusion
-            self.progress.emit(0, 0, "🔗 Fusion des résultats...")
+            # Étape 5: Fusion (3%)
+            self._emit_progress('fusion', 0, "Etape 5/7 : Fusion des resultats...")
             
             fused_data = fuse_results(pj_results, entreprise_results, logger)
             
-            fused_csv = os.path.join(self.output_dir, 'resultats_fusionnes.csv')
-            save_fused_csv(fused_data, fused_csv, logger)
+            self._emit_progress('fusion', 1.0, "Fusion terminee")
             
-            # Étape 5: Carte
-            self.progress.emit(0, 0, "🗺️ Génération de la carte...")
+            # Étape 6: Filtrage par zone et intérêt (2%)
+            self._emit_progress('filtering', 0, "Etape 6/7 : Verification et filtrage des resultats...")
             
-            features = fused_to_map_features(fused_data)
+            in_zone, out_zone_interesting, out_zone_excluded = filter_results_by_zone_and_interest(
+                fused_data,
+                center_lat=coords['latitude'],
+                center_lon=coords['longitude'],
+                radius_km=self.radius_km,
+                logger=logger
+            )
+            
+            # Sauvegarder les résultats filtrés
+            final_results = save_filtered_results(
+                in_zone, out_zone_interesting, out_zone_excluded,
+                self.output_dir, logger
+            )
+            
+            self._emit_progress('filtering', 1.0, "Filtrage termine")
+            
+            # Étape 7: Carte (5%)
+            self._emit_progress('map', 0, "Etape 7/7 : Generation de la carte...")
+            
+            features = fused_to_map_features(final_results)
             
             if features:
                 radius_m = int(self.radius_km * 1000)
@@ -170,6 +228,8 @@ class CompleteWorkflowWorker(QThread):
                 
                 self.map_ready.emit(html)
             
+            self._emit_progress('map', 1.0, "Recherche terminee avec succes !")
+            
             self.finished_success.emit(self.output_dir)
             
         except Exception as e:
@@ -185,17 +245,47 @@ class FromFolderWorker(QThread):
     finished_success = Signal(str)
     error = Signal(str, str)
     
+    # Poids des étapes pour la progression (total = 100%)
+    # Étape 1: Chargement rues (5%)
+    # Étape 2: Scrapping PJ (50%)
+    # Étape 3: Recherche entreprises (35%)
+    # Étape 4: Fusion (3%)
+    # Étape 5: Filtrage (2%)
+    # Étape 6: Carte (5%)
+    STEP_WEIGHTS = {
+        'loading': 5,
+        'pj_scrapping': 50,
+        'entreprises': 35,
+        'fusion': 3,
+        'filtering': 2,
+        'map': 5
+    }
+    
     def __init__(self, folder_path: str, parent=None):
         super().__init__(parent)
         self.folder_path = folder_path
         self._cancelled = False
+        self._current_progress = 0
     
     def cancel(self):
         self._cancelled = True
     
+    def _emit_progress(self, step: str, sub_progress: float, message: str):
+        """Émet la progression globale basée sur l'étape et la sous-progression"""
+        step_order = ['loading', 'pj_scrapping', 'entreprises', 'fusion', 'filtering', 'map']
+        step_start = sum(self.STEP_WEIGHTS[s] for s in step_order[:step_order.index(step)])
+        step_weight = self.STEP_WEIGHTS[step]
+        
+        global_progress = step_start + (sub_progress * step_weight)
+        self._current_progress = int(global_progress)
+        self.progress.emit(self._current_progress, 100, message)
+    
     def run(self):
         try:
             logger = SignalLogger(self.folder_path, self.log_message)
+            
+            # Étape 1: Chargement des rues (5%)
+            self._emit_progress('loading', 0, "Etape 1/6 : Chargement des rues...")
             
             dir_street = os.path.join(self.folder_path, 'streets')
             
@@ -227,8 +317,10 @@ class FromFolderWorker(QThread):
                         center_lon = geo['longitude']
                         break
             
-            # Scrapping PJ
-            self.progress.emit(0, total_streets, "🔍 Scrapping Pages Jaunes...")
+            self._emit_progress('loading', 1.0, f"{total_streets} rues chargees")
+            
+            # Étape 2: Scrapping PJ (50%)
+            self._emit_progress('pj_scrapping', 0, f"Etape 2/6 : Scrapping Pages Jaunes (0/{total_streets})...")
             
             scrapper = ScrapperPagesJaunes()
             pj_results = []
@@ -237,7 +329,8 @@ class FromFolderWorker(QThread):
                 for i, street in enumerate(streets):
                     if self._cancelled:
                         break
-                    self.progress.emit(i + 1, total_streets, f"PJ: {street['name']}")
+                    sub_progress = (i + 1) / total_streets
+                    self._emit_progress('pj_scrapping', sub_progress, f"Etape 2/6 : PJ ({i + 1}/{total_streets}) - {street['name']}")
                     results = scrapper.process_street(street, logger, self.folder_path)
                     pj_results.extend(results)
             finally:
@@ -249,8 +342,8 @@ class FromFolderWorker(QThread):
             pj_csv = os.path.join(self.folder_path, 'resultats_pj.csv')
             scrapper.save_results_csv(pj_results, pj_csv, logger)
             
-            # Entreprises
-            self.progress.emit(0, total_streets, "🏢 Recherche entreprises...")
+            # Étape 3: Entreprises (35%)
+            self._emit_progress('entreprises', 0, f"Etape 3/6 : Recherche entreprises (0/{total_streets})...")
             
             entreprise_searcher = EntrepriseSearcher()
             entreprise_results = []
@@ -258,23 +351,52 @@ class FromFolderWorker(QThread):
             for i, street in enumerate(streets):
                 if self._cancelled:
                     break
-                self.progress.emit(i + 1, total_streets, f"Entreprises: {street['name']}")
+                sub_progress = (i + 1) / total_streets
+                self._emit_progress('entreprises', sub_progress, f"Etape 3/6 : Entreprises ({i + 1}/{total_streets}) - {street['name']}")
                 results = entreprise_searcher.process_street(street, logger)
                 entreprise_results.extend(results)
             
             if self._cancelled:
                 return
             
-            # Fusion
-            self.progress.emit(0, 0, "🔗 Fusion...")
+            # Étape 4: Fusion (3%)
+            self._emit_progress('fusion', 0, "Etape 4/6 : Fusion des resultats...")
             
             fused_data = fuse_results(pj_results, entreprise_results, logger)
-            fused_csv = os.path.join(self.folder_path, 'resultats_fusionnes.csv')
-            save_fused_csv(fused_data, fused_csv, logger)
             
-            # Carte
+            self._emit_progress('fusion', 1.0, "Fusion terminee")
+            
+            # Étape 5: Filtrage par zone et intérêt (2%)
             if center_lat and center_lon:
-                features = fused_to_map_features(fused_data)
+                self._emit_progress('filtering', 0, "Etape 5/6 : Verification et filtrage des resultats...")
+                
+                # Estimer le rayon basé sur les rues trouvées
+                radius_km = 0.5  # Par défaut
+                
+                in_zone, out_zone_interesting, out_zone_excluded = filter_results_by_zone_and_interest(
+                    fused_data,
+                    center_lat=center_lat,
+                    center_lon=center_lon,
+                    radius_km=radius_km,
+                    logger=logger
+                )
+                
+                final_results = save_filtered_results(
+                    in_zone, out_zone_interesting, out_zone_excluded,
+                    self.folder_path, logger
+                )
+            else:
+                # Pas de coordonnées centre, sauvegarder tout
+                fused_csv = os.path.join(self.folder_path, 'resultats_fusionnes.csv')
+                save_fused_csv(fused_data, fused_csv, logger)
+                final_results = fused_data
+            
+            self._emit_progress('filtering', 1.0, "Filtrage termine")
+            
+            # Étape 6: Carte (5%)
+            if center_lat and center_lon:
+                self._emit_progress('map', 0, "Etape 6/6 : Generation de la carte...")
+                features = fused_to_map_features(final_results)
                 if features:
                     html = build_map_html(
                         center_lat=center_lat,
@@ -289,6 +411,8 @@ class FromFolderWorker(QThread):
                         f.write(html)
                     
                     self.map_ready.emit(html)
+            
+            self._emit_progress('map', 1.0, "Recherche terminee avec succes !")
             
             self.finished_success.emit(self.folder_path)
             

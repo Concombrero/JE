@@ -2,10 +2,182 @@
 
 import csv
 import os
-from typing import List, Dict, Any, Optional
+import math
+from typing import List, Dict, Any, Optional, Tuple
 
 from tools import DataPJ, EntrepriseData, FusedData
 from logger import Logger
+
+
+def haversine_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    """
+    Calcule la distance en mètres entre deux points GPS (formule de Haversine).
+    """
+    R = 6371000  # Rayon de la Terre en mètres
+    
+    phi1 = math.radians(lat1)
+    phi2 = math.radians(lat2)
+    delta_phi = math.radians(lat2 - lat1)
+    delta_lambda = math.radians(lon2 - lon1)
+    
+    a = math.sin(delta_phi / 2) ** 2 + \
+        math.cos(phi1) * math.cos(phi2) * math.sin(delta_lambda / 2) ** 2
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+    
+    return R * c
+
+
+def is_interesting_result(entry: Dict[str, Any]) -> Tuple[bool, List[str]]:
+    """
+    Détermine si un résultat est "intéressant" à conserver.
+    
+    Critères d'intérêt (au moins 2 doivent être satisfaits):
+    - A un numéro de téléphone (PJ ou entreprise)
+    - A un email
+    - A un site web
+    - A un SIRET/SIREN (entreprise identifiée)
+    - A un nom d'entreprise ou titre PJ
+    - A des informations DPE/BDNB
+    - A une surface de toiture > 100m² (potentiel photovoltaïque)
+    
+    Returns:
+        Tuple (is_interesting: bool, reasons: List[str])
+    """
+    reasons = []
+    score = 0
+    
+    # Téléphone
+    has_phone = bool(entry.get("pj_phone"))
+    ent_phones = entry.get("entreprise_phones") or []
+    if has_phone or (ent_phones and len(ent_phones) > 0 and ent_phones[0]):
+        score += 2  # Contact direct = très important
+        reasons.append("telephone")
+    
+    # Email
+    ent_emails = entry.get("entreprise_emails") or []
+    if ent_emails and len(ent_emails) > 0 and ent_emails[0]:
+        score += 2  # Contact direct = très important
+        reasons.append("email")
+    
+    # Site web
+    ent_websites = entry.get("entreprise_websites") or []
+    if ent_websites and len(ent_websites) > 0 and ent_websites[0]:
+        score += 1
+        reasons.append("site_web")
+    
+    # SIRET/SIREN (entreprise officielle)
+    if entry.get("entreprise_siret") or entry.get("entreprise_siren"):
+        score += 2  # Entreprise identifiée = important
+        reasons.append("siret_siren")
+    
+    # Nom identifié
+    if entry.get("entreprise_nom") or entry.get("pj_title"):
+        score += 1
+        reasons.append("nom_identifie")
+    
+    # Informations DPE (bâtiment caractérisé)
+    if entry.get("classe_bilan_dpe"):
+        score += 1
+        reasons.append("dpe")
+    
+    # Surface de toiture significative (potentiel photovoltaïque)
+    roof_area = entry.get("roof_area_m2")
+    if roof_area:
+        try:
+            if float(roof_area) >= 100:
+                score += 2  # Grande surface = potentiel important
+                reasons.append("grande_surface_toiture")
+        except (ValueError, TypeError):
+            pass
+    
+    # Surface parking (potentiel ombrières)
+    parking_area = entry.get("parking_area_m2")
+    if parking_area:
+        try:
+            if float(parking_area) >= 200:
+                score += 1
+                reasons.append("parking")
+        except (ValueError, TypeError):
+            pass
+    
+    # Propriétaire identifié
+    if entry.get("owner_name"):
+        score += 1
+        reasons.append("proprietaire_identifie")
+    
+    # Un résultat est intéressant si score >= 3
+    # (au moins un contact + une identification OU plusieurs critères)
+    is_interesting = score >= 3
+    
+    return is_interesting, reasons
+
+
+def filter_results_by_zone_and_interest(
+    fused_data: List[FusedData],
+    center_lat: float,
+    center_lon: float,
+    radius_km: float,
+    logger: Logger
+) -> Tuple[List[FusedData], List[FusedData], List[FusedData]]:
+    """
+    Filtre les résultats en 3 catégories:
+    1. Dans la zone (tous gardés)
+    2. Hors zone mais intéressants (gardés)
+    3. Hors zone et non intéressants (exclus)
+    
+    Returns:
+        Tuple (in_zone, out_zone_interesting, out_zone_excluded)
+    """
+    radius_m = radius_km * 1000
+    # Tolérance de 20% pour les résultats légèrement hors zone
+    tolerance_m = radius_m * 1.2
+    
+    in_zone = []
+    out_zone_interesting = []
+    out_zone_excluded = []
+    
+    for entry in fused_data:
+        lat = entry.get("latitude")
+        lon = entry.get("longitude")
+        
+        # Si pas de coordonnées, vérifier si intéressant
+        if lat is None or lon is None:
+            is_interesting, reasons = is_interesting_result(entry)
+            if is_interesting:
+                entry["_filter_status"] = "no_coords_but_interesting"
+                entry["_interest_reasons"] = reasons
+                out_zone_interesting.append(entry)
+            else:
+                entry["_filter_status"] = "no_coords_excluded"
+                out_zone_excluded.append(entry)
+            continue
+        
+        # Calculer la distance au centre
+        distance = haversine_distance(center_lat, center_lon, lat, lon)
+        entry["_distance_to_center"] = round(distance)
+        
+        if distance <= radius_m:
+            # Dans la zone - garder
+            entry["_filter_status"] = "in_zone"
+            in_zone.append(entry)
+        elif distance <= tolerance_m:
+            # Légèrement hors zone (tolérance) - garder si a des coords
+            entry["_filter_status"] = "in_tolerance_zone"
+            in_zone.append(entry)
+        else:
+            # Hors zone - vérifier si intéressant
+            is_interesting, reasons = is_interesting_result(entry)
+            if is_interesting:
+                entry["_filter_status"] = "out_zone_interesting"
+                entry["_interest_reasons"] = reasons
+                out_zone_interesting.append(entry)
+            else:
+                entry["_filter_status"] = "out_zone_excluded"
+                out_zone_excluded.append(entry)
+    
+    logger.log(f"Filtrage zone: {len(in_zone)} dans zone, {len(out_zone_interesting)} hors zone interessants, {len(out_zone_excluded)} exclus", "INFO")
+    
+    return in_zone, out_zone_interesting, out_zone_excluded
 
 
 def fuse_results(
@@ -201,18 +373,19 @@ def save_fused_csv(fused_data: List[FusedData], output_file: str, logger: Logger
     """Sauvegarde les données fusionnées en CSV"""
     logger.log(f"Sauvegarde CSV fusionné: {output_file}", "INFO")
     
-    os.makedirs(os.path.dirname(output_file), exist_ok=True)
+    os.makedirs(os.path.dirname(output_file) if os.path.dirname(output_file) else '.', exist_ok=True)
     
     headers = [
         "Numero", "Voie", "Code_Postal", "Ville",
-        "Latitude", "Longitude",
+        "Latitude", "Longitude", "Distance_Centre_m",
         "PJ_Titre", "PJ_Telephone",
         "BDNB_Annee", "BDNB_DPE",
         "Entreprise_Nom", "Entreprise_Categorie",
         "Entreprise_Telephones", "Entreprise_Emails", "Entreprise_Sites",
         "SIREN", "SIRET", "NAF",
         "Proprietaire_Nom", "Proprietaire_Role",
-        "Surface_Toiture_m2", "Surface_Parking_m2", "Annee_Construction_OSM"
+        "Surface_Toiture_m2", "Surface_Parking_m2", "Annee_Construction_OSM",
+        "Statut_Filtrage", "Raisons_Interet"
     ]
     
     with open(output_file, 'w', newline='', encoding='utf-8') as f:
@@ -227,6 +400,7 @@ def save_fused_csv(fused_data: List[FusedData], output_file: str, logger: Logger
                 entry.get("ville", ""),
                 entry.get("latitude", ""),
                 entry.get("longitude", ""),
+                entry.get("_distance_to_center", ""),
                 entry.get("pj_title", ""),
                 entry.get("pj_phone", ""),
                 entry.get("annee_construction", ""),
@@ -244,10 +418,39 @@ def save_fused_csv(fused_data: List[FusedData], output_file: str, logger: Logger
                 entry.get("roof_area_m2", ""),
                 entry.get("parking_area_m2", ""),
                 entry.get("building_year", ""),
+                entry.get("_filter_status", ""),
+                "; ".join(entry.get("_interest_reasons", [])),
             ]
             writer.writerow(row)
     
     logger.both(f"CSV fusionné sauvegardé: {output_file}", "SUCCESS")
+
+
+def save_filtered_results(
+    in_zone: List[FusedData],
+    out_zone_interesting: List[FusedData],
+    out_zone_excluded: List[FusedData],
+    output_dir: str,
+    logger: Logger
+):
+    """
+    Sauvegarde les résultats filtrés dans des fichiers séparés.
+    """
+    # Résultats principaux (dans zone + hors zone intéressants)
+    main_results = in_zone + out_zone_interesting
+    main_file = os.path.join(output_dir, 'resultats_fusionnes.csv')
+    save_fused_csv(main_results, main_file, logger)
+    
+    # Résultats exclus (pour audit)
+    if out_zone_excluded:
+        excluded_file = os.path.join(output_dir, 'resultats_exclus.csv')
+        save_fused_csv(out_zone_excluded, excluded_file, logger)
+        logger.log(f"{len(out_zone_excluded)} resultats exclus sauvegardes dans {excluded_file}", "INFO")
+    
+    # Résumé
+    logger.both(f"Resultats finaux: {len(main_results)} ({len(in_zone)} zone + {len(out_zone_interesting)} hors zone interessants)", "SUCCESS")
+    
+    return main_results
 
 
 def load_fused_csv(csv_file: str, logger: Logger) -> List[Dict[str, Any]]:
@@ -265,6 +468,7 @@ def load_fused_csv(csv_file: str, logger: Logger) -> List[Dict[str, Any]]:
                     "ville": row.get("Ville", ""),
                     "latitude": float(row["Latitude"]) if row.get("Latitude") else None,
                     "longitude": float(row["Longitude"]) if row.get("Longitude") else None,
+                    "_distance_to_center": int(row["Distance_Centre_m"]) if row.get("Distance_Centre_m") else None,
                     "pj_title": row.get("PJ_Titre"),
                     "pj_phone": row.get("PJ_Telephone"),
                     "annee_construction": row.get("BDNB_Annee"),
@@ -282,6 +486,8 @@ def load_fused_csv(csv_file: str, logger: Logger) -> List[Dict[str, Any]]:
                     "roof_area_m2": row.get("Surface_Toiture_m2"),
                     "parking_area_m2": row.get("Surface_Parking_m2"),
                     "building_year": row.get("Annee_Construction_OSM"),
+                    "_filter_status": row.get("Statut_Filtrage"),
+                    "_interest_reasons": row.get("Raisons_Interet", "").split("; ") if row.get("Raisons_Interet") else [],
                 }
                 results.append(entry)
         
