@@ -27,14 +27,17 @@ class Logger:
 
     def console(self, message: str, level: str = "INFO"):
         """Affiche uniquement dans la console"""
-        if level == "SUCCESS":
-            print(f"✅ {message}")
-        elif level == "ERROR":
-            print(f"❌ {message}")
-        elif level == "PROGRESS":
-            print(f"⏳ {message}")
-        elif level == "WARNING":
-            print(f"⚠️  {message}")
+        prefix = {
+            "SUCCESS": "[OK]",
+            "ERROR": "[ERREUR]",
+            "PROGRESS": "[...]",
+            "WARNING": "[ATTENTION]",
+            "INFO": "[INFO]",
+            "DEBUG": "[DEBUG]"
+        }.get(level, "")
+        
+        if prefix:
+            print(f"{prefix} {message}")
         else:
             print(message)
         

@@ -88,10 +88,10 @@ def get_user_address(logger: Logger) -> Address:
         
         print("\nVérification de l'adresse...")
         if address_processor.is_valid_address(address, logger):
-            logger.log(f"Adresse validée: {address}", "INFO")
+            logger.log(f"Adresse validee: {address}", "INFO")
             return address
         else:
-            logger.console("❌ Adresse invalide, veuillez réessayer.", "ERROR")
+            logger.console("Adresse invalide, veuillez reessayer.", "ERROR")
 
 
 def get_radius(logger: Logger) -> float:
@@ -118,8 +118,8 @@ def get_output_dirname() -> str:
         dirpath = os.path.join('output', dirname)
         
         if os.path.exists(dirpath):
-            print(f"⚠️  Le dossier '{dirpath}' existe déjà.")
-            overwrite = input("Voulez-vous l'utiliser quand même ? (o/n): ").strip().lower()
+            print(f"[ATTENTION] Le dossier '{dirpath}' existe deja.")
+            overwrite = input("Voulez-vous l'utiliser quand meme ? (o/n): ").strip().lower()
             if overwrite == 'o':
                 return dirpath
         else:
@@ -132,13 +132,13 @@ def select_existing_folder() -> Optional[str]:
     output_dir = 'output'
     
     if not os.path.exists(output_dir):
-        print("❌ Aucun dossier 'output' trouvé.")
+        print("[ERREUR] Aucun dossier 'output' trouve.")
         return None
     
     folders = [f for f in os.listdir(output_dir) if os.path.isdir(os.path.join(output_dir, f))]
     
     if not folders:
-        print("❌ Aucun dossier de recherche trouvé dans 'output'.")
+        print("[ERREUR] Aucun dossier de recherche trouve dans 'output'.")
         return None
     
     print("\nDossiers disponibles:")
@@ -170,7 +170,7 @@ def select_existing_file(extension: str = ".html") -> Optional[str]:
     output_dir = 'output'
     
     if not os.path.exists(output_dir):
-        print("❌ Aucun dossier 'output' trouvé.")
+        print("[ERREUR] Aucun dossier 'output' trouve.")
         return None
     
     # Chercher tous les fichiers avec l'extension donnée
@@ -181,7 +181,7 @@ def select_existing_file(extension: str = ".html") -> Optional[str]:
                 files.append(os.path.join(root, filename))
     
     if not files:
-        print(f"❌ Aucun fichier {extension} trouvé.")
+        print(f"[ERREUR] Aucun fichier {extension} trouve.")
         return None
     
     print(f"\nFichiers {extension} disponibles:")
@@ -226,7 +226,7 @@ def run_complete_workflow():
     logger.log(f"Rayon: {radius} km", "DEBUG")
     
     # Étape 1: Récupération des rues
-    logger.both("\n📍 Étape 1: Récupération des adresses...", "PROGRESS")
+    logger.both("\nEtape 1: Recuperation des adresses...", "PROGRESS")
     
     address_processor = AddressProcessor()
     coords = address_processor.address_to_coordinates(address, logger)
@@ -254,7 +254,7 @@ def run_complete_workflow():
         return
     
     # Étape 2: Scrapping Pages Jaunes
-    logger.both("\n🔍 Étape 2: Scrapping Pages Jaunes (navigateur visible)...", "PROGRESS")
+    logger.both("\nEtape 2: Scrapping Pages Jaunes (navigateur visible)...", "PROGRESS")
     
     scrapper = ScrapperPagesJaunes()
     pj_results = []
@@ -272,7 +272,7 @@ def run_complete_workflow():
     scrapper.save_results_csv(pj_results, pj_csv, logger)
     
     # Étape 3: Recherche entreprises
-    logger.both("\n🏢 Étape 3: Recherche et enrichissement entreprises...", "PROGRESS")
+    logger.both("\nEtape 3: Recherche et enrichissement entreprises...", "PROGRESS")
     
     entreprise_searcher = EntrepriseSearcher()
     entreprise_results = []
@@ -282,7 +282,7 @@ def run_complete_workflow():
         entreprise_results.extend(results)
     
     # Étape 4: Fusion des résultats
-    logger.both("\n🔗 Étape 4: Fusion des résultats...", "PROGRESS")
+    logger.both("\nEtape 4: Fusion des resultats...", "PROGRESS")
     
     fused_data = fuse_results(pj_results, entreprise_results, logger)
     
@@ -291,7 +291,7 @@ def run_complete_workflow():
     save_fused_csv(fused_data, fused_csv, logger)
     
     # Étape 5: Génération de la carte
-    logger.both("\n🗺️  Étape 5: Génération de la carte interactive...", "PROGRESS")
+    logger.both("\nEtape 5: Generation de la carte interactive...", "PROGRESS")
     
     features = fused_to_map_features(fused_data)
     
@@ -308,10 +308,10 @@ def run_complete_workflow():
             title=f"Prospection - {address['ville']}"
         )
         
-        logger.both(f"\n✅ Workflow terminé!", "SUCCESS")
-        logger.both(f"   📁 Dossier: {output_dirpath}", "INFO")
-        logger.both(f"   📄 CSV fusionné: {fused_csv}", "INFO")
-        logger.both(f"   🗺️  Carte: {map_file}", "INFO")
+        logger.both(f"\nWorkflow termine!", "SUCCESS")
+        logger.both(f"   Dossier: {output_dirpath}", "INFO")
+        logger.both(f"   CSV fusionne: {fused_csv}", "INFO")
+        logger.both(f"   Carte: {map_file}", "INFO")
         
         # Ouvrir la carte
         open_map = input("\nOuvrir la carte dans le navigateur ? (o/n): ").strip().lower()
@@ -340,7 +340,7 @@ def run_from_folder():
     dir_street = os.path.join(folder, 'streets')
     
     if not os.path.exists(dir_street):
-        logger.both(f"❌ Pas de dossier 'streets' dans {folder}", "ERROR")
+        logger.both(f"Pas de dossier 'streets' dans {folder}", "ERROR")
         return
     
     address_processor = AddressProcessor()
@@ -369,7 +369,7 @@ def run_from_folder():
                 break
     
     # Étape 2: Scrapping Pages Jaunes
-    logger.both("\n🔍 Scrapping Pages Jaunes (navigateur visible)...", "PROGRESS")
+    logger.both("\nScrapping Pages Jaunes (navigateur visible)...", "PROGRESS")
     
     scrapper = ScrapperPagesJaunes()
     pj_results = []
@@ -387,7 +387,7 @@ def run_from_folder():
     scrapper.save_results_csv(pj_results, pj_csv, logger)
     
     # Recherche entreprises
-    logger.both("\n🏢 Recherche entreprises...", "PROGRESS")
+    logger.both("\nRecherche entreprises...", "PROGRESS")
     
     entreprise_searcher = EntrepriseSearcher()
     entreprise_results = []
@@ -397,7 +397,7 @@ def run_from_folder():
         entreprise_results.extend(results)
     
     # Fusion
-    logger.both("\n🔗 Fusion des résultats...", "PROGRESS")
+    logger.both("\nFusion des resultats...", "PROGRESS")
     
     fused_data = fuse_results(pj_results, entreprise_results, logger)
     
@@ -406,7 +406,7 @@ def run_from_folder():
     
     # Carte
     if center_lat and center_lon:
-        logger.both("\n🗺️  Génération de la carte...", "PROGRESS")
+        logger.both("\nGeneration de la carte...", "PROGRESS")
         
         features = fused_to_map_features(fused_data)
         
@@ -425,14 +425,14 @@ def run_from_folder():
                 title="Prospection"
             )
             
-            logger.both(f"\n✅ Terminé!", "SUCCESS")
-            logger.both(f"   🗺️  Carte: {map_file}", "INFO")
+            logger.both(f"\nTermine!", "SUCCESS")
+            logger.both(f"   Carte: {map_file}", "INFO")
             
             open_map = input("\nOuvrir la carte ? (o/n): ").strip().lower()
             if open_map == 'o':
                 webbrowser.open('file://' + os.path.abspath(map_file))
     else:
-        logger.both("\n✅ Terminé! (pas de carte générée - coordonnées manquantes)", "SUCCESS")
+        logger.both("\nTermine! (pas de carte generee - coordonnees manquantes)", "SUCCESS")
 
 
 # ==================== CARTE SEULE ====================
@@ -465,14 +465,14 @@ def run_map_only():
             data = load_fused_csv(csv_file, logger)
             
             if not data:
-                print("❌ Aucune donnée dans le CSV.")
+                print("[ERREUR] Aucune donnee dans le CSV.")
                 return
             
             # Trouver le centre
             valid_coords = [(d["latitude"], d["longitude"]) for d in data if d.get("latitude") and d.get("longitude")]
             
             if not valid_coords:
-                print("❌ Aucune coordonnée valide dans les données.")
+                print("[ERREUR] Aucune coordonnee valide dans les donnees.")
                 return
             
             center_lat = sum(c[0] for c in valid_coords) / len(valid_coords)
@@ -492,7 +492,7 @@ def run_map_only():
                 title="Carte depuis CSV"
             )
             
-            print(f"\n✅ Carte générée: {map_file}")
+            print(f"\n[OK] Carte generee: {map_file}")
             
             open_map = input("Ouvrir la carte ? (o/n): ").strip().lower()
             if open_map == 'o':

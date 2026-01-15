@@ -174,30 +174,70 @@ class AddressProcessor:
             return address['ville'], str(address['code_postal'])
         return "", ""
 
-    def get_street_names_in_area(self, lat: float, lon: float, radius_km: float) -> Set[str]:
-        """Récupère les noms de rues dans une zone via Overpass"""
+    def get_street_names_in_area(self, lat: float, lon: float, radius_km: float, logger: Optional['Logger'] = None, max_retries: int = 3) -> Set[str]:
+        """Récupère les noms de rues dans une zone via Overpass avec retry et fallback"""
         distance_m = int(radius_km * 1000)
         query = f"""
         [out:json];
         way(around:{distance_m},{lat},{lon})["highway"]["name"];
         out tags;
         """
-        url = "https://overpass-api.de/api/interpreter"
         
-        try:
-            response = requests.get(url, params={"data": query}, timeout=60)
-            response.raise_for_status()
-            data = response.json()
-            
-            streets = {
-                el["tags"]["name"] 
-                for el in data.get("elements", []) 
-                if "tags" in el and "name" in el["tags"]
-            }
-            return streets
-            
-        except Exception:
-            return set()
+        # Liste des serveurs Overpass avec fallback
+        overpass_urls = [
+            "https://overpass-api.de/api/interpreter",
+            "https://overpass.kumi.systems/api/interpreter",
+            "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
+        ]
+        
+        last_error = None
+        
+        for url in overpass_urls:
+            for attempt in range(max_retries):
+                try:
+                    if logger:
+                        logger.log(f"Requête Overpass (tentative {attempt + 1}/{max_retries}) sur {url.split('/')[2]}")
+                    
+                    response = requests.get(url, params={"data": query}, timeout=60)
+                    response.raise_for_status()
+                    data = response.json()
+                    
+                    streets = {
+                        el["tags"]["name"] 
+                        for el in data.get("elements", []) 
+                        if "tags" in el and "name" in el["tags"]
+                    }
+                    
+                    if streets:
+                        return streets
+                    
+                    # Si aucune rue trouvée, on continue avec un autre serveur
+                    if logger:
+                        logger.log(f"Aucune rue trouvée sur {url.split('/')[2]}, essai d'un autre serveur...")
+                    break  # Passer au serveur suivant
+                    
+                except requests.exceptions.Timeout:
+                    last_error = "Timeout"
+                    if logger:
+                        logger.log(f"Timeout sur {url.split('/')[2]}, tentative {attempt + 1}/{max_retries}", level="WARNING")
+                    time.sleep(2 * (attempt + 1))  # Attente exponentielle
+                    
+                except requests.exceptions.RequestException as e:
+                    last_error = str(e)
+                    if logger:
+                        logger.log(f"Erreur requête sur {url.split('/')[2]}: {e}", level="WARNING")
+                    time.sleep(2 * (attempt + 1))
+                    
+                except Exception as e:
+                    last_error = str(e)
+                    if logger:
+                        logger.log(f"Erreur inattendue sur {url.split('/')[2]}: {e}", level="WARNING")
+                    time.sleep(1)
+        
+        if logger:
+            logger.log(f"Échec de récupération des rues après tous les essais. Dernière erreur: {last_error}", level="ERROR")
+        
+        return set()
 
     def get_streets_in_area(
         self, 
@@ -211,7 +251,12 @@ class AddressProcessor:
         Récupère toutes les rues dans une zone et sauvegarde leurs numéros.
         Retourne la liste des fichiers JSON créés.
         """
-        street_names = self.get_street_names_in_area(center_lat, center_lon, radius_km)
+        street_names = self.get_street_names_in_area(center_lat, center_lon, radius_km, logger=logger)
+        
+        if not street_names:
+            logger.both("Aucune rue trouvée via Overpass. Vérifiez votre connexion ou réessayez.", "ERROR")
+            return []
+        
         logger.both(f"{len(street_names)} rues trouvées", "SUCCESS")
         
         city, postal_code = self.get_city_and_postal_code_from_coords(
