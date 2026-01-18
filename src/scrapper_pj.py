@@ -66,6 +66,12 @@ class ScrapperPagesJaunes:
             self.driver.get(url)
             time.sleep(random.uniform(2, 3))
             
+            # Vérifier si on a été redirigé vers la page d'accueil (anti-bot)
+            current_url = self.driver.current_url
+            if current_url in ["https://www.pagesjaunes.fr/#", "https://www.pagesjaunes.fr/", "https://www.pagesjaunes.fr"]:
+                logger.log("Redirection vers la page d'accueil détectée (possible blocage anti-bot)", "WARNING")
+                return None
+            
             html = self.driver.page_source
             soup = BeautifulSoup(html, 'html.parser')
             
@@ -74,8 +80,12 @@ class ScrapperPagesJaunes:
                 link = first_result.find('a', class_="bi-denomination")
                 if link and link.get('href'):
                     href = link.get('href')
-                    logger.log(f"Premier résultat trouvé: {href}", "DEBUG")
-                    return href
+                    # Vérifier que le lien est valide (pas juste "#" ou vide)
+                    if href and href not in ['#', '/#', ''] and href.startswith('/pros/'):
+                        logger.log(f"Premier résultat trouvé: {href}", "DEBUG")
+                        return href
+                    else:
+                        logger.log(f"Lien invalide ignoré: {href}", "DEBUG")
             
             logger.log("Aucun résultat trouvé sur Pages Jaunes", "DEBUG")
             return None
@@ -132,11 +142,22 @@ class ScrapperPagesJaunes:
             self.driver.get(url)
             time.sleep(random.uniform(2, 3))
             
+            # Vérifier si on a été redirigé vers la page d'accueil
+            current_url = self.driver.current_url
+            if current_url in ["https://www.pagesjaunes.fr/#", "https://www.pagesjaunes.fr/", "https://www.pagesjaunes.fr"]:
+                logger.log("Redirection vers la page d'accueil lors de la récupération du contact", "WARNING")
+                return None
+            
             html = self.driver.page_source
             
             phone = self.get_phone_from_html(html, logger)
             address = self.get_address_from_html(html, logger)
             title = self.get_title_from_html(html, logger)
+            
+            # Si aucune info n'a été trouvée, c'est probablement une page invalide
+            if not phone and not address and not title:
+                logger.log("Aucune information trouvée sur la page de contact", "DEBUG")
+                return None
             
             return {
                 'phone': phone or '',

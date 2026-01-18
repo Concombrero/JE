@@ -267,19 +267,18 @@ def run_complete_workflow():
     finally:
         scrapper.close_browser()
     
-    # Sauvegarder résultats PJ intermédiaires
-    pj_csv = os.path.join(output_dirpath, 'resultats_pj.csv')
-    scrapper.save_results_csv(pj_results, pj_csv, logger)
-    
     # Étape 3: Recherche entreprises
-    logger.both("\nEtape 3: Recherche et enrichissement entreprises...", "PROGRESS")
+    logger.both("\nEtape 3: Enrichissement entreprises...", "PROGRESS")
     
     entreprise_searcher = EntrepriseSearcher()
     entreprise_results = []
     
-    for street in streets:
-        results = entreprise_searcher.process_street(street, logger)
-        entreprise_results.extend(results)
+    # Enrichir les résultats PJ avec données entreprises
+    if pj_results:
+        logger.both(f"Enrichissement de {len(pj_results)} resultats PJ...", "INFO")
+        pj_enriched = entreprise_searcher.process_pj_results(pj_results, logger)
+        entreprise_results.extend(pj_enriched)
+        logger.both(f"{len(pj_enriched)} entreprises enrichies depuis PJ", "SUCCESS")
     
     # Étape 4: Fusion des résultats
     logger.both("\nEtape 4: Fusion des resultats...", "PROGRESS")
@@ -382,19 +381,18 @@ def run_from_folder():
     finally:
         scrapper.close_browser()
     
-    # Sauvegarder résultats PJ
-    pj_csv = os.path.join(folder, 'resultats_pj.csv')
-    scrapper.save_results_csv(pj_results, pj_csv, logger)
-    
     # Recherche entreprises
-    logger.both("\nRecherche entreprises...", "PROGRESS")
+    logger.both("\nEnrichissement entreprises...", "PROGRESS")
     
     entreprise_searcher = EntrepriseSearcher()
     entreprise_results = []
     
-    for street in streets:
-        results = entreprise_searcher.process_street(street, logger)
-        entreprise_results.extend(results)
+    # Enrichir les résultats PJ
+    if pj_results:
+        logger.both(f"Enrichissement de {len(pj_results)} resultats PJ...", "INFO")
+        pj_enriched = entreprise_searcher.process_pj_results(pj_results, logger)
+        entreprise_results.extend(pj_enriched)
+        logger.both(f"{len(pj_enriched)} entreprises enrichies depuis PJ", "SUCCESS")
     
     # Fusion
     logger.both("\nFusion des resultats...", "PROGRESS")

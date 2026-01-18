@@ -159,23 +159,34 @@ class CompleteWorkflowWorker(QThread):
             if self._cancelled:
                 return
             
-            # Sauvegarder résultats PJ
-            pj_csv = os.path.join(self.output_dir, 'resultats_pj.csv')
-            scrapper.save_results_csv(pj_results, pj_csv, logger)
-            
             # Étape 4: Recherche entreprises (35%)
-            self._emit_progress('entreprises', 0, f"Etape 4/7 : Recherche entreprises (0/{total_streets})...")
+            # Cette étape combine:
+            # - Recherche d'entreprises OSM autour de chaque adresse
+            # - Enrichissement des résultats PJ avec données entreprises
+            self._emit_progress('entreprises', 0, f"Etape 4/7 : Enrichissement entreprises...")
             
             entreprise_searcher = EntrepriseSearcher()
             entreprise_results = []
             
-            for i, street in enumerate(streets):
-                if self._cancelled:
-                    break
-                sub_progress = (i + 1) / total_streets
-                self._emit_progress('entreprises', sub_progress, f"Etape 4/7 : Entreprises ({i + 1}/{total_streets}) - {street['name']}")
-                results = entreprise_searcher.process_street(street, logger)
-                entreprise_results.extend(results)
+            # 4a: Enrichir les résultats PJ (50% de l'étape)
+            if pj_results:
+                self._emit_progress('entreprises', 0, f"Etape 4/7 : Enrichissement PJ (0/{len(pj_results)})...")
+                pj_enriched = entreprise_searcher.process_pj_results(pj_results, logger)
+                entreprise_results.extend(pj_enriched)
+                self._emit_progress('entreprises', 0.5, f"Etape 4/7 : {len(pj_enriched)} entreprises depuis PJ")
+            
+            # 4b: Recherche OSM par rue (50% de l'étape)
+            # Note: Optionnel car peut être long et redondant avec PJ
+            # On peut commenter cette partie si trop lent
+            # for i, street in enumerate(streets):
+            #     if self._cancelled:
+            #         break
+            #     sub_progress = 0.5 + (0.5 * (i + 1) / total_streets)
+            #     self._emit_progress('entreprises', sub_progress, f"Etape 4/7 : OSM ({i + 1}/{total_streets}) - {street['name']}")
+            #     results = entreprise_searcher.process_street(street, logger)
+            #     entreprise_results.extend(results)
+            
+            self._emit_progress('entreprises', 1.0, f"Etape 4/7 : {len(entreprise_results)} entreprises enrichies")
             
             if self._cancelled:
                 return
@@ -339,22 +350,19 @@ class FromFolderWorker(QThread):
             if self._cancelled:
                 return
             
-            pj_csv = os.path.join(self.folder_path, 'resultats_pj.csv')
-            scrapper.save_results_csv(pj_results, pj_csv, logger)
-            
             # Étape 3: Entreprises (35%)
-            self._emit_progress('entreprises', 0, f"Etape 3/6 : Recherche entreprises (0/{total_streets})...")
+            # Cette étape enrichit les résultats PJ avec données entreprises
+            self._emit_progress('entreprises', 0, f"Etape 3/6 : Enrichissement entreprises...")
             
             entreprise_searcher = EntrepriseSearcher()
             entreprise_results = []
             
-            for i, street in enumerate(streets):
-                if self._cancelled:
-                    break
-                sub_progress = (i + 1) / total_streets
-                self._emit_progress('entreprises', sub_progress, f"Etape 3/6 : Entreprises ({i + 1}/{total_streets}) - {street['name']}")
-                results = entreprise_searcher.process_street(street, logger)
-                entreprise_results.extend(results)
+            # Enrichir les résultats PJ
+            if pj_results:
+                self._emit_progress('entreprises', 0, f"Etape 3/6 : Enrichissement PJ (0/{len(pj_results)})...")
+                pj_enriched = entreprise_searcher.process_pj_results(pj_results, logger)
+                entreprise_results.extend(pj_enriched)
+                self._emit_progress('entreprises', 1.0, f"Etape 3/6 : {len(pj_enriched)} entreprises depuis PJ")
             
             if self._cancelled:
                 return

@@ -1,0 +1,500 @@
+[2026-01-16 20:09:26] [INFO] Récupération des coordonnées de l'adresse {'numero': '35', 'voie': 'Hélice de Meylan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:09:26] [INFO] Traitement PJ de la rue: Lycée du Grésivaudan
+[2026-01-16 20:09:26] [DEBUG] Traitement du numéro: 7
+[2026-01-16 20:09:26] [DEBUG] Traitement PJ de l'adresse: {'numero': '7', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:09:26] [DEBUG] Construction URL pour: {'numero': '7', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:09:26] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=7+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:09:31] [DEBUG] Premier résultat trouvé: /pros/50430200
+[2026-01-16 20:09:39] [DEBUG] Téléphone trouvé: 04 76 54 09 08
+[2026-01-16 20:09:39] [DEBUG] Adresse trouvée: 21 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:09:39] [DEBUG] Titre trouvé: La Vie CLaire Meylan - Magasin bio (adresse, horaires, avis)
+[2026-01-16 20:09:41] [DEBUG] 7 Lycée du Grésivaudan, 38240 Meylan VS 21 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:09:41] [INFO] Récupération des coordonnées de l'adresse {'numero': '7', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:09:41] [DEBUG] Traitement du numéro: 9
+[2026-01-16 20:09:41] [DEBUG] Traitement PJ de l'adresse: {'numero': '9', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:09:41] [DEBUG] Construction URL pour: {'numero': '9', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:09:41] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=9+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:09:44] [DEBUG] Premier résultat trouvé: /pros/08142094
+[2026-01-16 20:09:51] [DEBUG] Téléphone trouvé: 04 76 15 15 15
+[2026-01-16 20:09:51] [DEBUG] Adresse trouvée: 9 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:09:51] [DEBUG] Titre trouvé: Bienvenue Sur Mars Meylan - Agence de publicité (adresse)
+[2026-01-16 20:09:53] [DEBUG] 9 Lycée du Grésivaudan, 38240 Meylan VS 9 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:09:53] [INFO] Récupération des coordonnées de l'adresse {'numero': '9', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:09:53] [DEBUG] Traitement du numéro: 11
+[2026-01-16 20:09:54] [DEBUG] Traitement PJ de l'adresse: {'numero': '11', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:09:54] [DEBUG] Construction URL pour: {'numero': '11', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:09:54] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=11+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:09:58] [DEBUG] Premier résultat trouvé: /pros/50430200
+[2026-01-16 20:10:04] [DEBUG] Téléphone trouvé: 04 76 54 09 08
+[2026-01-16 20:10:04] [DEBUG] Adresse trouvée: 21 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:10:04] [DEBUG] Titre trouvé: La Vie CLaire Meylan - Magasin bio (adresse, horaires, avis)
+[2026-01-16 20:10:06] [DEBUG] 11 Lycée du Grésivaudan, 38240 Meylan VS 21 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:10:06] [INFO] Récupération des coordonnées de l'adresse {'numero': '11', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:10:07] [DEBUG] Traitement du numéro: 13
+[2026-01-16 20:10:07] [DEBUG] Traitement PJ de l'adresse: {'numero': '13', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:10:07] [DEBUG] Construction URL pour: {'numero': '13', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:10:07] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=13+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:10:11] [DEBUG] Premier résultat trouvé: /pros/58084629
+[2026-01-16 20:10:18] [DEBUG] Adresse trouvée: 13 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:10:18] [DEBUG] Titre trouvé: Association Kung Fu Tao Chen Meylan - Club de boxe (adresse, horaires)
+[2026-01-16 20:10:20] [DEBUG] 13 Lycée du Grésivaudan, 38240 Meylan VS 13 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:10:20] [INFO] Récupération des coordonnées de l'adresse {'numero': '13', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:10:20] [DEBUG] Traitement du numéro: 15
+[2026-01-16 20:10:20] [DEBUG] Traitement PJ de l'adresse: {'numero': '15', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:10:20] [DEBUG] Construction URL pour: {'numero': '15', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:10:20] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=15+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:10:25] [DEBUG] Premier résultat trouvé: /pros/06146770
+[2026-01-16 20:10:32] [DEBUG] Téléphone trouvé: 04 76 90 25 43
+[2026-01-16 20:10:32] [DEBUG] Adresse trouvée: 73 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:10:32] [DEBUG] Titre trouvé: Paul Meylan - Boulangeries Pâtisseries (adresse, horaires)
+[2026-01-16 20:10:33] [DEBUG] 15 Lycée du Grésivaudan, 38240 Meylan VS 73 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:10:33] [INFO] Récupération des coordonnées de l'adresse {'numero': '15', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:10:33] [DEBUG] Traitement du numéro: 17
+[2026-01-16 20:10:33] [DEBUG] Traitement PJ de l'adresse: {'numero': '17', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:10:33] [DEBUG] Construction URL pour: {'numero': '17', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:10:33] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=17+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:10:37] [DEBUG] Premier résultat trouvé: /pros/07287856
+[2026-01-16 20:10:44] [DEBUG] Téléphone trouvé: 04 76 41 26 63
+[2026-01-16 20:10:44] [DEBUG] Adresse trouvée: 77 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:10:44] [DEBUG] Titre trouvé: Picard Meylan - Vente de surgelés (adresse, horaires, avis, ouvert le dimanche)
+[2026-01-16 20:10:46] [DEBUG] 17 Lycée du Grésivaudan, 38240 Meylan VS 77 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:10:46] [INFO] Récupération des coordonnées de l'adresse {'numero': '17', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:10:47] [DEBUG] Traitement du numéro: 19
+[2026-01-16 20:10:47] [DEBUG] Traitement PJ de l'adresse: {'numero': '19', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:10:47] [DEBUG] Construction URL pour: {'numero': '19', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:10:47] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=19+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:10:51] [DEBUG] Lien invalide ignoré: #
+[2026-01-16 20:10:51] [DEBUG] Aucun résultat trouvé sur Pages Jaunes
+[2026-01-16 20:10:51] [INFO] Récupération des coordonnées de l'adresse {'numero': '19', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:10:51] [DEBUG] Traitement du numéro: 21
+[2026-01-16 20:10:51] [DEBUG] Traitement PJ de l'adresse: {'numero': '21', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:10:51] [DEBUG] Construction URL pour: {'numero': '21', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:10:51] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=21+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:10:55] [DEBUG] Premier résultat trouvé: /pros/50430200
+[2026-01-16 20:11:02] [DEBUG] Téléphone trouvé: 04 76 54 09 08
+[2026-01-16 20:11:02] [DEBUG] Adresse trouvée: 21 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:11:02] [DEBUG] Titre trouvé: La Vie CLaire Meylan - Magasin bio (adresse, horaires, avis)
+[2026-01-16 20:11:04] [DEBUG] 21 Lycée du Grésivaudan, 38240 Meylan VS 21 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:11:04] [INFO] Récupération des coordonnées de l'adresse {'numero': '21', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:11:04] [DEBUG] Traitement du numéro: 23
+[2026-01-16 20:11:04] [DEBUG] Traitement PJ de l'adresse: {'numero': '23', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:11:04] [DEBUG] Construction URL pour: {'numero': '23', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:11:04] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=23+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:11:08] [DEBUG] Premier résultat trouvé: /pros/05700854
+[2026-01-16 20:11:15] [DEBUG] Téléphone trouvé: 04 76 61 62 21
+[2026-01-16 20:11:15] [DEBUG] Adresse trouvée: 23 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:11:15] [DEBUG] Titre trouvé: LCL Banque et Assurance Meylan - Banque (adresse, horaires, avis)
+[2026-01-16 20:11:17] [DEBUG] 23 Lycée du Grésivaudan, 38240 Meylan VS 23 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:11:17] [INFO] Récupération des coordonnées de l'adresse {'numero': '23', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:11:17] [DEBUG] Traitement du numéro: 25
+[2026-01-16 20:11:17] [DEBUG] Traitement PJ de l'adresse: {'numero': '25', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:11:17] [DEBUG] Construction URL pour: {'numero': '25', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:11:17] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=25+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:11:21] [DEBUG] Premier résultat trouvé: /pros/50430200
+[2026-01-16 20:11:27] [DEBUG] Téléphone trouvé: 04 76 54 09 08
+[2026-01-16 20:11:27] [DEBUG] Adresse trouvée: 21 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:11:27] [DEBUG] Titre trouvé: La Vie CLaire Meylan - Magasin bio (adresse, horaires, avis)
+[2026-01-16 20:11:29] [DEBUG] 25 Lycée du Grésivaudan, 38240 Meylan VS 21 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:11:29] [INFO] Récupération des coordonnées de l'adresse {'numero': '25', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:11:29] [DEBUG] Traitement du numéro: 27
+[2026-01-16 20:11:29] [DEBUG] Traitement PJ de l'adresse: {'numero': '27', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:11:29] [DEBUG] Construction URL pour: {'numero': '27', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:11:29] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=27+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:11:33] [DEBUG] Premier résultat trouvé: /pros/07287856
+[2026-01-16 20:11:39] [DEBUG] Téléphone trouvé: 04 76 41 26 63
+[2026-01-16 20:11:39] [DEBUG] Adresse trouvée: 77 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:11:39] [DEBUG] Titre trouvé: Picard Meylan - Vente de surgelés (adresse, horaires, avis, ouvert le dimanche)
+[2026-01-16 20:11:40] [DEBUG] 27 Lycée du Grésivaudan, 38240 Meylan VS 77 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:11:40] [INFO] Récupération des coordonnées de l'adresse {'numero': '27', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:11:40] [DEBUG] Traitement du numéro: 29
+[2026-01-16 20:11:40] [DEBUG] Traitement PJ de l'adresse: {'numero': '29', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:11:40] [DEBUG] Construction URL pour: {'numero': '29', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:11:40] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=29+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:11:45] [DEBUG] Premier résultat trouvé: /pros/07287856
+[2026-01-16 20:11:51] [DEBUG] Téléphone trouvé: 04 76 41 26 63
+[2026-01-16 20:11:51] [DEBUG] Adresse trouvée: 77 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:11:51] [DEBUG] Titre trouvé: Picard Meylan - Vente de surgelés (adresse, horaires, avis, ouvert le dimanche)
+[2026-01-16 20:11:53] [DEBUG] 29 Lycée du Grésivaudan, 38240 Meylan VS 77 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:11:53] [INFO] Récupération des coordonnées de l'adresse {'numero': '29', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:11:53] [DEBUG] Traitement du numéro: 51
+[2026-01-16 20:11:53] [DEBUG] Traitement PJ de l'adresse: {'numero': '51', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:11:53] [DEBUG] Construction URL pour: {'numero': '51', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:11:53] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=51+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:11:58] [DEBUG] Premier résultat trouvé: /pros/50430200
+[2026-01-16 20:12:05] [DEBUG] Téléphone trouvé: 04 76 54 09 08
+[2026-01-16 20:12:05] [DEBUG] Adresse trouvée: 21 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:12:06] [DEBUG] Titre trouvé: La Vie CLaire Meylan - Magasin bio (adresse, horaires, avis)
+[2026-01-16 20:12:07] [DEBUG] 51 Lycée du Grésivaudan, 38240 Meylan VS 21 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:12:07] [INFO] Récupération des coordonnées de l'adresse {'numero': '51', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:12:07] [DEBUG] Traitement du numéro: 53
+[2026-01-16 20:12:07] [DEBUG] Traitement PJ de l'adresse: {'numero': '53', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:12:07] [DEBUG] Construction URL pour: {'numero': '53', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:12:07] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=53+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:12:11] [DEBUG] Premier résultat trouvé: /pros/50430200
+[2026-01-16 20:12:18] [DEBUG] Téléphone trouvé: 04 76 54 09 08
+[2026-01-16 20:12:18] [DEBUG] Adresse trouvée: 21 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:12:18] [DEBUG] Titre trouvé: La Vie CLaire Meylan - Magasin bio (adresse, horaires, avis)
+[2026-01-16 20:12:20] [DEBUG] 53 Lycée du Grésivaudan, 38240 Meylan VS 21 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:12:20] [INFO] Récupération des coordonnées de l'adresse {'numero': '53', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:12:20] [DEBUG] Traitement du numéro: 55
+[2026-01-16 20:12:20] [DEBUG] Traitement PJ de l'adresse: {'numero': '55', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:12:20] [DEBUG] Construction URL pour: {'numero': '55', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:12:20] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=55+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:12:24] [DEBUG] Premier résultat trouvé: /pros/50430200
+[2026-01-16 20:12:32] [DEBUG] Téléphone trouvé: 04 76 54 09 08
+[2026-01-16 20:12:32] [DEBUG] Adresse trouvée: 21 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:12:32] [DEBUG] Titre trouvé: La Vie CLaire Meylan - Magasin bio (adresse, horaires, avis)
+[2026-01-16 20:12:34] [DEBUG] 55 Lycée du Grésivaudan, 38240 Meylan VS 21 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:12:34] [INFO] Récupération des coordonnées de l'adresse {'numero': '55', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:12:34] [DEBUG] Traitement du numéro: 57
+[2026-01-16 20:12:34] [DEBUG] Traitement PJ de l'adresse: {'numero': '57', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:12:34] [DEBUG] Construction URL pour: {'numero': '57', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:12:34] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=57+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:12:38] [DEBUG] Premier résultat trouvé: /pros/07287856
+[2026-01-16 20:12:44] [DEBUG] Téléphone trouvé: 04 76 41 26 63
+[2026-01-16 20:12:44] [DEBUG] Adresse trouvée: 77 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:12:44] [DEBUG] Titre trouvé: Picard Meylan - Vente de surgelés (adresse, horaires, avis, ouvert le dimanche)
+[2026-01-16 20:12:46] [DEBUG] 57 Lycée du Grésivaudan, 38240 Meylan VS 77 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:12:46] [INFO] Récupération des coordonnées de l'adresse {'numero': '57', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:12:46] [DEBUG] Traitement du numéro: 59
+[2026-01-16 20:12:46] [DEBUG] Traitement PJ de l'adresse: {'numero': '59', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:12:46] [DEBUG] Construction URL pour: {'numero': '59', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:12:46] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=59+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:12:50] [DEBUG] Premier résultat trouvé: /pros/50430200
+[2026-01-16 20:12:56] [DEBUG] Téléphone trouvé: 04 76 54 09 08
+[2026-01-16 20:12:56] [DEBUG] Adresse trouvée: 21 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:12:56] [DEBUG] Titre trouvé: La Vie CLaire Meylan - Magasin bio (adresse, horaires, avis)
+[2026-01-16 20:12:57] [DEBUG] 59 Lycée du Grésivaudan, 38240 Meylan VS 21 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:12:57] [INFO] Récupération des coordonnées de l'adresse {'numero': '59', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:12:58] [DEBUG] Traitement du numéro: 61
+[2026-01-16 20:12:58] [DEBUG] Traitement PJ de l'adresse: {'numero': '61', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:12:58] [DEBUG] Construction URL pour: {'numero': '61', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:12:58] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=61+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:13:02] [DEBUG] Premier résultat trouvé: /pros/06146770
+[2026-01-16 20:13:09] [DEBUG] Téléphone trouvé: 04 76 90 25 43
+[2026-01-16 20:13:09] [DEBUG] Adresse trouvée: 73 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:13:09] [DEBUG] Titre trouvé: Paul Meylan - Boulangeries Pâtisseries (adresse, horaires)
+[2026-01-16 20:13:11] [DEBUG] 61 Lycée du Grésivaudan, 38240 Meylan VS 73 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:13:11] [INFO] Récupération des coordonnées de l'adresse {'numero': '61', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:13:11] [DEBUG] Traitement du numéro: 63
+[2026-01-16 20:13:11] [DEBUG] Traitement PJ de l'adresse: {'numero': '63', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:13:11] [DEBUG] Construction URL pour: {'numero': '63', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:13:11] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=63+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:13:16] [DEBUG] Premier résultat trouvé: /pros/50430200
+[2026-01-16 20:13:24] [DEBUG] Téléphone trouvé: 04 76 54 09 08
+[2026-01-16 20:13:24] [DEBUG] Adresse trouvée: 21 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:13:24] [DEBUG] Titre trouvé: La Vie CLaire Meylan - Magasin bio (adresse, horaires, avis)
+[2026-01-16 20:13:25] [DEBUG] 63 Lycée du Grésivaudan, 38240 Meylan VS 21 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:13:25] [INFO] Récupération des coordonnées de l'adresse {'numero': '63', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:13:26] [DEBUG] Traitement du numéro: 65
+[2026-01-16 20:13:26] [DEBUG] Traitement PJ de l'adresse: {'numero': '65', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:13:26] [DEBUG] Construction URL pour: {'numero': '65', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:13:26] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=65+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:13:30] [DEBUG] Premier résultat trouvé: /pros/50430200
+[2026-01-16 20:13:37] [DEBUG] Téléphone trouvé: 04 76 54 09 08
+[2026-01-16 20:13:37] [DEBUG] Adresse trouvée: 21 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:13:37] [DEBUG] Titre trouvé: La Vie CLaire Meylan - Magasin bio (adresse, horaires, avis)
+[2026-01-16 20:13:39] [DEBUG] 65 Lycée du Grésivaudan, 38240 Meylan VS 21 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:13:39] [INFO] Récupération des coordonnées de l'adresse {'numero': '65', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:13:40] [DEBUG] Traitement du numéro: 67
+[2026-01-16 20:13:40] [DEBUG] Traitement PJ de l'adresse: {'numero': '67', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:13:40] [DEBUG] Construction URL pour: {'numero': '67', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:13:40] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=67+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:13:44] [DEBUG] Premier résultat trouvé: /pros/50430200
+[2026-01-16 20:13:51] [DEBUG] Téléphone trouvé: 04 76 54 09 08
+[2026-01-16 20:13:51] [DEBUG] Adresse trouvée: 21 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:13:51] [DEBUG] Titre trouvé: La Vie CLaire Meylan - Magasin bio (adresse, horaires, avis)
+[2026-01-16 20:13:53] [DEBUG] 67 Lycée du Grésivaudan, 38240 Meylan VS 21 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:13:53] [INFO] Récupération des coordonnées de l'adresse {'numero': '67', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:13:53] [DEBUG] Traitement du numéro: 69
+[2026-01-16 20:13:53] [DEBUG] Traitement PJ de l'adresse: {'numero': '69', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:13:53] [DEBUG] Construction URL pour: {'numero': '69', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:13:53] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=69+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:13:57] [DEBUG] Premier résultat trouvé: /pros/50430200
+[2026-01-16 20:14:03] [DEBUG] Téléphone trouvé: 04 76 54 09 08
+[2026-01-16 20:14:03] [DEBUG] Adresse trouvée: 21 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:14:03] [DEBUG] Titre trouvé: La Vie CLaire Meylan - Magasin bio (adresse, horaires, avis)
+[2026-01-16 20:14:05] [DEBUG] 69 Lycée du Grésivaudan, 38240 Meylan VS 21 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:14:05] [INFO] Récupération des coordonnées de l'adresse {'numero': '69', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:14:06] [DEBUG] Traitement du numéro: 71
+[2026-01-16 20:14:06] [DEBUG] Traitement PJ de l'adresse: {'numero': '71', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:14:06] [DEBUG] Construction URL pour: {'numero': '71', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:14:06] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=71+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:14:10] [DEBUG] Premier résultat trouvé: /pros/07287856
+[2026-01-16 20:14:17] [DEBUG] Téléphone trouvé: 04 76 41 26 63
+[2026-01-16 20:14:17] [DEBUG] Adresse trouvée: 77 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:14:17] [DEBUG] Titre trouvé: Picard Meylan - Vente de surgelés (adresse, horaires, avis, ouvert le dimanche)
+[2026-01-16 20:14:19] [DEBUG] 71 Lycée du Grésivaudan, 38240 Meylan VS 77 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:14:19] [INFO] Récupération des coordonnées de l'adresse {'numero': '71', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:14:19] [DEBUG] Traitement du numéro: 73
+[2026-01-16 20:14:19] [DEBUG] Traitement PJ de l'adresse: {'numero': '73', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:14:19] [DEBUG] Construction URL pour: {'numero': '73', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:14:19] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=73+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:14:23] [DEBUG] Premier résultat trouvé: /pros/06146770
+[2026-01-16 20:14:30] [DEBUG] Téléphone trouvé: 04 76 90 25 43
+[2026-01-16 20:14:30] [DEBUG] Adresse trouvée: 73 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:14:30] [DEBUG] Titre trouvé: Paul Meylan - Boulangeries Pâtisseries (adresse, horaires)
+[2026-01-16 20:14:32] [DEBUG] 73 Lycée du Grésivaudan, 38240 Meylan VS 73 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:14:32] [INFO] Récupération des coordonnées de l'adresse {'numero': '73', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:14:32] [DEBUG] Traitement du numéro: 75
+[2026-01-16 20:14:32] [DEBUG] Traitement PJ de l'adresse: {'numero': '75', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:14:32] [DEBUG] Construction URL pour: {'numero': '75', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:14:32] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=75+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:14:37] [DEBUG] Premier résultat trouvé: /pros/07287856
+[2026-01-16 20:14:44] [DEBUG] Téléphone trouvé: 04 76 41 26 63
+[2026-01-16 20:14:44] [DEBUG] Adresse trouvée: 77 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:14:44] [DEBUG] Titre trouvé: Picard Meylan - Vente de surgelés (adresse, horaires, avis, ouvert le dimanche)
+[2026-01-16 20:14:46] [DEBUG] 75 Lycée du Grésivaudan, 38240 Meylan VS 77 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:14:46] [INFO] Récupération des coordonnées de l'adresse {'numero': '75', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:14:46] [DEBUG] Traitement du numéro: 77
+[2026-01-16 20:14:46] [DEBUG] Traitement PJ de l'adresse: {'numero': '77', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:14:46] [DEBUG] Construction URL pour: {'numero': '77', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:14:46] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=77+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:14:50] [DEBUG] Premier résultat trouvé: /pros/07287856
+[2026-01-16 20:14:57] [DEBUG] Téléphone trouvé: 04 76 41 26 63
+[2026-01-16 20:14:57] [DEBUG] Adresse trouvée: 77 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:14:57] [DEBUG] Titre trouvé: Picard Meylan - Vente de surgelés (adresse, horaires, avis, ouvert le dimanche)
+[2026-01-16 20:14:59] [DEBUG] 77 Lycée du Grésivaudan, 38240 Meylan VS 77 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:14:59] [INFO] Récupération des coordonnées de l'adresse {'numero': '77', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:14:59] [DEBUG] Traitement du numéro: 85
+[2026-01-16 20:14:59] [DEBUG] Traitement PJ de l'adresse: {'numero': '85', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:14:59] [DEBUG] Construction URL pour: {'numero': '85', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:14:59] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=85+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:15:03] [DEBUG] Premier résultat trouvé: /pros/50430200
+[2026-01-16 20:15:10] [DEBUG] Téléphone trouvé: 04 76 54 09 08
+[2026-01-16 20:15:10] [DEBUG] Adresse trouvée: 21 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:15:10] [DEBUG] Titre trouvé: La Vie CLaire Meylan - Magasin bio (adresse, horaires, avis)
+[2026-01-16 20:15:11] [DEBUG] 85 Lycée du Grésivaudan, 38240 Meylan VS 21 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:15:11] [INFO] Récupération des coordonnées de l'adresse {'numero': '85', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:15:12] [DEBUG] Traitement du numéro: 87
+[2026-01-16 20:15:12] [DEBUG] Traitement PJ de l'adresse: {'numero': '87', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:15:12] [DEBUG] Construction URL pour: {'numero': '87', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:15:12] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=87+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:15:17] [DEBUG] Premier résultat trouvé: /pros/07287856
+[2026-01-16 20:15:22] [DEBUG] Téléphone trouvé: 04 76 41 26 63
+[2026-01-16 20:15:22] [DEBUG] Adresse trouvée: 77 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:15:22] [DEBUG] Titre trouvé: Picard Meylan - Vente de surgelés (adresse, horaires, avis, ouvert le dimanche)
+[2026-01-16 20:15:24] [DEBUG] 87 Lycée du Grésivaudan, 38240 Meylan VS 77 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:15:24] [INFO] Récupération des coordonnées de l'adresse {'numero': '87', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:15:24] [DEBUG] Traitement du numéro: 89
+[2026-01-16 20:15:24] [DEBUG] Traitement PJ de l'adresse: {'numero': '89', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:15:24] [DEBUG] Construction URL pour: {'numero': '89', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:15:24] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=89+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:15:28] [DEBUG] Premier résultat trouvé: /pros/07287856
+[2026-01-16 20:15:35] [DEBUG] Téléphone trouvé: 04 76 41 26 63
+[2026-01-16 20:15:35] [DEBUG] Adresse trouvée: 77 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:15:35] [DEBUG] Titre trouvé: Picard Meylan - Vente de surgelés (adresse, horaires, avis, ouvert le dimanche)
+[2026-01-16 20:15:36] [DEBUG] 89 Lycée du Grésivaudan, 38240 Meylan VS 77 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:15:36] [INFO] Récupération des coordonnées de l'adresse {'numero': '89', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:15:36] [DEBUG] Traitement du numéro: 91
+[2026-01-16 20:15:36] [DEBUG] Traitement PJ de l'adresse: {'numero': '91', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:15:36] [DEBUG] Construction URL pour: {'numero': '91', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:15:36] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=91+Lycée+du+Grésivaudan%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:15:40] [DEBUG] Premier résultat trouvé: /pros/64570981
+[2026-01-16 20:15:48] [DEBUG] Adresse trouvée: 91 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:15:48] [DEBUG] Titre trouvé: Mon Textile Bio Meylan - Fabrication de vêtements (adresse)
+[2026-01-16 20:15:50] [DEBUG] 91 Lycée du Grésivaudan, 38240 Meylan VS 91 avenue Grésivaudan 38240 Meylan
+[2026-01-16 20:15:50] [INFO] Récupération des coordonnées de l'adresse {'numero': '91', 'voie': 'Lycée du Grésivaudan', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:15:51] [INFO] Traitement PJ de la rue: Passage du Père Cohard
+[2026-01-16 20:15:51] [DEBUG] Traitement du numéro: 2
+[2026-01-16 20:15:51] [DEBUG] Traitement PJ de l'adresse: {'numero': '2', 'voie': 'Passage du Père Cohard', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:15:51] [DEBUG] Construction URL pour: {'numero': '2', 'voie': 'Passage du Père Cohard', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:15:51] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=2+Passage+du+Père+Cohard%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:15:55] [DEBUG] Premier résultat trouvé: /pros/50727236
+[2026-01-16 20:16:02] [DEBUG] Téléphone trouvé: 04 76 90 51 61
+[2026-01-16 20:16:02] [DEBUG] Adresse trouvée: 2 passage Père Cohard 38240 Meylan
+[2026-01-16 20:16:02] [DEBUG] Titre trouvé: Halte Garderie des Béalières Meylan - Garde d'enfants (adresse, horaires)
+[2026-01-16 20:16:03] [DEBUG] 2 Passage du Père Cohard, 38240 Meylan VS 2 passage Père Cohard 38240 Meylan
+[2026-01-16 20:16:03] [INFO] Récupération des coordonnées de l'adresse {'numero': '2', 'voie': 'Passage du Père Cohard', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:16:04] [DEBUG] Récupération BDNB pour: {'numero': '2', 'voie': 'Passage du Père Cohard', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:16:05] [DEBUG] Traitement du numéro: 4
+[2026-01-16 20:16:05] [DEBUG] Traitement PJ de l'adresse: {'numero': '4', 'voie': 'Passage du Père Cohard', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:16:05] [DEBUG] Construction URL pour: {'numero': '4', 'voie': 'Passage du Père Cohard', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:16:05] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=4+Passage+du+Père+Cohard%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:16:09] [DEBUG] Premier résultat trouvé: /pros/50727236
+[2026-01-16 20:16:15] [DEBUG] Téléphone trouvé: 04 76 90 51 61
+[2026-01-16 20:16:15] [DEBUG] Adresse trouvée: 2 passage Père Cohard 38240 Meylan
+[2026-01-16 20:16:15] [DEBUG] Titre trouvé: Halte Garderie des Béalières Meylan - Garde d'enfants (adresse, horaires)
+[2026-01-16 20:16:16] [DEBUG] 4 Passage du Père Cohard, 38240 Meylan VS 2 passage Père Cohard 38240 Meylan
+[2026-01-16 20:16:16] [INFO] Récupération des coordonnées de l'adresse {'numero': '4', 'voie': 'Passage du Père Cohard', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:16:16] [DEBUG] Traitement du numéro: 6
+[2026-01-16 20:16:16] [DEBUG] Traitement PJ de l'adresse: {'numero': '6', 'voie': 'Passage du Père Cohard', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:16:16] [DEBUG] Construction URL pour: {'numero': '6', 'voie': 'Passage du Père Cohard', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:16:16] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=6+Passage+du+Père+Cohard%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:16:20] [DEBUG] Premier résultat trouvé: /pros/50727236
+[2026-01-16 20:16:27] [DEBUG] Téléphone trouvé: 04 76 90 51 61
+[2026-01-16 20:16:27] [DEBUG] Adresse trouvée: 2 passage Père Cohard 38240 Meylan
+[2026-01-16 20:16:27] [DEBUG] Titre trouvé: Halte Garderie des Béalières Meylan - Garde d'enfants (adresse, horaires)
+[2026-01-16 20:16:28] [DEBUG] 6 Passage du Père Cohard, 38240 Meylan VS 2 passage Père Cohard 38240 Meylan
+[2026-01-16 20:16:28] [INFO] Récupération des coordonnées de l'adresse {'numero': '6', 'voie': 'Passage du Père Cohard', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:16:29] [DEBUG] Traitement du numéro: 8
+[2026-01-16 20:16:29] [DEBUG] Traitement PJ de l'adresse: {'numero': '8', 'voie': 'Passage du Père Cohard', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:16:29] [DEBUG] Construction URL pour: {'numero': '8', 'voie': 'Passage du Père Cohard', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:16:29] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=8+Passage+du+Père+Cohard%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:16:33] [DEBUG] Premier résultat trouvé: /pros/50727236
+[2026-01-16 20:16:39] [DEBUG] Téléphone trouvé: 04 76 90 51 61
+[2026-01-16 20:16:39] [DEBUG] Adresse trouvée: 2 passage Père Cohard 38240 Meylan
+[2026-01-16 20:16:39] [DEBUG] Titre trouvé: Halte Garderie des Béalières Meylan - Garde d'enfants (adresse, horaires)
+[2026-01-16 20:16:40] [DEBUG] 8 Passage du Père Cohard, 38240 Meylan VS 2 passage Père Cohard 38240 Meylan
+[2026-01-16 20:16:40] [INFO] Récupération des coordonnées de l'adresse {'numero': '8', 'voie': 'Passage du Père Cohard', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:16:40] [DEBUG] Traitement du numéro: 10
+[2026-01-16 20:16:40] [DEBUG] Traitement PJ de l'adresse: {'numero': '10', 'voie': 'Passage du Père Cohard', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:16:40] [DEBUG] Construction URL pour: {'numero': '10', 'voie': 'Passage du Père Cohard', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:16:40] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=10+Passage+du+Père+Cohard%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:16:45] [DEBUG] Premier résultat trouvé: /pros/50727236
+[2026-01-16 20:16:51] [DEBUG] Téléphone trouvé: 04 76 90 51 61
+[2026-01-16 20:16:51] [DEBUG] Adresse trouvée: 2 passage Père Cohard 38240 Meylan
+[2026-01-16 20:16:51] [DEBUG] Titre trouvé: Halte Garderie des Béalières Meylan - Garde d'enfants (adresse, horaires)
+[2026-01-16 20:16:52] [DEBUG] 10 Passage du Père Cohard, 38240 Meylan VS 2 passage Père Cohard 38240 Meylan
+[2026-01-16 20:16:53] [INFO] Récupération des coordonnées de l'adresse {'numero': '10', 'voie': 'Passage du Père Cohard', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:16:53] [DEBUG] Traitement du numéro: 12
+[2026-01-16 20:16:53] [DEBUG] Traitement PJ de l'adresse: {'numero': '12', 'voie': 'Passage du Père Cohard', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:16:53] [DEBUG] Construction URL pour: {'numero': '12', 'voie': 'Passage du Père Cohard', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:16:53] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=12+Passage+du+Père+Cohard%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:16:56] [DEBUG] Premier résultat trouvé: /pros/50727236
+[2026-01-16 20:17:02] [DEBUG] Téléphone trouvé: 04 76 90 51 61
+[2026-01-16 20:17:02] [DEBUG] Adresse trouvée: 2 passage Père Cohard 38240 Meylan
+[2026-01-16 20:17:02] [DEBUG] Titre trouvé: Halte Garderie des Béalières Meylan - Garde d'enfants (adresse, horaires)
+[2026-01-16 20:17:04] [DEBUG] 12 Passage du Père Cohard, 38240 Meylan VS 2 passage Père Cohard 38240 Meylan
+[2026-01-16 20:17:04] [INFO] Récupération des coordonnées de l'adresse {'numero': '12', 'voie': 'Passage du Père Cohard', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:17:04] [INFO] Traitement PJ de la rue: Chemin de la Trière
+[2026-01-16 20:17:04] [DEBUG] Traitement du numéro: 1
+[2026-01-16 20:17:04] [DEBUG] Traitement PJ de l'adresse: {'numero': '1', 'voie': 'Chemin de la Trière', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:17:04] [DEBUG] Construction URL pour: {'numero': '1', 'voie': 'Chemin de la Trière', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:17:04] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=1+Chemin+de+la+Trière%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:17:08] [DEBUG] Premier résultat trouvé: /pros/56149282
+[2026-01-16 20:17:14] [DEBUG] Téléphone trouvé: 04 76 24 83 63
+[2026-01-16 20:17:14] [DEBUG] Adresse trouvée: imm Odyssee 1 chemin Trière 38240 Meylan
+[2026-01-16 20:17:14] [DEBUG] Titre trouvé: Clear Meylan - Entreprises de nettoyage (adresse, horaires)
+[2026-01-16 20:17:15] [DEBUG] 1 Chemin de la Trière, 38240 Meylan VS imm Odyssee 1 chemin Trière 38240 Meylan
+[2026-01-16 20:17:15] [INFO] Récupération des coordonnées de l'adresse {'numero': '1', 'voie': 'Chemin de la Trière', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:17:15] [DEBUG] Traitement du numéro: 3
+[2026-01-16 20:17:15] [DEBUG] Traitement PJ de l'adresse: {'numero': '3', 'voie': 'Chemin de la Trière', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:17:15] [DEBUG] Construction URL pour: {'numero': '3', 'voie': 'Chemin de la Trière', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:17:15] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=3+Chemin+de+la+Trière%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:17:19] [DEBUG] Premier résultat trouvé: /pros/56149282
+[2026-01-16 20:17:25] [DEBUG] Téléphone trouvé: 04 76 24 83 63
+[2026-01-16 20:17:25] [DEBUG] Adresse trouvée: imm Odyssee 1 chemin Trière 38240 Meylan
+[2026-01-16 20:17:25] [DEBUG] Titre trouvé: Clear Meylan - Entreprises de nettoyage (adresse, horaires)
+[2026-01-16 20:17:27] [DEBUG] 3 Chemin de la Trière, 38240 Meylan VS imm Odyssee 1 chemin Trière 38240 Meylan
+[2026-01-16 20:17:27] [INFO] Récupération des coordonnées de l'adresse {'numero': '3', 'voie': 'Chemin de la Trière', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:17:27] [DEBUG] Traitement du numéro: 5
+[2026-01-16 20:17:27] [DEBUG] Traitement PJ de l'adresse: {'numero': '5', 'voie': 'Chemin de la Trière', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:17:27] [DEBUG] Construction URL pour: {'numero': '5', 'voie': 'Chemin de la Trière', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:17:27] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=5+Chemin+de+la+Trière%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:17:32] [DEBUG] Premier résultat trouvé: /pros/54736598
+[2026-01-16 20:17:39] [DEBUG] Téléphone trouvé: 04 76 25 78 55
+[2026-01-16 20:17:39] [DEBUG] Adresse trouvée: bât Iliade Cabinet D'ergothérapie 5 chemin Trière 38240 Meylan
+[2026-01-16 20:17:39] [DEBUG] Titre trouvé: MAIGRE Chloé Meylan - Ergothérapeute (adresse, horaires)
+[2026-01-16 20:17:40] [DEBUG] 5 Chemin de la Trière, 38240 Meylan VS bât Iliade Cabinet D'ergothérapie 5 chemin Trière 38240 Meylan
+[2026-01-16 20:17:40] [INFO] Récupération des coordonnées de l'adresse {'numero': '5', 'voie': 'Chemin de la Trière', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:17:40] [DEBUG] Traitement du numéro: 7
+[2026-01-16 20:17:40] [DEBUG] Traitement PJ de l'adresse: {'numero': '7', 'voie': 'Chemin de la Trière', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:17:40] [DEBUG] Construction URL pour: {'numero': '7', 'voie': 'Chemin de la Trière', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:17:40] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=7+Chemin+de+la+Trière%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:17:44] [DEBUG] Premier résultat trouvé: /pros/62822614
+[2026-01-16 20:17:51] [DEBUG] Téléphone trouvé: 06 25 89 14 44
+[2026-01-16 20:17:51] [DEBUG] Adresse trouvée: 7 chemin Trière 38240 Meylan
+[2026-01-16 20:17:51] [DEBUG] Titre trouvé: Fabienne Mathelet Meylan - Hypnothérapie (adresse, horaires)
+[2026-01-16 20:17:52] [DEBUG] 7 Chemin de la Trière, 38240 Meylan VS 7 chemin Trière 38240 Meylan
+[2026-01-16 20:17:52] [INFO] Récupération des coordonnées de l'adresse {'numero': '7', 'voie': 'Chemin de la Trière', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:17:53] [DEBUG] Récupération BDNB pour: {'numero': '7', 'voie': 'Chemin de la Trière', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:17:53] [INFO] Traitement PJ de la rue: Chemin des Malettes
+[2026-01-16 20:17:53] [DEBUG] Traitement du numéro: 1
+[2026-01-16 20:17:53] [DEBUG] Traitement PJ de l'adresse: {'numero': '1', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:17:53] [DEBUG] Construction URL pour: {'numero': '1', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:17:53] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=1+Chemin+des+Malettes%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:17:57] [DEBUG] Lien invalide ignoré: #
+[2026-01-16 20:17:57] [DEBUG] Aucun résultat trouvé sur Pages Jaunes
+[2026-01-16 20:17:57] [INFO] Récupération des coordonnées de l'adresse {'numero': '1', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:17:57] [DEBUG] Traitement du numéro: 3
+[2026-01-16 20:17:57] [DEBUG] Traitement PJ de l'adresse: {'numero': '3', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:17:57] [DEBUG] Construction URL pour: {'numero': '3', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:17:57] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=3+Chemin+des+Malettes%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:18:01] [DEBUG] Lien invalide ignoré: #
+[2026-01-16 20:18:01] [DEBUG] Aucun résultat trouvé sur Pages Jaunes
+[2026-01-16 20:18:01] [INFO] Récupération des coordonnées de l'adresse {'numero': '3', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:01] [DEBUG] Traitement du numéro: 5
+[2026-01-16 20:18:01] [DEBUG] Traitement PJ de l'adresse: {'numero': '5', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:01] [DEBUG] Construction URL pour: {'numero': '5', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:01] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=5+Chemin+des+Malettes%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:18:04] [DEBUG] Lien invalide ignoré: #
+[2026-01-16 20:18:04] [DEBUG] Aucun résultat trouvé sur Pages Jaunes
+[2026-01-16 20:18:04] [INFO] Récupération des coordonnées de l'adresse {'numero': '5', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:05] [DEBUG] Traitement du numéro: 7
+[2026-01-16 20:18:05] [DEBUG] Traitement PJ de l'adresse: {'numero': '7', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:05] [DEBUG] Construction URL pour: {'numero': '7', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:05] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=7+Chemin+des+Malettes%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:18:08] [DEBUG] Lien invalide ignoré: #
+[2026-01-16 20:18:08] [DEBUG] Aucun résultat trouvé sur Pages Jaunes
+[2026-01-16 20:18:08] [INFO] Récupération des coordonnées de l'adresse {'numero': '7', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:09] [DEBUG] Traitement du numéro: 9
+[2026-01-16 20:18:09] [DEBUG] Traitement PJ de l'adresse: {'numero': '9', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:09] [DEBUG] Construction URL pour: {'numero': '9', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:09] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=9+Chemin+des+Malettes%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:18:12] [DEBUG] Lien invalide ignoré: #
+[2026-01-16 20:18:12] [DEBUG] Aucun résultat trouvé sur Pages Jaunes
+[2026-01-16 20:18:12] [INFO] Récupération des coordonnées de l'adresse {'numero': '9', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:12] [DEBUG] Traitement du numéro: 11
+[2026-01-16 20:18:12] [DEBUG] Traitement PJ de l'adresse: {'numero': '11', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:12] [DEBUG] Construction URL pour: {'numero': '11', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:12] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=11+Chemin+des+Malettes%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:18:15] [DEBUG] Lien invalide ignoré: #
+[2026-01-16 20:18:15] [DEBUG] Aucun résultat trouvé sur Pages Jaunes
+[2026-01-16 20:18:15] [INFO] Récupération des coordonnées de l'adresse {'numero': '11', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:16] [DEBUG] Traitement du numéro: 13
+[2026-01-16 20:18:16] [DEBUG] Traitement PJ de l'adresse: {'numero': '13', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:16] [DEBUG] Construction URL pour: {'numero': '13', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:16] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=13+Chemin+des+Malettes%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:18:20] [DEBUG] Lien invalide ignoré: #
+[2026-01-16 20:18:20] [DEBUG] Aucun résultat trouvé sur Pages Jaunes
+[2026-01-16 20:18:20] [INFO] Récupération des coordonnées de l'adresse {'numero': '13', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:20] [DEBUG] Traitement du numéro: 15
+[2026-01-16 20:18:20] [DEBUG] Traitement PJ de l'adresse: {'numero': '15', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:20] [DEBUG] Construction URL pour: {'numero': '15', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:20] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=15+Chemin+des+Malettes%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:18:23] [DEBUG] Lien invalide ignoré: #
+[2026-01-16 20:18:23] [DEBUG] Aucun résultat trouvé sur Pages Jaunes
+[2026-01-16 20:18:23] [INFO] Récupération des coordonnées de l'adresse {'numero': '15', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:23] [DEBUG] Traitement du numéro: 17
+[2026-01-16 20:18:23] [DEBUG] Traitement PJ de l'adresse: {'numero': '17', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:23] [DEBUG] Construction URL pour: {'numero': '17', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:23] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=17+Chemin+des+Malettes%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:18:27] [DEBUG] Lien invalide ignoré: #
+[2026-01-16 20:18:27] [DEBUG] Aucun résultat trouvé sur Pages Jaunes
+[2026-01-16 20:18:27] [INFO] Récupération des coordonnées de l'adresse {'numero': '17', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:27] [DEBUG] Traitement du numéro: 19
+[2026-01-16 20:18:27] [DEBUG] Traitement PJ de l'adresse: {'numero': '19', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:27] [DEBUG] Construction URL pour: {'numero': '19', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:27] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=19+Chemin+des+Malettes%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:18:31] [DEBUG] Lien invalide ignoré: #
+[2026-01-16 20:18:31] [DEBUG] Aucun résultat trouvé sur Pages Jaunes
+[2026-01-16 20:18:31] [INFO] Récupération des coordonnées de l'adresse {'numero': '19', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:31] [DEBUG] Traitement du numéro: 21
+[2026-01-16 20:18:31] [DEBUG] Traitement PJ de l'adresse: {'numero': '21', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:31] [DEBUG] Construction URL pour: {'numero': '21', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:31] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=21+Chemin+des+Malettes%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:18:35] [DEBUG] Lien invalide ignoré: #
+[2026-01-16 20:18:35] [DEBUG] Aucun résultat trouvé sur Pages Jaunes
+[2026-01-16 20:18:35] [INFO] Récupération des coordonnées de l'adresse {'numero': '21', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:35] [DEBUG] Traitement du numéro: 23
+[2026-01-16 20:18:35] [DEBUG] Traitement PJ de l'adresse: {'numero': '23', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:35] [DEBUG] Construction URL pour: {'numero': '23', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:35] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=23+Chemin+des+Malettes%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:18:39] [DEBUG] Lien invalide ignoré: #
+[2026-01-16 20:18:39] [DEBUG] Aucun résultat trouvé sur Pages Jaunes
+[2026-01-16 20:18:39] [INFO] Récupération des coordonnées de l'adresse {'numero': '23', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:39] [DEBUG] Traitement du numéro: 25
+[2026-01-16 20:18:39] [DEBUG] Traitement PJ de l'adresse: {'numero': '25', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:39] [DEBUG] Construction URL pour: {'numero': '25', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 20:18:39] [DEBUG] URL: https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=&ou=25+Chemin+des+Malettes%2C+Meylan+%2838240%29&univers=pagesjaunes&idOu=
+[2026-01-16 20:18:42] [DEBUG] Lien invalide ignoré: #
+[2026-01-16 20:18:42] [DEBUG] Aucun résultat trouvé sur Pages Jaunes
+[2026-01-16 20:18:42] [INFO] Récupération des coordonnées de l'adresse {'numero': '25', 'voie': 'Chemin des Malettes', 'code_postal': '38240', 'ville': 'Meylan'}
+[2026-01-16 21:02:16] [INFO] [Entreprises] 137 entreprise(s) enrichie(s) depuis PJ
+[2026-01-16 21:02:16] [INFO] Fusion terminée: 679 entrées
+[2026-01-16 21:02:16] [INFO] Filtrage zone: 261 dans zone, 65 hors zone interessants, 353 exclus
+[2026-01-16 21:02:16] [INFO] Filtrage: 167 entrées vides supprimées, 159 entrées conservées
+[2026-01-16 21:02:16] [INFO] Sauvegarde CSV fusionné: output/TV3/resultats_fusionnes.csv
+[2026-01-16 21:02:16] [SUCCESS] CSV fusionné sauvegardé: output/TV3/resultats_fusionnes.csv
+[2026-01-16 21:02:16] [SUCCESS] Resultats finaux: 159 entrées avec données utiles
