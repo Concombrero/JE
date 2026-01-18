@@ -187,16 +187,30 @@ def fuse_results(
 ) -> List[FusedData]:
     """
     Fusionne les résultats Pages Jaunes et Entreprises.
-    Matching par adresse (numéro + voie + code postal + ville).
+    
+    Deux stratégies de matching:
+    1. Par coordonnées géographiques (même lat/lon à 0.0001 près)
+    2. Par adresse normalisée (numéro + voie + code postal + ville)
     """
     fused = []
     
-    # Index les résultats entreprises par adresse normalisée
-    entreprise_index = {}
+    # Index les résultats entreprises par adresse normalisée et par coordonnées
+    entreprise_by_addr = {}
+    entreprise_by_coords = {}
+    
     for ent in entreprise_results:
+        # Par adresse
         if ent.get("address"):
             key = _normalize_address_key(ent["address"])
-            entreprise_index[key] = ent
+            entreprise_by_addr[key] = ent
+        
+        # Par coordonnées (arrondi pour matching approximatif)
+        if ent.get("latitude") and ent.get("longitude"):
+            coord_key = (round(ent["latitude"], 4), round(ent["longitude"], 4))
+            entreprise_by_coords[coord_key] = ent
+    
+    # Set pour tracker les entreprises déjà fusionnées
+    matched_ent_keys = set()
     
     # Parcourir les résultats PJ et fusionner
     for pj in pj_results:
@@ -237,10 +251,29 @@ def fuse_results(
             "building_year": None,
         }
         
-        # Chercher correspondance entreprise
-        addr_key = _make_address_key(addr)
-        if addr_key in entreprise_index:
-            ent = entreprise_index[addr_key]
+        # Chercher correspondance entreprise - d'abord par coordonnées, puis par adresse
+        ent = None
+        ent_key = None
+        
+        # Matching par coordonnées
+        pj_coords = pj.get("coords") or {}
+        if pj_coords.get("latitude") and pj_coords.get("longitude"):
+            coord_key = (round(pj_coords["latitude"], 4), round(pj_coords["longitude"], 4))
+            if coord_key in entreprise_by_coords:
+                ent = entreprise_by_coords[coord_key]
+                ent_key = coord_key
+        
+        # Matching par adresse si pas trouvé par coords
+        if not ent:
+            addr_key = _make_address_key(addr)
+            if addr_key in entreprise_by_addr:
+                ent = entreprise_by_addr[addr_key]
+                ent_key = addr_key
+        
+        # Remplir les données entreprise si trouvé
+        if ent:
+            matched_ent_keys.add(ent_key)
+            
             fused_entry["entreprise_nom"] = ent.get("name")
             fused_entry["entreprise_category"] = ent.get("category")
             fused_entry["entreprise_phones"] = ent.get("phones")
@@ -273,14 +306,19 @@ def fuse_results(
         fused.append(fused_entry)
     
     # Ajouter les entreprises qui n'ont pas de correspondance PJ
-    pj_keys = {_make_address_key(pj["address"]) for pj in pj_results if pj.get("address")}
-    
     for ent in entreprise_results:
         if not ent.get("address"):
             continue
         
-        key = _normalize_address_key(ent["address"])
-        if key in pj_keys:
+        # Vérifier si déjà matché
+        coord_key = None
+        if ent.get("latitude") and ent.get("longitude"):
+            coord_key = (round(ent["latitude"], 4), round(ent["longitude"], 4))
+            if coord_key in matched_ent_keys:
+                continue
+        
+        addr_key = _normalize_address_key(ent["address"])
+        if addr_key in matched_ent_keys:
             continue
         
         # Nouvelle entrée uniquement entreprise
@@ -384,8 +422,7 @@ def save_fused_csv(fused_data: List[FusedData], output_file: str, logger: Logger
         "Entreprise_Telephones", "Entreprise_Emails", "Entreprise_Sites",
         "SIREN", "SIRET", "NAF",
         "Proprietaire_Nom", "Proprietaire_Role",
-        "Surface_Toiture_m2", "Surface_Parking_m2", "Annee_Construction_OSM",
-        "Statut_Filtrage", "Raisons_Interet"
+        "Surface_Toiture_m2", "Surface_Parking_m2", "Annee_Construction_OSM"
     ]
     
     with open(output_file, 'w', newline='', encoding='utf-8') as f:
@@ -418,12 +455,62 @@ def save_fused_csv(fused_data: List[FusedData], output_file: str, logger: Logger
                 entry.get("roof_area_m2", ""),
                 entry.get("parking_area_m2", ""),
                 entry.get("building_year", ""),
-                entry.get("_filter_status", ""),
-                "; ".join(entry.get("_interest_reasons", [])),
             ]
             writer.writerow(row)
     
     logger.both(f"CSV fusionné sauvegardé: {output_file}", "SUCCESS")
+
+
+def has_useful_data(entry: FusedData) -> bool:
+    """
+    Vérifie si une entrée a des données utiles (pas juste l'adresse et le statut de filtrage).
+    
+    Une entrée est considérée comme utile si elle a au moins un des éléments suivants:
+    - Titre PJ ou téléphone PJ
+    - Nom d'entreprise
+    - SIREN/SIRET
+    - Téléphone, email ou site web d'entreprise
+    - Propriétaire identifié
+    - Données BDNB (année construction ou DPE)
+    """
+    # Données PJ
+    if entry.get("pj_title") or entry.get("pj_phone"):
+        return True
+    
+    # Données entreprise
+    if entry.get("entreprise_nom"):
+        return True
+    if entry.get("entreprise_siren") or entry.get("entreprise_siret"):
+        return True
+    
+    phones = entry.get("entreprise_phones") or []
+    emails = entry.get("entreprise_emails") or []
+    websites = entry.get("entreprise_websites") or []
+    if phones or emails or websites:
+        return True
+    
+    # Propriétaire
+    if entry.get("owner_name"):
+        return True
+    
+    # BDNB
+    if entry.get("annee_construction") or entry.get("classe_bilan_dpe"):
+        return True
+    
+    return False
+
+
+def filter_empty_results(fused_data: List[FusedData], logger: Logger) -> List[FusedData]:
+    """
+    Filtre les résultats pour ne garder que ceux avec des données utiles.
+    """
+    useful = [entry for entry in fused_data if has_useful_data(entry)]
+    removed = len(fused_data) - len(useful)
+    
+    if removed > 0:
+        logger.log(f"Filtrage: {removed} entrées vides supprimées, {len(useful)} entrées conservées", "INFO")
+    
+    return useful
 
 
 def save_filtered_results(
@@ -434,21 +521,20 @@ def save_filtered_results(
     logger: Logger
 ):
     """
-    Sauvegarde les résultats filtrés dans des fichiers séparés.
+    Sauvegarde les résultats filtrés.
+    Ne garde que les résultats avec des données utiles.
     """
     # Résultats principaux (dans zone + hors zone intéressants)
     main_results = in_zone + out_zone_interesting
+    
+    # Filtrer les résultats vides
+    main_results = filter_empty_results(main_results, logger)
+    
     main_file = os.path.join(output_dir, 'resultats_fusionnes.csv')
     save_fused_csv(main_results, main_file, logger)
     
-    # Résultats exclus (pour audit)
-    if out_zone_excluded:
-        excluded_file = os.path.join(output_dir, 'resultats_exclus.csv')
-        save_fused_csv(out_zone_excluded, excluded_file, logger)
-        logger.log(f"{len(out_zone_excluded)} resultats exclus sauvegardes dans {excluded_file}", "INFO")
-    
     # Résumé
-    logger.both(f"Resultats finaux: {len(main_results)} ({len(in_zone)} zone + {len(out_zone_interesting)} hors zone interessants)", "SUCCESS")
+    logger.both(f"Resultats finaux: {len(main_results)} entrées avec données utiles", "SUCCESS")
     
     return main_results
 
@@ -486,8 +572,6 @@ def load_fused_csv(csv_file: str, logger: Logger) -> List[Dict[str, Any]]:
                     "roof_area_m2": row.get("Surface_Toiture_m2"),
                     "parking_area_m2": row.get("Surface_Parking_m2"),
                     "building_year": row.get("Annee_Construction_OSM"),
-                    "_filter_status": row.get("Statut_Filtrage"),
-                    "_interest_reasons": row.get("Raisons_Interet", "").split("; ") if row.get("Raisons_Interet") else [],
                 }
                 results.append(entry)
         

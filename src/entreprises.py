@@ -1,9 +1,17 @@
-"""Module de recherche et enrichissement des entreprises (workflow src_2)"""
+"""Module de recherche et enrichissement des entreprises (workflow src_2)
+
+Ce module implémente:
+1. Recherche d'entreprises/commerces autour d'une adresse via Overpass (OSM)
+2. Enrichissement des données via API Recherche Entreprises (dirigeants, SIRET, etc.)
+3. Récupération des contacts OSM (téléphone, email, site web)
+4. Récupération des surfaces toiture/parking et année de construction
+"""
 
 import re
 import time
 import math
 from typing import Any, Dict, List, Optional, Tuple
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import requests
 from pyproj import Geod
@@ -22,6 +30,9 @@ OVERPASS_URLS = [
     "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
 ]
 GEOD = Geod(ellps="WGS84")
+
+# Rayon de recherche autour de chaque adresse (en mètres)
+SEARCH_RADIUS_M = 100
 
 
 def _retry_get(url: str, params: Dict, headers: Dict, timeout: int = 20, tries: int = 3) -> requests.Response:
@@ -58,12 +69,22 @@ class EntrepriseSearcher:
     
     # ==================== Géocodage BAN ====================
     
-    def geocode_ban(self, address: str) -> Optional[Dict[str, Any]]:
-        """Géocode une adresse via la BAN"""
+    def geocode_ban(self, address: str, logger: Optional[Logger] = None) -> Optional[Dict[str, Any]]:
+        """Géocode une adresse via la BAN avec gestion des erreurs"""
         params = {"q": address, "limit": 1}
-        r = _retry_get(BAN_URL, params=params, headers=UA, timeout=20)
-        r.raise_for_status()
-        data = r.json()
+        
+        try:
+            r = _retry_get(BAN_URL, params=params, headers=UA, timeout=20)
+            r.raise_for_status()
+            data = r.json()
+        except requests.exceptions.HTTPError as e:
+            if logger:
+                logger.log(f"Erreur HTTP géocodage BAN ({e.response.status_code}): {address}", "WARNING")
+            return None
+        except requests.exceptions.RequestException as e:
+            if logger:
+                logger.log(f"Erreur réseau géocodage BAN: {address} - {e}", "WARNING")
+            return None
         
         if not data.get("features"):
             return None
@@ -402,46 +423,146 @@ class EntrepriseSearcher:
         
         return max(dirigeants, key=score)
     
+    # ==================== Recherche de commerces/entreprises OSM ====================
+    
+    def find_businesses_osm(self, lat: float, lon: float, radius: int = 200, logger: Optional[Logger] = None) -> List[Dict]:
+        """
+        Recherche des commerces et entreprises autour d'un point via Overpass (OSM).
+        
+        Retourne une liste de dicts avec:
+        - name: nom de l'entreprise
+        - category: catégorie (shop/office/amenity)
+        - lat, lon: coordonnées
+        - tags: tous les tags OSM
+        """
+        q = f"""
+        [out:json][timeout:30];
+        (
+          node(around:{radius},{lat},{lon})["name"]["office"];
+          node(around:{radius},{lat},{lon})["name"]["shop"];
+          node(around:{radius},{lat},{lon})["name"]["craft"];
+          node(around:{radius},{lat},{lon})["name"]["amenity"~"restaurant|cafe|bank|pharmacy|clinic|dentist|doctors|veterinary"];
+          way(around:{radius},{lat},{lon})["name"]["office"];
+          way(around:{radius},{lat},{lon})["name"]["shop"];
+          way(around:{radius},{lat},{lon})["name"]["craft"];
+          way(around:{radius},{lat},{lon})["name"]["amenity"~"restaurant|cafe|bank|pharmacy|clinic|dentist|doctors|veterinary"];
+        );
+        out center tags;
+        """
+        
+        data = self._overpass(q)
+        businesses = []
+        
+        for elt in data.get("elements", []):
+            tags = elt.get("tags") or {}
+            name = tags.get("name")
+            if not name:
+                continue
+            
+            # Déterminer la catégorie
+            category = None
+            for cat_key in ("office", "shop", "craft", "amenity"):
+                if tags.get(cat_key):
+                    category = f"{cat_key}={tags[cat_key]}"
+                    break
+            
+            # Coordonnées (pour les ways, utiliser center)
+            if elt.get("type") == "node":
+                b_lat = elt.get("lat")
+                b_lon = elt.get("lon")
+            else:
+                center = elt.get("center") or {}
+                b_lat = center.get("lat")
+                b_lon = center.get("lon")
+            
+            if b_lat is None or b_lon is None:
+                continue
+            
+            # Construire l'adresse à partir des tags
+            addr_parts = []
+            if tags.get("addr:housenumber"):
+                addr_parts.append(tags["addr:housenumber"])
+            if tags.get("addr:street"):
+                addr_parts.append(tags["addr:street"])
+            if tags.get("addr:postcode"):
+                addr_parts.append(tags["addr:postcode"])
+            if tags.get("addr:city"):
+                addr_parts.append(tags["addr:city"])
+            address = ", ".join(addr_parts) if addr_parts else None
+            
+            businesses.append({
+                "name": name,
+                "category": category,
+                "lat": float(b_lat),
+                "lon": float(b_lon),
+                "address": address,
+                "tags": tags,
+            })
+        
+        return businesses
+
     # ==================== Workflow principal ====================
     
-    def enrich_business(self, name: str, address: str, logger: Logger) -> Optional[EntrepriseData]:
-        """Enrichit les données d'une entreprise"""
+    def enrich_business(self, name: str, address: str, lat: float, lon: float, 
+                        city: str = None, postal_code: str = None, 
+                        logger: Optional[Logger] = None) -> Optional[EntrepriseData]:
+        """
+        Enrichit les données d'une entreprise trouvée via OSM.
+        
+        Étapes:
+        1. Recherche dans l'API Recherche Entreprises (SIREN/SIRET + dirigeants)
+        2. Récupération des contacts OSM (téléphone, email, site web)
+        3. Récupération des surfaces toiture/parking et année de construction
+        """
         try:
-            # Géocodage
-            geo = self.geocode_ban(address)
-            if not geo:
-                logger.log(f"Géocodage impossible pour: {address}", "DEBUG")
-                return None
+            # Déterminer le code postal et la ville
+            citycode = None
             
-            lat, lon = geo["lat"], geo["lon"]
+            if not postal_code or not city:
+                # Essayer de géocoder pour avoir le code postal/ville
+                geo = self.geocode_ban(f"{lat},{lon}" if address is None else address, logger)
+                if geo:
+                    postal_code = postal_code or geo.get("postcode")
+                    city = city or geo.get("city")
+                    citycode = geo.get("citycode")
             
-            # Recherche entreprise
-            companies = self.search_company(
-                name,
-                commune_insee=geo.get("citycode"),
-                code_postal=geo.get("postcode"),
-                limit=5,
-                include_dirigeants=True
-            )
+            # Recherche entreprise dans l'API officielle
+            companies = []
+            try:
+                companies = self.search_company(
+                    name,
+                    commune_insee=citycode,
+                    code_postal=postal_code,
+                    limit=5,
+                    include_dirigeants=True
+                )
+            except Exception as e:
+                if logger:
+                    logger.log(f"Erreur API Recherche Entreprises pour '{name}': {e}", "DEBUG")
             
-            # Owner
+            # Extraire owner et company_info
             owner = None
             company_info = {}
             if companies:
-                owner = self._pick_owner(companies[0].get("dirigeants") or [])
+                best = companies[0]
+                owner = self._pick_owner(best.get("dirigeants") or [])
                 company_info = {
-                    "siren": companies[0].get("siren"),
-                    "siret": companies[0].get("siret_siege"),
-                    "nom_complet": companies[0].get("nom_complet"),
-                    "naf": companies[0].get("naf"),
-                    "naf_libelle": companies[0].get("naf_libelle"),
+                    "siren": best.get("siren"),
+                    "siret": best.get("siret_siege"),
+                    "nom_complet": best.get("nom_complet"),
+                    "naf": best.get("naf"),
+                    "naf_libelle": best.get("naf_libelle"),
                 }
             
             # Contacts OSM
-            contacts = self.get_osm_contacts(lat, lon, name, radius=200)
+            contacts = self.get_osm_contacts(lat, lon, name, radius=100)
             
             # Surfaces et année
-            surf = self.get_surfaces_and_year(lat, lon, radius=250)
+            surf = self.get_surfaces_and_year(lat, lon, radius=150)
+            
+            # Construire l'adresse complète si pas fournie
+            if not address:
+                address = f"{city}, {postal_code}" if city and postal_code else ""
             
             return {
                 "name": name,
@@ -464,46 +585,142 @@ class EntrepriseSearcher:
             }
             
         except Exception as e:
-            logger.log(f"Erreur enrichissement entreprise {name}: {e}", "ERROR")
+            if logger:
+                logger.log(f"Erreur enrichissement entreprise {name}: {e}", "ERROR")
             return None
     
     def process_street(self, street: Street, logger: Logger) -> List[EntrepriseData]:
-        """Traite une rue pour trouver et enrichir les entreprises"""
+        """
+        Traite une rue pour trouver et enrichir les entreprises.
+        
+        Pour chaque numéro de rue:
+        1. Géocode l'adresse
+        2. Recherche des entreprises/commerces OSM dans un rayon de 100m
+        3. Enrichit chaque entreprise trouvée
+        """
         results = []
+        seen_names = set()  # Pour éviter les doublons
         
         for number in street["numbers"]:
             address_str = f"{number} {street['name']}, {street['postal_code']} {street['city']}"
             
-            # Rechercher entreprises à cette adresse
-            geo = self.geocode_ban(address_str)
+            # Géocoder l'adresse
+            geo = self.geocode_ban(address_str, logger)
             if not geo:
+                logger.log(f"Impossible de géocoder: {address_str}", "DEBUG")
                 continue
             
-            # Chercher les POI proches avec des contacts
-            contacts = self.get_osm_contacts(geo["lat"], geo["lon"], "", radius=50)
+            # Rechercher les entreprises OSM autour de ce point
+            businesses = self.find_businesses_osm(
+                geo["lat"], geo["lon"], 
+                radius=SEARCH_RADIUS_M, 
+                logger=logger
+            )
             
-            if contacts.get("phones") or contacts.get("emails"):
-                data = {
-                    "name": "Inconnu",
-                    "category": contacts.get("osm_categories", [None])[0] if contacts.get("osm_categories") else None,
-                    "address": address_str,
-                    "distance_m": None,
-                    "phones": contacts.get("phones", []),
-                    "emails": contacts.get("emails", []),
-                    "websites": contacts.get("websites", []),
-                    "socials": [],
-                    "company_info": {},
-                    "owner_first_name": None,
-                    "owner_last_name": None,
-                    "owner_role": None,
-                    "building_year": None,
-                    "roof_area_m2": None,
-                    "parking_area_m2": None,
-                    "latitude": geo["lat"],
-                    "longitude": geo["lon"],
-                }
-                results.append(data)
+            for biz in businesses:
+                # Éviter les doublons (même nom déjà traité)
+                biz_key = (biz["name"].lower().strip(), biz.get("lat"), biz.get("lon"))
+                if biz_key in seen_names:
+                    continue
+                seen_names.add(biz_key)
+                
+                # Utiliser l'adresse OSM si disponible, sinon l'adresse recherchée
+                biz_address = biz.get("address") or address_str
+                
+                # Enrichir l'entreprise
+                enriched = self.enrich_business(
+                    name=biz["name"],
+                    address=biz_address,
+                    lat=biz["lat"],
+                    lon=biz["lon"],
+                    city=street["city"],
+                    postal_code=street["postal_code"],
+                    logger=logger
+                )
+                
+                if enriched:
+                    # Ajouter la catégorie OSM si pas déjà définie
+                    if not enriched.get("category") and biz.get("category"):
+                        enriched["category"] = biz["category"]
+                    results.append(enriched)
         
+        logger.log(f"[Entreprises] Rue '{street['name']}': {len(results)} entreprise(s) trouvee(s)", "INFO")
+        return results
+    
+    def process_pj_results(self, pj_results: List[Dict], logger: Logger) -> List[EntrepriseData]:
+        """
+        Enrichit les résultats Pages Jaunes.
+        
+        Pour chaque résultat PJ qui a un nom (titre PJ):
+        1. Essaie de trouver l'entreprise dans l'API Recherche Entreprises
+        2. Récupère les contacts OSM et surfaces
+        """
+        results = []
+        seen = set()
+        
+        for pj in pj_results:
+            contact = pj.get("contact") or {}
+            title = contact.get("title")
+            
+            # Ignorer si pas de titre
+            if not title:
+                continue
+            
+            # Extraire le nom de l'entreprise du titre PJ
+            # Format typique: "Nom Entreprise Ville - Activité (adresse, horaires, avis)"
+            name = title
+            
+            # Enlever les parenthèses et leur contenu à la fin
+            # Ex: "(adresse, horaires)" ou "(adresse, horaires, avis)"
+            if "(" in name:
+                name = name.split("(")[0].strip()
+            
+            # Séparer sur " - " pour enlever l'activité
+            if " - " in name:
+                name = name.split(" - ")[0].strip()
+            
+            # Enlever le nom de ville à la fin si présent (format: "Entreprise Meylan")
+            addr = pj.get("address") or {}
+            city = addr.get("ville", "")
+            if city and name.lower().endswith(" " + city.lower()):
+                name = name[:-len(city)-1].strip()
+            
+            # Si le nom est toujours vide ou trop court, skip
+            if len(name) < 2:
+                continue
+            
+            # Éviter les doublons
+            key = (name.lower(), addr.get("voie", "").lower(), addr.get("numero", ""))
+            if key in seen:
+                continue
+            seen.add(key)
+            
+            # Coordonnées
+            coords = pj.get("coords") or {}
+            lat = coords.get("latitude")
+            lon = coords.get("longitude")
+            
+            if not lat or not lon:
+                continue
+            
+            # Construire l'adresse
+            address_str = f"{addr.get('numero', '')} {addr.get('voie', '')}, {addr.get('code_postal', '')} {addr.get('ville', '')}".strip()
+            
+            # Enrichir
+            enriched = self.enrich_business(
+                name=name,
+                address=address_str,
+                lat=lat,
+                lon=lon,
+                city=addr.get("ville"),
+                postal_code=addr.get("code_postal"),
+                logger=logger
+            )
+            
+            if enriched:
+                results.append(enriched)
+        
+        logger.log(f"[Entreprises] {len(results)} entreprise(s) enrichie(s) depuis PJ", "INFO")
         return results
 
 
