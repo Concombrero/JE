@@ -1391,18 +1391,101 @@ class MainWindow(QMainWindow):
         # Mettre à jour l'état des boutons
         for i, btn in enumerate(self.nav_buttons):
             btn.setChecked(i == index)
-    
+
+
     def apply_styles(self):
         """Applique le style global de l'application"""
         self.setStyleSheet("""
+            /* Style global */
+            * {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            }
+            
             QMainWindow {
-                background-color: #f8fafc;
+                background-color: #f1f5f9;
+            }
+            
+            /* BARRE DE MENU - TOUJOURS NOIRE */
+            QMenuBar {
+                background-color: #000000 !important;
+                color: white !important;
+                padding: 4px;
+                border: none;
+            }
+            
+            QMenuBar::item {
+                background-color: #000000 !important;
+                color: white !important;
+                padding: 8px 16px;
+                margin: 0px 2px;
+                border-radius: 4px;
+            }
+            
+            QMenuBar::item:selected {
+                background-color: #333333 !important;
+                color: white !important;
+            }
+            
+            QMenuBar::item:pressed {
+                background-color: #1a1a1a !important;
+                color: white !important;
+            }
+            
+            /* Menus déroulants - NOIR */
+            QMenu {
+                background-color: #000000 !important;
+                color: white !important;
+                border: 1px solid #333333;
+                padding: 5px;
+            }
+            
+            QMenu::item {
+                padding: 8px 30px 8px 20px;
+                border-radius: 4px;
+                background-color: #000000 !important;
+                color: white !important;
+            }
+            
+            QMenu::item:selected {
+                background-color: #333333 !important;
+                color: white !important;
+            }
+            
+            QMenu::item:pressed {
+                background-color: #1a1a1a !important;
+                color: white !important;
+            }
+            
+            /* FOND DES PAGES - GRIS CLAIR */
+            QWidget {
+                background-color: #f1f5f9;
+            }
+            
+            /* CHAMPS DE SAISIE - Texte en noir */
+            QLineEdit {
+                color: #000000 !important;
+                background-color: white;
+            }
+            
+            QDoubleSpinBox {
+                color: #000000 !important;
+                background-color: white;
+            }
+            
+            QComboBox {
+                color: #000000 !important;
+                background-color: white;
+            }
+            
+            QSpinBox {
+                color: #000000 !important;
+                background-color: white;
             }
             
             /* Panel de navigation */
             #navPanel {
                 background-color: #1e293b;
-                border-right: 1px solid #334155;
+                border-right: 1px solid #cbd5e1;
             }
             
             #navTitle {
@@ -1414,85 +1497,103 @@ class MainWindow(QMainWindow):
             }
             
             #versionLabel {
-                color: #475569;
+                color: #64748b;
                 font-size: 11px;
             }
             
             /* Boutons de navigation */
-            NavButton {
+            QPushButton[checkable="true"] {
                 background-color: transparent;
-                color: #cbd5e1;
                 border: none;
-                border-radius: 8px;
-                padding: 12px 15px;
                 text-align: left;
-                font-size: 13px;
+                padding: 12px 20px;
+                color: #cbd5e1;
+                font-size: 14px;
+                font-weight: 500;
+                border-radius: 8px;
             }
             
-            NavButton:hover {
-                background-color: #334155;
-                color: white;
-            }
-            
-            NavButton:checked {
+            QPushButton[checkable="true"]:checked {
                 background-color: #3b82f6;
                 color: white;
                 font-weight: bold;
             }
             
-            /* Formulaires - GroupBox */
+            QPushButton[checkable="true"]:hover {
+                background-color: rgba(59, 130, 246, 0.1);
+                color: white;
+            }
+            
+            /* GroupBox */
             QGroupBox {
-                font-weight: bold;
-                font-size: 13px;
-                border: 1px solid #e2e8f0;
-                border-radius: 8px;
-                margin-top: 16px;
-                padding: 20px 15px 15px 15px;
                 background-color: white;
+                border: 1px solid #e2e8f0;
+                border-radius: 10px;
+                margin-top: 10px;
+                padding: 20px 15px 15px 15px;
+                font-weight: 600;
+                color: #1e293b;
             }
             
             QGroupBox::title {
                 subcontrol-origin: margin;
                 subcontrol-position: top left;
-                left: 12px;
-                top: 4px;
-                padding: 0 6px;
-                background-color: white;
+                left: 15px;
+                padding: 0 8px;
+                color: #1e293b;
+                font-size: 14px;
+            }
+            
+            /* Labels */
+            QLabel {
                 color: #334155;
+                background-color: transparent;
             }
             
-            /* Labels dans formulaires */
-            QFormLayout QLabel {
-                font-weight: normal;
-                color: #475569;
-                padding-right: 10px;
-            }
-            
-            QLineEdit, QDoubleSpinBox, QComboBox {
-                padding: 8px 10px;
+            /* LineEdit standard */
+            QLineEdit {
+                padding: 10px 12px;
                 border: 1px solid #e2e8f0;
                 border-radius: 6px;
                 background-color: white;
                 font-size: 13px;
-                min-height: 20px;
             }
             
-            QLineEdit:focus, QDoubleSpinBox:focus, QComboBox:focus {
-                border-color: #3b82f6;
+            QLineEdit:focus {
+                border: 1px solid #3b82f6;
                 outline: none;
             }
             
-            QLineEdit:disabled {
-                background-color: #f1f5f9;
-                color: #94a3b8;
+            /* SpinBox */
+            QDoubleSpinBox {
+                padding: 10px 12px;
+                border: 1px solid #e2e8f0;
+                border-radius: 6px;
+                background-color: white;
+                font-size: 13px;
             }
             
-            /* Boutons d'action */
+            QDoubleSpinBox:focus {
+                border: 1px solid #3b82f6;
+            }
+            
+            /* Boutons */
             QPushButton {
+                background-color: #3b82f6;
+                color: white;
                 padding: 10px 20px;
+                border: none;
                 border-radius: 6px;
                 font-size: 13px;
                 font-weight: 500;
+            }
+            
+            QPushButton:hover {
+                background-color: #2563eb;
+            }
+            
+            QPushButton:pressed {
+                background-color: #1d4ed8;
             }
             
             QPushButton:disabled {
@@ -1525,6 +1626,7 @@ class MainWindow(QMainWindow):
             QListWidget::item {
                 padding: 12px 15px;
                 border-bottom: 1px solid #f1f5f9;
+                color: #334155;
             }
             
             QListWidget::item:last {
@@ -1576,8 +1678,18 @@ class MainWindow(QMainWindow):
                 font-size: 12px;
                 padding: 10px;
             }
+            
+            /* Titres des pages - EN ROUGE VIF */
+            #pageTitle {
+                color: #ef4444 !important;
+                font-size: 28px;
+                font-weight: bold;
+                background-color: transparent;
+            }
         """)
-    
+
+
+
     @Slot(str)
     def on_map_ready(self, html: str):
         """Affiche la carte et switch sur la page carte"""
