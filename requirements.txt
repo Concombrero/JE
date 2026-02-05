@@ -15,5 +15,8 @@ geopy>=2.4.0
 pyproj>=3.6.0
 overpy>=0.6
 
+# Pyinstaller
+pyinstaller>=5.11.0
+
 # Optionnel pour calculs de surface
 # shapely>=2.0.0

@@ -288,9 +288,42 @@ output/
 
 ---
 
+## � Créer un exécutable (.exe)
+
+L'application peut être packagée en un exécutable autonome grâce à PyInstaller. Cela permet de la distribuer et de l'utiliser sans avoir Python installé.
+
+### Prérequis
+
+```bash
+pip install pyinstaller
+```
+
+### Build de l'exécutable
+
+```bash
+# Build en dossier (démarrage plus rapide)
+python build.py
+
+# Build en un seul fichier .exe (plus facile à distribuer)
+python build.py --onefile
+
+# Nettoyer les fichiers de build
+python build.py --clean
+```
+
+### Résultat
+
+| Mode | Emplacement de l'exécutable |
+|------|----------------------------|
+| Dossier | `dist/ProspectionImmobiliere/ProspectionImmobiliere.exe` |
+| Fichier unique | `dist/ProspectionImmobiliere.exe` |
+
+
+---
+
 ## 📝 Notes de développement
 
-- Les fichiers `src_1/` et `src_2/` ont été conservés pour référence historique
-- La version finale dans `src/` est la seule à utiliser
+- Les fichiers `source_rendu_intervenant1/` et `source_rendu_intervenant_2/` ont été conservés pour référence historique
+- La version finale dans `source_finale/` est la seule à utiliser
 - Le module `fusion.py` est le cœur de l'intégration, gérant le matching et la déduplication
 - L'architecture a été pensée pour permettre l'ajout futur de nouvelles sources de données
