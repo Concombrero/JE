@@ -1,6 +1,10 @@
 # Build outputs
+dist/
 build/
 output/
+
+# Release ZIP
+ProspectionImmobiliere-*.zip
 
 # Python
 __pycache__/
