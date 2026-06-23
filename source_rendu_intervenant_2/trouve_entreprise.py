@@ -1,95 +1,192 @@
 # trouve_entreprise.py
 # -*- coding: utf-8 -*-
-"""
-Programme 1 – Géocodage + recherche d'entreprises (OSM/Overpass)
-Exporte:
-  - geocode_address(address) -> (lat, lon)
-  - find_businesses(lat, lon, radius=500) -> list[ (name, category, distance_m, address) ]
 
-Remarques:
-- radius en mètres.
-- On interroge les nodes OSM "office" et "shop" (les plus fréquents pour entreprises/commerces).
-- L'adresse est reconstruite à partir des tags OSM si disponible.
-"""
-
-import overpy
-from geopy.geocoders import Nominatim
+import requests
 from geopy.distance import geodesic
 
-# Nominatim: utiliser un user_agent explicite
-_GEOCODER = Nominatim(user_agent="prospection-app/1.0 (+contact@example.com)", timeout=10)
+from overpass_client import overpass
+
+
+BAN_URL = "https://api-adresse.data.gouv.fr/search/"
 
 
 def geocode_address(address: str):
     """
-    Géocode une adresse avec Nominatim (geopy).
-    Retourne (lat, lon) en float ou lève Exception si introuvable.
+    Géocodage via BAN.
+    Retourne (lat, lon)
     """
-    location = _GEOCODER.geocode(address)
-    if not location:
-        raise Exception("Adresse introuvable")
-    return float(location.latitude), float(location.longitude)
+
+    params = {
+        "q": address,
+        "limit": 1
+    }
+
+    r = requests.get(
+        BAN_URL,
+        params=params,
+        timeout=15
+    )
+
+    r.raise_for_status()
+
+    data = r.json()
+
+    features = data.get("features", [])
+
+    if not features:
+        raise Exception(
+            f"Adresse introuvable : {address}"
+        )
+
+    lon, lat = features[0]["geometry"]["coordinates"]
+
+    return lat, lon
 
 
-def get_address_from_tags(tags: dict) -> str:
-    """
-    Reconstruit une adresse lisible à partir des tags OSM s'ils existent.
-    """
-    address_parts = []
+def get_address_from_tags(tags):
+
+    parts = []
+
     if tags.get("addr:housenumber"):
-        address_parts.append(tags["addr:housenumber"])
+        parts.append(tags["addr:housenumber"])
+
     if tags.get("addr:street"):
-        address_parts.append(tags["addr:street"])
+        parts.append(tags["addr:street"])
+
     if tags.get("addr:postcode"):
-        address_parts.append(tags["addr:postcode"])
+        parts.append(tags["addr:postcode"])
+
     if tags.get("addr:city"):
-        address_parts.append(tags["addr:city"])
+        parts.append(tags["addr:city"])
+
     if tags.get("addr:country"):
-        address_parts.append(tags["addr:country"])
-    return ", ".join(address_parts) if address_parts else "Adresse inconnue"
+        parts.append(tags["addr:country"])
+
+    if parts:
+        return ", ".join(parts)
+
+    return "Adresse inconnue"
 
 
-def find_businesses(lat: float, lon: float, radius: int = 500):
-    """
-    Cherche des entreprises/commerces autour d'un point (lat, lon) dans un rayon donné (m).
-    Retourne une liste de tuples: (name, category, distance_m, address_str)
-    """
-    api = overpy.Overpass()
+def find_businesses(
+        lat: float,
+        lon: float,
+        radius: int = 500,
+        verbose=False
+):
 
-    # On cible des noeuds (nodes) avec tags "office" ou "shop".
-    # (on pourrait élargir à ways/relations + 'out center', mais nodes suffit souvent et reste simple)
     query = f"""
-    (
-      node(around:{radius},{lat},{lon})["office"];
-      node(around:{radius},{lat},{lon})["shop"];
-    );
-    out body;
-    """
+[out:json][timeout:60];
+(
+ node(around:R,lat,lon)["office"];
+ node(around:R,lat,lon)["shop"];
+ node(around:R,lat,lon)["craft"];
+ node(around:R,lat,lon)["amenity"];
+ way(around:R,lat,lon)["office"];
+ way(around:R,lat,lon)["shop"];
+ way(around:R,lat,lon)["craft"];
+ way(around:R,lat,lon)["amenity"];
+ relation(around:R,lat,lon)["office"];
+ relation(around:R,lat,lon)["shop"];
+ relation(around:R,lat,lon)["craft"];
+ relation(around:R,lat,lon)["amenity"];
+);
+out center tags;
+out body;
+"""
 
-    result = api.query(query)
+    data = overpass(
+        query,
+        verbose=verbose
+    )
 
-    businesses = []
     origin = (lat, lon)
 
-    for node in result.nodes:
-        name = node.tags.get("name", "Inconnu")
-        category = node.tags.get("office") or node.tags.get("shop") or "n/a"
-        # distance géodésique (m)
-        dist_m = geodesic(origin, (node.lat, node.lon)).meters
-        address = get_address_from_tags(node.tags)
-        businesses.append((name, category, round(dist_m), address))
+    businesses = []
 
-    # Tri facultatif par distance croissante
-    businesses.sort(key=lambda x: x[2])
+    for node in data.get("elements", []):
+
+        if node["type"] != "node":
+            continue
+
+        tags = node.get("tags", {})
+
+        name = tags.get(
+            "name",
+            "Inconnu"
+        )
+
+        category = (
+            tags.get("office")
+            or tags.get("shop")
+            or "n/a"
+        )
+
+        dist_m = geodesic(
+            origin,
+            (
+                node["lat"],
+                node["lon"]
+            )
+        ).meters
+
+        address = get_address_from_tags(
+            tags
+        )
+
+        businesses.append(
+            (
+                name,
+                category,
+                round(dist_m),
+                address
+            )
+        )
+
+    businesses.sort(
+        key=lambda x: x[2]
+    )
+
     return businesses
 
 
 if __name__ == "__main__":
-    # Petit test manuel (exécuter: python trouve_entreprise.py)
-    addr = input("Adresse: ").strip()
-    rayon_m = int(input("Rayon en mètres (ex 500): ").strip() or "500")
-    clat, clon = geocode_address(addr)
-    res = find_businesses(clat, clon, radius=rayon_m)
-    print(f"{len(res)} résultat(s)")
-    for name, category, dist, addr2 in res[:10]:
-        print(f" - {name} ({category}) à {dist} m – {addr2}")
+
+    addr = input(
+        "Adresse: "
+    ).strip()
+
+    rayon_m = int(
+        input(
+            "Rayon en mètres (ex 500): "
+        ).strip() or "500"
+    )
+
+    lat, lon = geocode_address(
+        addr
+    )
+
+    print(
+        f"\nCentre trouvé : "
+        f"{lat:.6f}, {lon:.6f}"
+    )
+
+    resultats = find_businesses(
+        lat,
+        lon,
+        rayon_m,
+        verbose=True
+    )
+
+    print(
+        f"\n{len(resultats)} résultat(s)\n"
+    )
+
+    for name, category, dist, address in resultats[:20]:
+
+        print(
+            f"- {name}"
+            f" ({category})"
+            f" à {dist} m"
+            f" - {address}"
+        )

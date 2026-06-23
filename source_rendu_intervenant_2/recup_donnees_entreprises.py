@@ -19,21 +19,17 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import requests
 
-# shapely est optionnelle (non nécessaire, on calcule les aires avec pyproj.Geod)
-try:
-    from shapely.geometry import Polygon  # noqa: F401  (juste pour info)
-    HAVE_SHAPELY = True
-except Exception:
-    HAVE_SHAPELY = False
+# import du calcul des surfaces
+from oms_surface.surface_year import get_surfaces_and_year
 
-from pyproj import Geod
-GEOD = Geod(ellps="WGS84")
+# import du client Overpass robuste (multi-serveurs, gestion 429/503, cache, throttling)
+from overpass_client import overpass as overpass_query
+
 
 # Constantes
-UA = {"User-Agent": "prospection-open-data/1.2 (+contact@example.com)"}
+UA = {"User-Agent": "prospection-open-data/1.2 "}
 BAN_URL = "https://api-adresse.data.gouv.fr/search/"
 RE_URL = "https://recherche-entreprises.api.gouv.fr/search"
-OVERPASS_URL = "https://overpass.kumi.systems/api/interpreter"  # miroir rapide (changez au besoin)
 
 # -------------- Utils --------------
 def _retry_get(
@@ -58,28 +54,6 @@ def _retry_get(
         raise last_exc  # type: ignore[misc]
     # fallback improbable
     raise RuntimeError("Échec inconnu dans _retry_get")
-
-def _retry_post(
-    url: str,
-    *,
-    data: Dict[str, Any],
-    headers: Dict[str, str],
-    timeout: int = 30,
-    tries: int = 3,
-    backoff: float = 1.7,
-) -> requests.Response:
-    last_exc: Optional[Exception] = None
-    for i in range(tries):
-        try:
-            r = requests.post(url, data=data, headers=headers, timeout=timeout)
-            return r
-        except requests.RequestException as e:
-            last_exc = e
-            if i < tries - 1:
-                time.sleep(backoff ** (i + 1))
-    if last_exc:
-        raise last_exc  # type: ignore[misc]
-    raise RuntimeError("Échec inconnu dans _retry_post")
 
 # -------------- BAN: géocodage --------------
 def geocode_ban(address: str) -> Optional[Dict[str, Any]]:
@@ -265,47 +239,16 @@ def search_company_re(
         )
     return out
 
-# -------------- Overpass helpers --------------
-def _overpass(query: str) -> Dict[str, Any]:
-    # Respecter Overpass: une légère pause peut être utile si vous enchaînez
-    data = {"data": query}
-    r = _retry_post(OVERPASS_URL, data=data, headers=UA, timeout=60, tries=3)
-    # 429/504 sont fréquents sur Overpass: laissez _retry_post gérer les retries,
-    # puis si ça persiste on lève ici
-    r.raise_for_status()
-    js = r.json()
+def _overpass(query: str, verbose: bool = False) -> Dict[str, Any]:
+    """
+    Wrapper autour du client Overpass robuste (oms_surface.overpass_client.overpass).
+    Le client gère lui-même la bascule entre serveurs, les 429/503, les retries,
+    le throttling et le cache LRU.
+    """
+    js = overpass_query(query, verbose=verbose)
     if not isinstance(js, dict):
         raise ValueError("Overpass: réponse JSON inattendue")
     return js
-
-def _polygon_area_m2(coords: List[Tuple[float, float]]) -> float:
-    """
-    coords: liste [(lon, lat), ...] (anneau fermé ou non)
-    Retourne aire en m² via pyproj.Geod (signée, on prend abs()).
-    """
-    if len(coords) < 3:
-        return 0.0
-    # S'assurer que l'anneau est fermé
-    if coords[0] != coords[-1]:
-        coords = coords + [coords[0]]
-    lons, lats = zip(*coords)
-    area, _perim = GEOD.polygon_area_perimeter(lons, lats)
-    return abs(area)
-
-def _way_area_from_geom(elt: Dict[str, Any]) -> float:
-    """
-    Calcule une aire approximative pour un way avec 'geometry' (liste de points) ou center + tags area=yes.
-    Ne traite pas proprement les multipolygones de relation (on se limite aux ways pour garder la simplicité).
-    """
-    if elt.get("type") != "way":
-        return 0.0
-    geom = elt.get("geometry")
-    if isinstance(geom, list) and len(geom) >= 3:
-        coords = [(pt["lon"], pt["lat"]) for pt in geom if isinstance(pt, dict) and "lon" in pt and "lat" in pt]
-        if len(coords) >= 3:
-            return _polygon_area_m2(coords)
-    # fallback: aucune géométrie utilisable
-    return 0.0
 
 # -------------- Contacts OSM --------------
 def get_osm_contacts(lat: float, lon: float, company_name: str, radius: int = 200) -> Dict[str, Any]:
@@ -494,78 +437,6 @@ def get_osm_contacts(lat: float, lon: float, company_name: str, radius: int = 20
         "websites": contacts.get("websites", []),
         "osm_categories": osm_categories,
         "match_count": 1,
-    }
-
-# -------------- Surfaces toiture/parking + année plausible --------------
-def get_surfaces_and_year(lat: float, lon: float, radius: int = 250) -> Dict[str, Optional[float]]:
-    plat, plon, r = float(lat), float(lon), int(radius)
-
-    # 1) Bâtiments (toitures)
-    q_build = f"""
-    [out:json][timeout:30];
-    way(around:{r},{plat},{plon})["building"];
-    out tags geom;
-    """
-    data_b = _overpass(q_build)
-    total_roof = 0.0
-    years: List[int] = []
-    for elt in data_b.get("elements", []):
-        tags = elt.get("tags", {}) if isinstance(elt.get("tags"), dict) else {}
-        try:
-            total_roof += _way_area_from_geom(elt)
-        except Exception:
-            pass
-        # Recherche d'une année plausible
-        for key in ("start_date", "building:year_built", "construction:year", "year_built"):
-            v = tags.get(key)
-            if not v:
-                continue
-            # extraire AAAA au début
-            y = None
-            # formats courants: "1998", "1998-05", "1998-05-12", "ca. 1998"
-            for tok in (v, v.strip("ca. ").strip("~")):
-                if isinstance(tok, str) and len(tok) >= 4 and tok[:4].isdigit():
-                    y = int(tok[:4])
-                    break
-            if y and 1700 <= y <= 2100:
-                years.append(y)
-                break
-
-    roof_area = round(total_roof, 1) if total_roof > 0 else None
-    building_year: Optional[int] = None
-    if years:
-        years.sort()
-        # médiane simple
-        building_year = years[len(years) // 2]
-
-    # 2) Parkings (surfaces approximatives)
-    parking_area = None
-    try:
-        q_park = f"""
-        [out:json][timeout:30];
-        (
-          way(around:{r},{plat},{plon})["amenity"="parking"];
-          relation(around:{r},{plat},{plon})["amenity"="parking"];
-          way(around:{r},{plat},{plon})["highway"="service"]["service"="parking_aisle"];
-        );
-        out tags center geom;
-        """
-        data_p = _overpass(q_park)
-        total_p = 0.0
-        for elt in data_p.get("elements", []):
-            # on ne calcule l'aire que pour les ways; les relations multipolygones ne sont pas traitées ici
-            try:
-                total_p += _way_area_from_geom(elt)
-            except Exception:
-                pass
-        parking_area = round(total_p, 1) if total_p > 0 else None
-    except Exception:
-        parking_area = None
-
-    return {
-        "roof_area_m2": roof_area,
-        "parking_area_m2": parking_area,
-        "building_year": building_year,
     }
 
 # -------------- Déduction d'un "propriétaire" probable depuis les dirigeants --------------
