@@ -19,6 +19,7 @@ from pyproj import Geod
 from tools import Address, Street, EntrepriseData, listify, sanitize
 from logger import Logger
 
+from oms_surface.surface_year import get_surfaces_and_year as surface_year
 
 # Constantes
 UA = {"User-Agent": "prospection-open-data/1.2"}
@@ -240,27 +241,6 @@ class EntrepriseSearcher:
         # Retourner un dict vide avec elements si tous les serveurs échouent
         return {"elements": []}
     
-    def _polygon_area_m2(self, coords: List[Tuple[float, float]]) -> float:
-        """Calcule l'aire d'un polygone en m²"""
-        if len(coords) < 3:
-            return 0.0
-        if coords[0] != coords[-1]:
-            coords = coords + [coords[0]]
-        lons, lats = zip(*coords)
-        area, _ = GEOD.polygon_area_perimeter(lons, lats)
-        return abs(area)
-    
-    def _way_area_from_geom(self, elt: Dict) -> float:
-        """Calcule l'aire d'un way OSM"""
-        if elt.get("type") != "way":
-            return 0.0
-        geom = elt.get("geometry")
-        if isinstance(geom, list) and len(geom) >= 3:
-            coords = [(pt["lon"], pt["lat"]) for pt in geom if "lon" in pt and "lat" in pt]
-            if len(coords) >= 3:
-                return self._polygon_area_m2(coords)
-        return 0.0
-    
     def get_osm_contacts(self, lat: float, lon: float, company_name: str, radius: int = 200) -> Dict:
         """Récupère les contacts OSM pour une entreprise"""
         
@@ -356,53 +336,7 @@ class EntrepriseSearcher:
         return {"phones": [], "emails": [], "websites": [], "osm_categories": [], "match_count": 0}
     
     def get_surfaces_and_year(self, lat: float, lon: float, radius: int = 250) -> Dict:
-        """Récupère les surfaces toiture/parking et année de construction"""
-        
-        # Bâtiments
-        q_build = f"""
-        [out:json][timeout:30];
-        way(around:{radius},{lat},{lon})["building"];
-        out tags geom;
-        """
-        data_b = self._overpass(q_build)
-        
-        total_roof = 0.0
-        years = []
-        
-        for elt in data_b.get("elements", []):
-            tags = elt.get("tags", {})
-            try:
-                total_roof += self._way_area_from_geom(elt)
-            except Exception:
-                pass
-            
-            for key in ("start_date", "building:year_built", "year_built"):
-                v = tags.get(key)
-                if v and str(v)[:4].isdigit():
-                    y = int(str(v)[:4])
-                    if 1700 <= y <= 2100:
-                        years.append(y)
-                        break
-        
-        # Parkings
-        total_park = 0.0
-        try:
-            q_park = f"""
-            [out:json][timeout:30];
-            way(around:{radius},{lat},{lon})["amenity"="parking"];
-            out tags geom;
-            """
-            data_p = self._overpass(q_park)
-            for elt in data_p.get("elements", []):
-                total_park += self._way_area_from_geom(elt)
-        except Exception:
-            pass
-        
-        return {
-            "roof_area_m2": round(total_roof, 1) if total_roof > 0 else None,
-            "parking_area_m2": round(total_park, 1) if total_park > 0 else None,
-            "building_year": years[len(years)//2] if years else None
-        }
+        return surface_year(lat, lon, radius)
     
     def _pick_owner(self, dirigeants: List[Dict]) -> Optional[Dict]:
         """Choisit le dirigeant principal"""
